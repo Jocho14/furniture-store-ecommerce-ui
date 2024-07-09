@@ -1,0 +1,89 @@
+$columns: 12;
+$gutter: 16px;
+
+* {
+  box-sizing: border-box;
+}
+
+.gird {
+  &__wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    padding-top: 2rem;
+    box-sizing: border-box;
+  }
+
+  &__container {
+    display: grid;
+    height: 100vh;
+    grid-gap: $gutter;
+  }
+}
+
+/* Generate classes for full grid columns (1-12) */
+@for $i from 1 through $columns {
+  .col-#{$i} {
+    grid-column: span #{$i} / span #{$i};
+  }
+  .start-#{$i} {
+    grid-column-start: #{$i};
+  }
+}
+
+/* Adjust for 360px screen size */
+@media screen and (max-width: 360px) {
+  .gridContainer {
+    grid-template-columns: repeat(4, 70px);
+    grid-gap: 16px;
+  }
+}
+
+/* Adjust for 361px to 768px screen size */
+@media screen and (min-width: 361px) and (max-width: 767px) {
+  .gridContainer {
+    grid-template-columns: repeat(4, 79px);
+    grid-gap: 8px;
+  }
+}
+
+/* Adjust for 769px to 1024px screen size */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .gridContainer {
+    grid-template-columns: repeat(12, 47px);
+    grid-gap: 16px;
+  }
+}
+
+/* Adjust for 1025px to 1366px screen size */
+@media screen and (min-width: 1024px) and (max-width: 1365px) {
+  .gridContainer {
+    grid-template-columns: repeat(12, 68px);
+    grid-gap: 16px;
+  }
+}
+
+/* Adjust for 1367px to 1440px screen size */
+@media screen and (min-width: 1366px) and (max-width: 1439px) {
+  .gridContainer {
+    grid-template-columns: repeat(12, 89px);
+    grid-gap: 16px;
+  }
+}
+
+/* Adjust for 1441px to 1920px screen size */
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+  .gridContainer {
+    grid-template-columns: repeat(12, 96px);
+    grid-gap: 16px;
+  }
+}
+
+/* Adjust for 1921px and above screen size */
+@media screen and (min-width: 1920px) {
+  .gridContainer {
+    grid-template-columns: repeat(12, 99px);
+    grid-gap: 16px;
+  }
+}
