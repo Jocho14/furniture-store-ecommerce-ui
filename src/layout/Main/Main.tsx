@@ -11,12 +11,12 @@ interface Props {}
 
 const Main: React.FC<Props> = () => {
   return (
-    <div className="main">
+    <div>
       <Header />
       <main>
-        <Grid>
+        {/* <Grid>
           <Outlet />
-        </Grid>
+        </Grid> */}
       </main>
       <Footer />
     </div>
