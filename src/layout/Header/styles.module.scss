@@ -10,7 +10,7 @@
   height: 100px;
   display: flex;
   justify-content: center;
-  z-index: 1000;
+  z-index: 40;
   position: fixed;
   transition: transform 0.3s ease-in-out;
 
@@ -47,6 +47,41 @@
     &__icon:hover {
       color: $hover;
       cursor: pointer;
+    }
+
+    &__item {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.hide {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    &__user-tools__item {
+      &:nth-child(2),
+      &:nth-child(4) {
+        display: none;
+      }
+    }
+
+    &__input {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    &__user-tools__item {
+      &:nth-child(1),
+      &:nth-child(6) {
+        display: none;
+      }
     }
   }
 }

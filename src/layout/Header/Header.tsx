@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 
 import Grid from "@/components/Grid/Grid";
+import DropdownMenu from "@/components/DropdownMenu/DropdownMenu";
 import { Input } from "@/components/ui/input";
-import { Shop, User, Heart, ShoppingBag } from "iconoir-react";
+import { Shop, User, Heart, ShoppingBag, Menu, Search } from "iconoir-react";
 
 import styles from "./styles.module.scss";
 
@@ -12,17 +13,30 @@ interface Props {}
 const Header: React.FC<Props> = () => {
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
+      const currentScrollY = window.scrollY;
+
+      // Check if the user is at the top of the page
+      if (currentScrollY <= 10) {
+        setIsHidden(false);
+      } else if (currentScrollY > lastScrollY) {
         // Scrolling down
         setIsHidden(true);
       } else {
         // Scrolling up
         setIsHidden(false);
       }
-      setLastScrollY(window.scrollY);
+
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -42,28 +56,45 @@ const Header: React.FC<Props> = () => {
           LOGO
         </div>
         <div
-          className={classNames(styles["header__input"], "start-2", "col-6")}
+          className={classNames(
+            styles["header__input"],
+            { "start-2 col-6": !isMobile },
+            { "grid-hidden": isMobile }
+          )}
         >
-          <Input type="text" placeholder="Search for products" />
+          <Input className="hide" type="text" placeholder="Wyszukaj..." />
         </div>
         <ul
           className={classNames(
             styles["header__user-tools"],
-            "start-9",
-            "col-4"
+            { "start-10 col-3": !isMobile },
+            { "start-3 col-2": isMobile }
           )}
         >
-          <li className={styles["header__user-tools__item"]}>
+          <li className={classNames(styles["header__user-tools__item"])}>
+            <Search className={styles["header__user-tools__icon"]} />
+          </li>
+          <li className={classNames(styles["header__user-tools__item"])}>
             <Shop className={styles["header__user-tools__icon"]} />
           </li>
           <li className={styles["header__user-tools__item"]}>
             <User className={styles["header__user-tools__icon"]} />
           </li>
           <li className={styles["header__user-tools__item"]}>
-            <Heart className={styles["header__user-tools__icon"]} />
+            <Heart className={classNames(styles["header__user-tools__icon"])} />
           </li>
           <li className={styles["header__user-tools__item"]}>
             <ShoppingBag className={styles["header__user-tools__icon"]} />
+          </li>
+          <li className={styles["header__user-tools__item"]}>
+            <DropdownMenu
+              trigger={
+                <div>
+                  <Menu className={styles["header__user-tools__icon"]} />
+                  <span className="sr-only">Open menu</span>
+                </div>
+              }
+            />
           </li>
         </ul>
       </Grid>
