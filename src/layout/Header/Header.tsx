@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import Grid from "@/components/Grid/Grid";
 import DropdownMenu from "@/components/DropdownMenu/DropdownMenu";
-import { Input } from "@/components/ui/input";
+import CustomInput from "@/components/CustomInput/CustomInput";
 import { Shop, User, Heart, ShoppingBag, Menu, Search } from "iconoir-react";
 
 import styles from "./styles.module.scss";
@@ -62,7 +62,7 @@ const Header: React.FC<Props> = () => {
             { "grid-hidden": isMobile }
           )}
         >
-          <Input className="hide" type="text" placeholder="Wyszukaj..." />
+          <CustomInput type="text" icon={<Search />} placeholder="Wyszukaj" />
         </div>
         <ul
           className={classNames(
