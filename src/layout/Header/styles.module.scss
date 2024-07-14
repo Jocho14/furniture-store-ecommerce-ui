@@ -55,33 +55,3 @@
     }
   }
 }
-
-.hide {
-  display: none;
-}
-
-@media screen and (max-width: 767px) {
-  .header {
-    &__user-tools__item {
-      &:nth-child(2),
-      &:nth-child(4) {
-        display: none;
-      }
-    }
-
-    &__input {
-      display: none;
-    }
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .header {
-    &__user-tools__item {
-      &:nth-child(1),
-      &:nth-child(6) {
-        display: none;
-      }
-    }
-  }
-}

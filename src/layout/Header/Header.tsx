@@ -47,7 +47,7 @@ const Header: React.FC<Props> = () => {
 
   return (
     <header
-      className={classNames(styles.header, {
+      className={classNames(styles["header"], {
         [styles["header--hidden"]]: isHidden,
       })}
     >
@@ -71,31 +71,44 @@ const Header: React.FC<Props> = () => {
             { "start-3 col-2": isMobile }
           )}
         >
-          <li className={classNames(styles["header__user-tools__item"])}>
-            <Search className={styles["header__user-tools__icon"]} />
-          </li>
-          <li className={classNames(styles["header__user-tools__item"])}>
-            <Shop className={styles["header__user-tools__icon"]} />
-          </li>
+          {!!isMobile && (
+            <li className={styles["header__user-tools__item"]}>
+              <Search className={styles["header__user-tools__icon"]} />
+            </li>
+          )}
+
+          {!isMobile && (
+            <li className={styles["header__user-tools__item"]}>
+              <Shop className={styles["header__user-tools__icon"]} />
+            </li>
+          )}
+
           <li className={styles["header__user-tools__item"]}>
             <User className={styles["header__user-tools__icon"]} />
           </li>
-          <li className={styles["header__user-tools__item"]}>
-            <Heart className={classNames(styles["header__user-tools__icon"])} />
-          </li>
+
+          {!isMobile && (
+            <li className={styles["header__user-tools__item"]}>
+              <Heart className={styles["header__user-tools__icon"]} />
+            </li>
+          )}
+
           <li className={styles["header__user-tools__item"]}>
             <ShoppingBag className={styles["header__user-tools__icon"]} />
           </li>
-          <li className={styles["header__user-tools__item"]}>
-            <DropdownMenu
-              trigger={
-                <div>
-                  <Menu className={styles["header__user-tools__icon"]} />
-                  <span className="sr-only">Open menu</span>
-                </div>
-              }
-            />
-          </li>
+
+          {!!isMobile && (
+            <li className={styles["header__user-tools__item"]}>
+              <DropdownMenu
+                trigger={
+                  <div>
+                    <Menu className={styles["header__user-tools__icon"]} />
+                    <span className="sr-only">Open menu</span>
+                  </div>
+                }
+              />
+            </li>
+          )}
         </ul>
       </Grid>
     </header>

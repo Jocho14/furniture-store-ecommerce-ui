@@ -29,11 +29,11 @@ $gutter: 16px;
 
 /* Generate classes for full grid columns (1-12) */
 @for $i from 1 through $columns {
-  .col-#{$i} {
-    grid-column: span #{$i} / span #{$i};
-  }
   .start-#{$i} {
     grid-column-start: #{$i};
+  }
+  .col-#{$i} {
+    grid-column-end: span #{$i};
   }
 }
 

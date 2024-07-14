@@ -30,7 +30,7 @@ const Grid: React.FC<GridProps> = ({ children, className }) => {
           );
 
           const responsiveClass = getResponsiveClass(index, start, col);
-
+          console.log("start: ", start, " col: ", col);
           return (
             <div className={`grid__item ${responsiveClass}`}>{element}</div>
           );
