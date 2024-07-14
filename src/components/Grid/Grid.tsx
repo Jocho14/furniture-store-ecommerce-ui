@@ -1,6 +1,5 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import classNames from "classnames";
-
 import "./styles.scss";
 
 interface GridProps {
@@ -8,28 +7,8 @@ interface GridProps {
   className?: string;
 }
 
-const debounce = (func: (...args: any[]) => void, wait: number) => {
-  let timeout: ReturnType<typeof setTimeout>;
-  return (...args: any[]) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(this, args), wait);
-  };
-};
-
 const Grid: React.FC<GridProps> = ({ children, className }) => {
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = debounce(() => setWidth(window.innerWidth), 300);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   const getResponsiveClass = (index: number, start: number, col: number) => {
-    if (width <= 767) {
-      const newStart = ((start - 1) % 4) + 1;
-      return `start-${newStart} col-${col}`;
-    }
     return `start-${start} col-${col}`;
   };
 

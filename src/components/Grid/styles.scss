@@ -92,3 +92,11 @@ $gutter: 16px;
     grid-gap: 16px;
   }
 }
+
+@media screen and (max-width: 767px) {
+  @for $i from 1 through $columns {
+    .start-#{$i} {
+      grid-column-start: ($i - 1) % 4 + 1;
+    }
+  }
+}
