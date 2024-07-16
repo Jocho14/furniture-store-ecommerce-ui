@@ -4,6 +4,7 @@ import classNames from "classnames";
 
 import Grid from "@/components/Grid/Grid";
 import DropdownMenu from "@/components/DropdownMenu/DropdownMenu";
+import FavouritesDrawer from "@/components/FavouritesDrawer/FavouritesDrawer";
 import CustomInput from "@/components/CustomInput/CustomInput";
 import { Shop, User, Heart, Menu, Search } from "iconoir-react";
 import { ShoppingCartIcon } from "@/components/ShoppingCartIcon/ShoppingCartIcon";
@@ -94,14 +95,21 @@ const Header: React.FC<Props> = () => {
 
           {!isMobile && (
             <li className={styles["header__user-tools__item"]}>
-              <Heart className={styles["header__user-tools__icon"]} />
+              <FavouritesDrawer
+                trigger={
+                  <div>
+                    <Heart className={styles["header__user-tools__icon"]} />
+                    <span className="sr-only">Open menu</span>
+                  </div>
+                }
+              />
             </li>
           )}
 
           <li className={styles["header__user-tools__item"]}>
             <Link to="/shopping-cart">
               <ShoppingCartIcon
-                count={120}
+                count={130}
                 className={styles["header__user-tools__icon"]}
               />
             </Link>

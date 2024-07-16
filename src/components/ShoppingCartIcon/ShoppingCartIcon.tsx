@@ -14,9 +14,11 @@ export const ShoppingCartIcon: React.FC<ShoppingCartIconProps> = ({
 }) => {
   return (
     <div className={classNames(styles["cart-icon__container"], className)}>
-      <span className={styles["cart-icon__container__badge"]}>
-        {count <= 99 ? count : "99+"}
-      </span>
+      {count > 0 ? (
+        <span className={styles["cart-icon__container__badge"]}>
+          {count <= 99 ? count : "99+"}
+        </span>
+      ) : null}
       <ShoppingBag />
     </div>
   );

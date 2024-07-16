@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import Grid from "@/components/Grid/Grid";
 import ShoppingCartProduct from "@/components/ShoppingCartProduct/ShoppingCartProduct";
-import { ArrowRightCircle } from "iconoir-react";
+import CheckoutButton from "@/components/CheckoutButton/CheckoutButton";
 
 import { shoppingCartProductData } from "../../data/data";
 import styles from "./styles.module.scss";
@@ -36,29 +36,23 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = () => {
           <ShoppingCartProduct {...shoppingCartProductData} />
           <ShoppingCartProduct {...shoppingCartProductData} />
           {isMobile && (
-            <div
+            <CheckoutButton
               className={classNames(
-                styles["cart-page__container__checkout"],
                 "align-top",
                 { "start-9 col-4": !isMobile },
                 { "start-1 col-4": isMobile }
               )}
-            >
-              <span>Przejdź do płatności</span> <ArrowRightCircle />
-            </div>
+            />
           )}
         </div>
         {!isMobile && (
-          <div
+          <CheckoutButton
             className={classNames(
-              styles["cart-page__container__checkout"],
               "align-top",
               { "start-9 col-4": !isMobile },
               { "start-1 col-4": isMobile }
             )}
-          >
-            <span>Przejdź do płatności</span> <ArrowRightCircle />
-          </div>
+          />
         )}
       </Grid>
     </div>
