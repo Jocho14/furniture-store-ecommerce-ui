@@ -4,7 +4,7 @@ import "./styles.module.scss";
 interface Props {}
 
 const HomePage: React.FC<Props> = () => {
-  return <div>HomePage</div>;
+  return <div></div>;
 };
 
 export default HomePage;

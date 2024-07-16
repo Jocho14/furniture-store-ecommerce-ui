@@ -1,0 +1,28 @@
+@import "../../assets/styles/variables.scss";
+
+.cart-icon {
+  &__container {
+    display: block;
+    position: relative;
+    margin-right: 10px;
+
+    &__badge {
+      padding: 4px;
+      position: absolute;
+      top: -4px;
+      left: 13px;
+      width: auto;
+      height: 15px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: $white;
+
+      background-color: $primary-dark;
+      z-index: 10;
+    }
+  }
+}

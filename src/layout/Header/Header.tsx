@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import classNames from "classnames";
 
 import Grid from "@/components/Grid/Grid";
 import DropdownMenu from "@/components/DropdownMenu/DropdownMenu";
 import CustomInput from "@/components/CustomInput/CustomInput";
-import { Shop, User, Heart, ShoppingBag, Menu, Search } from "iconoir-react";
+import { Shop, User, Heart, Menu, Search } from "iconoir-react";
+import { ShoppingCartIcon } from "@/components/ShoppingCartIcon/ShoppingCartIcon";
 
 import styles from "./styles.module.scss";
 
 interface Props {}
 
 const Header: React.FC<Props> = () => {
-  const [isHidden, setIsHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const isHidden = useRef(false);
+  const lastScrollY = useRef(0);
+  const headerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
 
   useEffect(() => {
@@ -27,33 +30,35 @@ const Header: React.FC<Props> = () => {
 
       // Check if the user is at the top of the page
       if (currentScrollY <= 10) {
-        setIsHidden(false);
-      } else if (currentScrollY > lastScrollY) {
+        isHidden.current = false;
+      } else if (currentScrollY > lastScrollY.current) {
         // Scrolling down
-        setIsHidden(true);
+        isHidden.current = true;
       } else {
         // Scrolling up
-        setIsHidden(false);
+        isHidden.current = false;
       }
 
-      setLastScrollY(currentScrollY);
+      lastScrollY.current = currentScrollY;
+
+      if (headerRef.current) {
+        if (isHidden.current) {
+          headerRef.current.classList.add(styles["header--hidden"]);
+        } else {
+          headerRef.current.classList.remove(styles["header--hidden"]);
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header
-      className={classNames(styles["header"], {
-        [styles["header--hidden"]]: isHidden,
-      })}
-    >
+    <header ref={headerRef} className={classNames(styles["header"])}>
       <Grid className={styles["grid"]}>
         <div className={classNames(styles["header__logo"], "start-1", "col-1")}>
-          LOGO
+          <Link to="">LOGO</Link>
         </div>
         <div
           className={classNames(
@@ -68,7 +73,7 @@ const Header: React.FC<Props> = () => {
           className={classNames(
             styles["header__user-tools"],
             { "start-10 col-3": !isMobile },
-            { "start-3 col-2": isMobile }
+            { "start-3 col-3": isMobile }
           )}
         >
           {!!isMobile && (
@@ -94,7 +99,12 @@ const Header: React.FC<Props> = () => {
           )}
 
           <li className={styles["header__user-tools__item"]}>
-            <ShoppingBag className={styles["header__user-tools__icon"]} />
+            <Link to="/shopping-cart">
+              <ShoppingCartIcon
+                count={120}
+                className={styles["header__user-tools__icon"]}
+              />
+            </Link>
           </li>
 
           {!!isMobile && (

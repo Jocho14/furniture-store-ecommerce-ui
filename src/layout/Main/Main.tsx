@@ -14,9 +14,7 @@ const Main: React.FC<Props> = () => {
     <div>
       <Header />
       <main>
-        {/* <Grid>
-          <Outlet />
-        </Grid> */}
+        <Outlet />
       </main>
       <Footer />
     </div>
