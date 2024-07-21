@@ -1,11 +1,56 @@
-/*COLORS*/
+// Colors
 $primary-dark: #543310;
 $primary-light: #af8f6f;
 $neutral: #f8f4e1;
 $hover: #74512d;
 $white: #ffffff;
 
-/*FONTS*/
+// Font Families
+$font-family-primary: "Helvetica, Arial, sans-serif";
+$font-family-secondary: "Georgia, serif";
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// Font Sizes
+$font-size-small: 0.875rem; // 14px
+$font-size-base: 1rem; // 16px
+$font-size-medium: 1.125rem; // 18px
+$font-size-large: 1.25rem; // 20px
+$font-size-xlarge: 1.5rem; // 24px
+$font-size-xxlarge: 2rem; // 32px
+
 $copy-small: 0.8rem;
 $copy-medium: 1rem;
 $copy-large: 1.2rem;
+
+// Line Heights
+$line-height-small: 1.2;
+$line-height-base: 1.5;
+$line-height-medium: 1.6;
+$line-height-large: 1.8;
+$line-height-xlarge: 2;
+
+// Letter Spacing
+$letter-spacing-normal: normal;
+$letter-spacing-wide: 0.05em;
+$letter-spacing-wider: 0.1em;
+$letter-spacing-widest: 0.15em;
+
+// Heading Sizes
+$h1-size: $font-size-xxlarge;
+$h2-size: $font-size-xlarge;
+$h3-size: $font-size-large;
+$h4-size: $font-size-medium;
+$h5-size: $font-size-base;
+$h6-size: $font-size-small;
+
+// Border Radius
+$radius-small: 4px;
+$radius-medium: 8px;
+$radius-large: 12px;
+$radius-xlarge: 16px;
+$radius-xxlarge: 24px;

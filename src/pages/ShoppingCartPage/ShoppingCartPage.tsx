@@ -22,6 +22,7 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = () => {
   return (
     <div className={styles["cart-page__container"]}>
       <Grid>
+        <h1 className={styles["cart-page__container__info"]}>Koszyk</h1>
         <div
           className={classNames(
             styles["cart-page__container__items"],

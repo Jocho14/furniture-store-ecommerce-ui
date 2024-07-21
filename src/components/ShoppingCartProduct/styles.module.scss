@@ -1,18 +1,41 @@
+@import "../../assets/styles/variables.scss";
+
 .product {
   &__container {
+    max-height: 200px;
     width: 100%;
-    height: 200px;
     display: flex;
+    column-gap: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(241, 241, 241);
 
     &__image {
-      width: 200px;
-      height: 180px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      &__wrapper {
+        height: 100px;
+        aspect-ratio: 1/1;
+      }
+    }
+
+    &__details {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+      &__title {
+        font-size: $copy-medium;
+      }
+
+      &__description {
+        font-size: $copy-small;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+      }
     }
   }
-}
-
-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
