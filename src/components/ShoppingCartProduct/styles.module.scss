@@ -15,7 +15,7 @@
       object-fit: cover;
 
       &__wrapper {
-        height: 100px;
+        height: 120px;
         aspect-ratio: 1/1;
       }
     }
@@ -26,15 +26,36 @@
       flex-direction: column;
       row-gap: 10px;
       &__title {
-        font-size: $copy-medium;
+        font-size: $font-size-medium;
       }
 
       &__description {
-        font-size: $copy-small;
+        font-size: $font-size-small;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 200px;
+      }
+
+      &__availability {
+        display: flex;
+        column-gap: 5px;
+        font-size: $font-size-tiny;
+        &__icon {
+          color: $green;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .product {
+    &__container {
+      &__image {
+        &__wrapper {
+          height: 100px;
+        }
       }
     }
   }

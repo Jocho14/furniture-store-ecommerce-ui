@@ -41,7 +41,6 @@ const QuantityStepper: React.FC<QuantityStepperProps> = ({
         type="number"
         value={quantity}
         onChange={onChange}
-        readOnly
       />
       <button
         className={classNames(styles["quantity-stepper__container__button"], {

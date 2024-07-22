@@ -4,6 +4,8 @@ $primary-light: #af8f6f;
 $neutral: #f8f4e1;
 $hover: #74512d;
 $white: #ffffff;
+$green: #4caf50;
+$red: #f44336;
 
 // Font Families
 $font-family-primary: "Helvetica, Arial, sans-serif";
@@ -16,6 +18,7 @@ $font-weight-medium: 500;
 $font-weight-bold: 700;
 
 // Font Sizes
+$font-size-tiny: 0.7rem; // 11px
 $font-size-small: 0.875rem; // 14px
 $font-size-base: 1rem; // 16px
 $font-size-medium: 1.125rem; // 18px

@@ -11,7 +11,7 @@
     padding: 3px;
 
     &__input {
-      width: 50px;
+      width: 45px;
       text-align: center;
       appearance: none;
       font-size: $font-size-medium;
@@ -25,19 +25,13 @@
       -moz-appearance: textfield;
     }
 
-    &__input-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      width: 50px;
-      height: 40px;
-      overflow: hidden;
-    }
-
     &__button {
       &.disabled {
         pointer-events: none;
+      }
+      &:hover {
+        background-color: rgb(233, 233, 233);
+        border-radius: 50%;
       }
     }
 
