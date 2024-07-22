@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import { CheckCircleSolid, XmarkCircleSolid } from "iconoir-react";
+import {
+  CheckCircleSolid,
+  XmarkCircleSolid,
+  Heart,
+  Trash,
+} from "iconoir-react";
 
 import QuantityStepper from "@/components/QuantityStepper/QuantityStepper";
 
@@ -58,17 +63,22 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
           />{" "}
           Dostępny
         </h5>
-        <QuantityStepper
-          quantity={quantity}
-          onDecrement={handleDecrement}
-          onIncrement={handleIncrement}
-          onChange={handleChange}
-        />
+        <div className={styles["product__container__actions"]}>
+          <QuantityStepper
+            quantity={quantity}
+            onDecrement={handleDecrement}
+            onIncrement={handleIncrement}
+            onChange={handleChange}
+          />
+          <div className={styles["product__container__actions__user-tools"]}>
+            <Heart />
+            <Trash />
+          </div>
+        </div>
       </div>
-      <div className={styles["product__container__user-tools"]}></div>
 
       <div className={styles["product__container__price"]}>
-        <h4>{props.price}</h4>
+        <h4>{props.price}zł</h4>
       </div>
     </div>
   );
