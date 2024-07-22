@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Grid from "@/components/Grid/Grid";
 import ShoppingCartProduct from "@/components/ShoppingCartProduct/ShoppingCartProduct";
 import CheckoutButton from "@/components/CheckoutButton/CheckoutButton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import { shoppingCartProductData } from "../../data/data";
 import styles from "./styles.module.scss";
@@ -36,6 +37,7 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = () => {
           <ShoppingCartProduct {...shoppingCartProductData} />
           <ShoppingCartProduct {...shoppingCartProductData} />
           <ShoppingCartProduct {...shoppingCartProductData} />
+
           {isMobile && (
             <CheckoutButton
               className={classNames(

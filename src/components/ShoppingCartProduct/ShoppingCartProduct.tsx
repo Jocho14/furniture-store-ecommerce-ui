@@ -7,6 +7,7 @@ import {
   Trash,
 } from "iconoir-react";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import QuantityStepper from "@/components/QuantityStepper/QuantityStepper";
 
 import styles from "./styles.module.scss";
@@ -21,6 +22,7 @@ interface ShoppingCartProductProps {
 
 const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
   const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const handleDecrement = () => {
     setQuantity((prev) => Math.max(1, prev - 1));
@@ -40,11 +42,15 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
   return (
     <div className={classNames(styles["product__container"])}>
       <div className={styles["product__container__image__wrapper"]}>
-        <img
-          className={styles["product__container__image"]}
-          src={props.image}
-          alt={props.title}
-        />
+        {loading ? (
+          <Skeleton className="w-[100%] h-[100%]" />
+        ) : (
+          <img
+            className={styles["product__container__image"]}
+            src={props.image}
+            alt={props.title}
+          />
+        )}
       </div>
 
       <div className={styles["product__container__details"]}>
@@ -54,15 +60,25 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
         <h4 className={styles["product__container__details__description"]}>
           {props.description}
         </h4>
-        <h5 className={styles["product__container__details__availability"]}>
+        <div
+          className={
+            styles["product__container__details__availability__wrapper"]
+          }
+        >
           {/* TODO: here will be invoked a function checking the availability from the backend */}
-          <CheckCircleSolid
-            className={
-              styles["product__container__details__availability__icon"]
-            }
-          />{" "}
-          Dostępny
-        </h5>
+          {loading ? (
+            <Skeleton className="w-[100%] h-[100%]" />
+          ) : (
+            <h5 className={styles["product__container__details__availability"]}>
+              <CheckCircleSolid
+                className={
+                  styles["product__container__details__availability__icon"]
+                }
+              />{" "}
+              Dostępny
+            </h5>
+          )}
+        </div>
         <div className={styles["product__container__actions"]}>
           <QuantityStepper
             quantity={quantity}
