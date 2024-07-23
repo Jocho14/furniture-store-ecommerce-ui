@@ -1,8 +1,7 @@
 @import "../../assets/styles/variables.scss";
 
 .grid {
-  // border-bottom: 2px solid $neutral;
-  background-color: white;
+  background-color: $white;
 }
 
 .header {
@@ -24,7 +23,7 @@
     align-items: center;
     justify-content: center;
     background-color: black;
-    color: white;
+    color: $white;
     font-weight: bold;
   }
 
@@ -42,11 +41,11 @@
     &__icon {
       color: $primary-dark;
       position: relative;
-    }
 
-    &__icon:hover {
-      color: $hover;
-      cursor: pointer;
+      &:hover {
+        color: $hover;
+        cursor: pointer;
+      }
     }
 
     &__item {

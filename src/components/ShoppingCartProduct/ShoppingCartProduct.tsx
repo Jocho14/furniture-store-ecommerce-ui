@@ -87,8 +87,16 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
             onChange={handleChange}
           />
           <div className={styles["product__container__actions__user-tools"]}>
-            <Heart />
-            <Trash />
+            <Heart
+              className={
+                styles["product__container__actions__user-tools__icon"]
+              }
+            />
+            <Trash
+              className={
+                styles["product__container__actions__user-tools__icon"]
+              }
+            />
           </div>
         </div>
       </div>
