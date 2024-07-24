@@ -58,18 +58,7 @@
       justify-content: space-between;
       &__user-tools {
         display: flex;
-        column-gap: 15px;
-        cursor: pointer;
-
-        &__icon {
-          width: 20px;
-          aspect-ratio: 1 / 1;
-
-          &:hover {
-            background-color: grey;
-            border-radius: 50%;
-          }
-        }
+        column-gap: 5px;
       }
     }
   }

@@ -17,5 +17,32 @@
       row-gap: 40px;
       padding: 0 5px;
     }
+
+    &__summary {
+      position: sticky;
+      width: 100%;
+      top: 100px;
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+
+      &__header {
+        font-size: $h4-size;
+        padding-bottom: 30px;
+        border-bottom: 1px solid $primary-dark;
+      }
+
+      &__total {
+        display: flex;
+        justify-content: space-between;
+        font-size: $h5-size;
+        font-weight: 600;
+        padding-bottom: 30px;
+        border-bottom: 1px solid $neutral;
+        &__sum {
+          font-size: $h3-size;
+        }
+      }
+    }
   }
 }

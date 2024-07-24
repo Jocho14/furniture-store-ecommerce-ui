@@ -6,6 +6,7 @@ import Grid from "@/components/Grid/Grid";
 import DropdownMenu from "@/components/DropdownMenu/DropdownMenu";
 import FavouritesDrawer from "@/components/FavouritesDrawer/FavouritesDrawer";
 import CustomInput from "@/components/CustomInput/CustomInput";
+import ActionIcon from "@/components/ActionIcon/ActionIcon";
 import { Shop, User, Heart, Menu, Search } from "iconoir-react";
 import { ShoppingCartIcon } from "@/components/ShoppingCartIcon/ShoppingCartIcon";
 
@@ -79,52 +80,41 @@ const Header: React.FC<Props> = () => {
         >
           {!!isMobile && (
             <li className={styles["header__user-tools__item"]}>
-              <Search className={styles["header__user-tools__icon"]} />
+              <ActionIcon icon={<Search />} />
             </li>
           )}
 
           {!isMobile && (
             <li className={styles["header__user-tools__item"]}>
-              <Shop className={styles["header__user-tools__icon"]} />
+              <ActionIcon icon={<Shop />} />
             </li>
           )}
 
           <li className={styles["header__user-tools__item"]}>
-            <User className={styles["header__user-tools__icon"]} />
+            <ActionIcon icon={<User />} />
           </li>
 
           {!isMobile && (
             <li className={styles["header__user-tools__item"]}>
-              <FavouritesDrawer
-                trigger={
-                  <div>
-                    <Heart className={styles["header__user-tools__icon"]} />
-                    <span className="sr-only">Open menu</span>
-                  </div>
-                }
-              />
+              <FavouritesDrawer trigger={<ActionIcon icon={<Heart />} />} />
             </li>
           )}
 
-          <li className={styles["header__user-tools__item"]}>
-            <Link to="/shopping-cart">
-              <ShoppingCartIcon
-                count={130}
-                className={styles["header__user-tools__icon"]}
-              />
-            </Link>
+          <li
+            className={classNames(
+              styles["header__user-tools__item"],
+              styles["header__user-tools__item__cart-icon"]
+            )}
+          >
+            <ActionIcon
+              icon={<ShoppingCartIcon count={130} />}
+              linkTo={"/shopping-cart"}
+            />
           </li>
 
           {!!isMobile && (
             <li className={styles["header__user-tools__item"]}>
-              <DropdownMenu
-                trigger={
-                  <div>
-                    <Menu className={styles["header__user-tools__icon"]} />
-                    <span className="sr-only">Open menu</span>
-                  </div>
-                }
-              />
+              <DropdownMenu trigger={<ActionIcon icon={<Menu />} />} />
             </li>
           )}
         </ul>

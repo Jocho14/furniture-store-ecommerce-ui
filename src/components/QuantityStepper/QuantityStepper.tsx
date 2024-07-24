@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import { Plus, Minus } from "iconoir-react";
 
+import ActionIcon from "@/components/ActionIcon/ActionIcon";
+
 import styles from "./styles.module.scss";
 
 interface QuantityStepperProps {

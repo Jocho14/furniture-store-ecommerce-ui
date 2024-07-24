@@ -38,19 +38,13 @@
     justify-content: space-between;
     align-items: center;
 
-    &__icon {
-      color: $primary-dark;
-      position: relative;
-
-      &:hover {
-        color: $hover;
-        cursor: pointer;
-      }
-    }
-
     &__item {
       display: flex;
       align-items: center;
+
+      &__cart-icon {
+        margin-right: 10px;
+      }
     }
   }
 }

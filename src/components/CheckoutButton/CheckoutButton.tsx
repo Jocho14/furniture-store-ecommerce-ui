@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 
-import { ArrowRightCircle } from "iconoir-react";
+import { ArrowRight } from "iconoir-react";
 
 import styles from "./styles.module.scss";
 
@@ -13,7 +13,7 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({ className }) => {
   return (
     <button className={classNames(styles["checkout-btn"], className)}>
       <span className={styles["checkout-btn__info"]}>Przejdź do płatności</span>{" "}
-      <ArrowRightCircle />
+      <ArrowRight className={styles["checkout-btn__icon"]} />
     </button>
   );
 };

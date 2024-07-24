@@ -20,6 +20,14 @@
   &__info {
     margin-right: 10px;
   }
+
+  &__icon {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover &__icon {
+    transform: translateX(10px);
+  }
 }
 
 @media screen and (max-width: 767px) {

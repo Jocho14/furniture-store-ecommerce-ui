@@ -39,6 +39,30 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = () => {
           <ShoppingCartProduct {...shoppingCartProductData} />
 
           {isMobile && (
+            <div
+              className={classNames(
+                "align-top",
+                { "start-9 col-4": !isMobile },
+                { "start-1 col-4": isMobile },
+                styles["cart-page__container__summary__header"]
+              )}
+            >
+              Podsumowanie
+            </div>
+          )}
+
+          {isMobile && (
+            <div className={styles["cart-page__container__summary__total"]}>
+              <span>Wartość koszyka</span>
+              <span
+                className={styles["cart-page__container__summary__total__sum"]}
+              >
+                20zł
+              </span>
+            </div>
+          )}
+
+          {isMobile && (
             <CheckoutButton
               className={classNames(
                 "align-top",
@@ -48,15 +72,32 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = () => {
             />
           )}
         </div>
-        {!isMobile && (
-          <CheckoutButton
-            className={classNames(
-              "align-top",
-              { "start-9 col-4": !isMobile },
-              { "start-1 col-4": isMobile }
-            )}
-          />
-        )}
+
+        <div
+          className={classNames(
+            "align-top",
+            { "start-9 col-4": !isMobile },
+            { "start-1 col-4": isMobile },
+            styles["cart-page__container__summary"]
+          )}
+        >
+          {!isMobile && (
+            <h4 className={styles["cart-page__container__summary__header"]}>
+              Podsumowanie
+            </h4>
+          )}
+          {!isMobile && (
+            <div className={styles["cart-page__container__summary__total"]}>
+              <span>Wartość koszyka</span>
+              <span
+                className={styles["cart-page__container__summary__total__sum"]}
+              >
+                20zł
+              </span>
+            </div>
+          )}
+          {!isMobile && <CheckoutButton />}
+        </div>
       </Grid>
     </div>
   );

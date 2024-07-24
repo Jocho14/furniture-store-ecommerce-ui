@@ -9,6 +9,7 @@ import {
 
 import { Skeleton } from "@/components/ui/skeleton";
 import QuantityStepper from "@/components/QuantityStepper/QuantityStepper";
+import ActionIcon from "@/components/ActionIcon/ActionIcon";
 
 import styles from "./styles.module.scss";
 
@@ -87,15 +88,26 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
             onChange={handleChange}
           />
           <div className={styles["product__container__actions__user-tools"]}>
-            <Heart
-              className={
-                styles["product__container__actions__user-tools__icon"]
+            <ActionIcon
+              icon={
+                <Heart
+                  className={
+                    styles["product__container__actions__user-tools__icon"]
+                  }
+                />
               }
+              size="small"
             />
-            <Trash
-              className={
-                styles["product__container__actions__user-tools__icon"]
+
+            <ActionIcon
+              icon={
+                <Trash
+                  className={
+                    styles["product__container__actions__user-tools__icon"]
+                  }
+                />
               }
+              size="small"
             />
           </div>
         </div>
