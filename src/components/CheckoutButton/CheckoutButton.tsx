@@ -12,7 +12,7 @@ interface CheckoutButtonProps {
 const CheckoutButton: React.FC<CheckoutButtonProps> = ({ className }) => {
   return (
     <button className={classNames(styles["checkout-btn"], className)}>
-      <span className={styles["checkout-btn__info"]}>Przejdź do płatności</span>{" "}
+      <span className={styles["checkout-btn__info"]}>Przejdź dalej</span>{" "}
       <ArrowRight className={styles["checkout-btn__icon"]} />
     </button>
   );

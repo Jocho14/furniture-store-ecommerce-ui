@@ -4,7 +4,9 @@ const Main = lazy(() => import("../layout/Main/Main"));
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 
-// const ProductDetailPage = lazy(() => import("../pages/ProductDetailPage"));
+const ProductDetailPage = lazy(
+  () => import("../pages/ProductDetailPage/ProductDetailPage")
+);
 
 // const AccountPage = lazy(() => import("../pages/AccountPage"));
 // const ManagementPage = lazy(() => import("../pages/ManagementPage"));
@@ -27,7 +29,7 @@ const routes = [
     children: [
       { path: "", element: <HomePage /> },
       { path: "shopping-cart", element: <ShoppingCartPage /> },
-      //   { path: "product/:productId", element: <ProductDetailPage /> },
+      { path: "product/:productId", element: <ProductDetailPage /> },
       //   { path: "account", element: <AccountPage /> },
       //   { path: "management", element: <ManagementPage /> },
     ],

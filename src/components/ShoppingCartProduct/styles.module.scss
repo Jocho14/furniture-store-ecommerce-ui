@@ -47,6 +47,8 @@
         display: flex;
         column-gap: 5px;
         font-size: $font-size-tiny;
+        color: rgb(82, 82, 82);
+        font-weight: 600;
         &__icon {
           color: $green;
         }
