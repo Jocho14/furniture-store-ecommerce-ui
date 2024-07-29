@@ -1,5 +1,15 @@
-.product-detail-page__wrapper {
-  min-height: 100vh;
+.product-detail-page {
+  &__wrapper {
+    min-height: 100vh;
+  }
+
+  &__images {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__details {
+  }
 }
 
 .separator {

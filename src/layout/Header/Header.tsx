@@ -7,6 +7,7 @@ import DropdownMenu from "@/components/DropdownMenu/DropdownMenu";
 import FavouritesDrawer from "@/components/FavouritesDrawer/FavouritesDrawer";
 import CustomInput from "@/components/CustomInput/CustomInput";
 import ActionIcon from "@/components/ActionIcon/ActionIcon";
+import useMobile from "@/hooks/useMobile";
 import { Shop, User, Heart, Menu, Search } from "iconoir-react";
 import { ShoppingCartIcon } from "@/components/ShoppingCartIcon/ShoppingCartIcon";
 
@@ -18,13 +19,7 @@ const Header: React.FC<Props> = () => {
   const isHidden = useRef(false);
   const lastScrollY = useRef(0);
   const headerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 767);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const isMobile = useMobile();
 
   useEffect(() => {
     const handleScroll = () => {

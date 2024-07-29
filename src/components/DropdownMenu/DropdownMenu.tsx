@@ -16,8 +16,8 @@ interface DropdownMenuProps {
 const DropdownMenu: React.FC<DropdownMenuProps> = ({ trigger }) => {
   return (
     <Sheet>
-      <SheetTrigger asChild>{trigger}</SheetTrigger>
-      <SheetContent>
+      <SheetTrigger>{trigger}</SheetTrigger>
+      <SheetContent className="w-full">
         <SheetHeader>
           <SheetTitle>Are you absolutely sure?</SheetTitle>
           <SheetDescription>

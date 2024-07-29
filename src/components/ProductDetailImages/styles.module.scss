@@ -4,7 +4,13 @@
   width: 100%;
   display: flex;
   column-gap: $spacing-48px;
-  max-height: 600px;
+  max-height: 700px;
+  display: flex;
+  flex-direction: column;
+
+  &__main {
+    display: flex;
+  }
 
   &__thumbnails {
     width: 15%;
@@ -18,7 +24,6 @@
       cursor: pointer;
       margin: 5px;
       border: 2px solid transparent;
-      transition: border 0.3s ease;
 
       &.active {
         border: 1px solid #000;
@@ -27,8 +32,19 @@
   }
 
   &__current-image {
-    width: 85%;
+    width: 100%;
     aspect-ratio: 1;
-    //background-color: green;
+  }
+
+  &__dots {
+    margin-top: 16px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .product-detail-images {
+    &__thumbnails {
+      display: none;
+    }
   }
 }

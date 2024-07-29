@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Grid from "@/components/Grid/Grid";
 import ShoppingCartProduct from "@/components/ShoppingCartProduct/ShoppingCartProduct";
 import CheckoutButton from "@/components/CheckoutButton/CheckoutButton";
+import useMobile from "@/hooks/useMobile";
 import { Skeleton } from "@/components/ui/skeleton";
 
 import { shoppingCartProductData } from "../../data/data";
@@ -12,13 +13,7 @@ import styles from "./styles.module.scss";
 interface ShoppingCartPageProps {}
 
 const ShoppingCartPage: React.FC<ShoppingCartPageProps> = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 767);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const isMobile = useMobile();
 
   return (
     <div className={styles["cart-page__container"]}>

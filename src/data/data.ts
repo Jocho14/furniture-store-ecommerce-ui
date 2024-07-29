@@ -16,4 +16,5 @@ export const productDetailImagesData = [
   "https://firebasestorage.googleapis.com/v0/b/e-order-manager-d5c44.appspot.com/o/image%2F12.webp?alt=media&token=64050240-0026-47c3-8579-cd3e9560393a",
   "https://firebasestorage.googleapis.com/v0/b/e-order-manager-d5c44.appspot.com/o/image%2F14.webp?alt=media&token=cdb7a996-3174-4ba4-b29f-2f17bcab3fed",
   "https://firebasestorage.googleapis.com/v0/b/e-order-manager-d5c44.appspot.com/o/image%2F14.webp?alt=media&token=cdb7a996-3174-4ba4-b29f-2f17bcab3fed",
+  "https://firebasestorage.googleapis.com/v0/b/e-order-manager-d5c44.appspot.com/o/image%2F9.webp?alt=media&token=493a5ab5-e5f8-4558-a830-67d521ea9a18",
 ];
