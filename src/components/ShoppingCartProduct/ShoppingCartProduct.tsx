@@ -26,7 +26,7 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
   const [loading, setLoading] = useState(false);
 
   const handleDecrement = () => {
-    setQuantity((prev) => Math.max(1, prev - 1));
+    setQuantity((prev) => Math.max(0, prev - 1));
   };
 
   const handleIncrement = () => {

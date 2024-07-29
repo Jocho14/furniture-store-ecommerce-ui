@@ -8,6 +8,8 @@ import FavouritesDrawer from "@/components/FavouritesDrawer/FavouritesDrawer";
 import CustomInput from "@/components/CustomInput/CustomInput";
 import ActionIcon from "@/components/ActionIcon/ActionIcon";
 import useMobile from "@/hooks/useMobile";
+import useScroll from "@/hooks/useScroll";
+import { useCart } from "@/context/CartContext";
 import { Shop, User, Heart, Menu, Search } from "iconoir-react";
 import { ShoppingCartIcon } from "@/components/ShoppingCartIcon/ShoppingCartIcon";
 
@@ -16,40 +18,10 @@ import styles from "./styles.module.scss";
 interface Props {}
 
 const Header: React.FC<Props> = () => {
-  const isHidden = useRef(false);
-  const lastScrollY = useRef(0);
-  const headerRef = useRef<HTMLDivElement>(null);
   const isMobile = useMobile();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Check if the user is at the top of the page
-      if (currentScrollY <= 10) {
-        isHidden.current = false;
-      } else if (currentScrollY > lastScrollY.current) {
-        // Scrolling down
-        isHidden.current = true;
-      } else {
-        // Scrolling up
-        isHidden.current = false;
-      }
-
-      lastScrollY.current = currentScrollY;
-
-      if (headerRef.current) {
-        if (isHidden.current) {
-          headerRef.current.classList.add(styles["header--hidden"]);
-        } else {
-          headerRef.current.classList.remove(styles["header--hidden"]);
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { cartCount } = useCart();
+  const headerRef = useRef<HTMLDivElement>(null);
+  useScroll(headerRef, styles);
 
   return (
     <header ref={headerRef} className={classNames(styles["header"])}>
@@ -70,7 +42,7 @@ const Header: React.FC<Props> = () => {
           className={classNames(
             styles["header__user-tools"],
             { "start-10 col-3": !isMobile },
-            { "start-3 col-3": isMobile }
+            { "start-3 col-1": isMobile }
           )}
         >
           {!!isMobile && (
@@ -102,7 +74,7 @@ const Header: React.FC<Props> = () => {
             )}
           >
             <ActionIcon
-              icon={<ShoppingCartIcon count={130} />}
+              icon={<ShoppingCartIcon count={12} />} // count={cartCount}
               linkTo={"/shopping-cart"}
             />
           </li>

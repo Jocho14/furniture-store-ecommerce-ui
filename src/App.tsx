@@ -1,15 +1,18 @@
-import Main from "./layout/Main/Main";
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./router/AppRouter";
+
+import { CartProvider } from "./context/CartContext";
 
 import "./App.css";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <AppRouter />
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <AppRouter />
+        </BrowserRouter>
+      </CartProvider>
     </>
   );
 }

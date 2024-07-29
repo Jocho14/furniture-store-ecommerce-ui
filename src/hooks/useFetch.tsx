@@ -11,8 +11,8 @@ interface UseFetchResult {
   error: Error | null;
 }
 
-const useFetch = ({ url, options }: UseFetchProps): UseFetchResult => {
-  const [data, setData] = useState<any>(null);
+const useFetch = <T,>({ url, options }: UseFetchProps): UseFetchResult => {
+  const [data, setData] = useState<T | any>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error | null>(null);
 

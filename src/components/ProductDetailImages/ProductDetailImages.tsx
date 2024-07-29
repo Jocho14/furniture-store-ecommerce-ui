@@ -77,7 +77,7 @@ const ProductDetailImages: React.FC<ProductDetailImagesProps> = ({
           <CarouselContent>
             {imageUrls.map((imageUrl, index) => (
               <CarouselItem key={index}>
-                <div className="p-1">
+                <div>
                   <Card>
                     <CardContent className="flex aspect-square items-center justify-center">
                       <img src={imageUrl} alt={`Product ${index + 1}`} />

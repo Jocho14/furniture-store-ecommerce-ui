@@ -27,14 +27,14 @@ const QuantityStepper: React.FC<QuantityStepperProps> = ({
     >
       <button
         className={classNames(styles["quantity-stepper__container__button"], {
-          [styles["disabled"]]: quantity <= 1,
+          [styles["disabled"]]: quantity < 0,
         })}
         onClick={onDecrement}
         disabled={quantity <= 1}
       >
         <Minus
           className={classNames(styles["quantity-stepper__container__sign"], {
-            [styles["disabled"]]: quantity <= 1,
+            [styles["disabled"]]: quantity < 0,
           })}
         />
       </button>
