@@ -11,6 +11,7 @@ interface QuantityStepperProps {
   onIncrement: () => void;
   onDecrement: () => void;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   className?: string;
 }
 
@@ -19,6 +20,7 @@ const QuantityStepper: React.FC<QuantityStepperProps> = ({
   onDecrement,
   onIncrement,
   onChange,
+  onFocus,
   className,
 }) => {
   return (
@@ -27,14 +29,14 @@ const QuantityStepper: React.FC<QuantityStepperProps> = ({
     >
       <button
         className={classNames(styles["quantity-stepper__container__button"], {
-          [styles["disabled"]]: quantity < 0,
+          [styles["disabled"]]: quantity <= 0,
         })}
         onClick={onDecrement}
-        disabled={quantity <= 1}
+        disabled={quantity <= 0}
       >
         <Minus
           className={classNames(styles["quantity-stepper__container__sign"], {
-            [styles["disabled"]]: quantity < 0,
+            [styles["disabled"]]: quantity <= 0,
           })}
         />
       </button>
@@ -43,6 +45,7 @@ const QuantityStepper: React.FC<QuantityStepperProps> = ({
         type="number"
         value={quantity}
         onChange={onChange}
+        onFocus={onFocus}
       />
       <button
         className={classNames(styles["quantity-stepper__container__button"], {

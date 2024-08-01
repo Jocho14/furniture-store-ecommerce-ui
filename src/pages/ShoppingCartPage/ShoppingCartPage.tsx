@@ -4,16 +4,22 @@ import classNames from "classnames";
 import Grid from "@/components/Grid/Grid";
 import ShoppingCartProduct from "@/components/ShoppingCartProduct/ShoppingCartProduct";
 import CheckoutButton from "@/components/CheckoutButton/CheckoutButton";
-import useMobile from "@/hooks/useMobile";
-import { Skeleton } from "@/components/ui/skeleton";
 
-import { shoppingCartProductData } from "../../data/data";
+import useMobile from "@/hooks/useMobile";
+import useFetch from "@/hooks/useFetch";
+
+import { BACKEND_URL } from "@/config/config";
+
 import styles from "./styles.module.scss";
 
 interface ShoppingCartPageProps {}
 
 const ShoppingCartPage: React.FC<ShoppingCartPageProps> = () => {
+  console.log(BACKEND_URL);
   const isMobile = useMobile();
+  const { data, loading, error } = useFetch({
+    url: `${BACKEND_URL}/products/1`,
+  });
 
   return (
     <div className={styles["cart-page__container"]}>
@@ -27,11 +33,10 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = () => {
             { "start-1 col-4": isMobile }
           )}
         >
-          <ShoppingCartProduct {...shoppingCartProductData} />
-          <ShoppingCartProduct {...shoppingCartProductData} />
-          <ShoppingCartProduct {...shoppingCartProductData} />
-          <ShoppingCartProduct {...shoppingCartProductData} />
-          <ShoppingCartProduct {...shoppingCartProductData} />
+          <ShoppingCartProduct {...data} loading={loading} />
+          <ShoppingCartProduct {...data} loading={loading} />
+          <ShoppingCartProduct {...data} loading={loading} />
+          <ShoppingCartProduct {...data} loading={loading} />
 
           {isMobile && (
             <div

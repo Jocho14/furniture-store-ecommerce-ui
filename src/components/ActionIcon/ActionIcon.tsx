@@ -12,7 +12,7 @@ interface ActionIconProps {
   className?: string;
 }
 
-const ActionIcon = forwardRef<HTMLDivElement, ActionIconProps>(
+const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
   ({ icon, size, linkTo, onClick, className, ...props }, ref) => {
     const iconElement = React.cloneElement(icon, {
       className: classNames(styles.icon, className),
@@ -32,13 +32,13 @@ const ActionIcon = forwardRef<HTMLDivElement, ActionIconProps>(
     }
 
     return (
-      <div
+      <button
         ref={ref}
         onClick={onClick}
         className={classNames(styles["icon-container"], styles[`${size}`])}
       >
         {iconElement}
-      </div>
+      </button>
     );
   }
 );

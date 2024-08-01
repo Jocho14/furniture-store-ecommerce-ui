@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Grid from "@/components/Grid/Grid";
+import CartActionToast from "@/components/CartActionToast/CartActionToast";
 
 import "./styles.module.scss";
 
@@ -15,6 +15,7 @@ const Main: React.FC<Props> = () => {
       <Header />
       <main>
         <Outlet />
+        <CartActionToast />
       </main>
       <Footer />
     </div>
