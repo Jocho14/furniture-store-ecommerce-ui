@@ -53,7 +53,7 @@ const Header: React.FC<Props> = () => {
 
           {!isMobile && (
             <li className={styles["header__user-tools__item"]}>
-              <ActionIcon icon={<Shop />} />
+              <ActionIcon icon={<Shop />} linkTo="/product/1" />
             </li>
           )}
 
@@ -74,7 +74,7 @@ const Header: React.FC<Props> = () => {
             )}
           >
             <ActionIcon
-              icon={<ShoppingCartIcon count={12} />} // count={cartCount}
+              icon={<ShoppingCartIcon count={cartCount} />}
               linkTo={"/shopping-cart"}
             />
           </li>

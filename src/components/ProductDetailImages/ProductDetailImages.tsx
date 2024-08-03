@@ -16,7 +16,7 @@ import DotPageIndicator from "../DotPageIndicator/DotPageIndicator";
 import styles from "./styles.module.scss";
 
 interface ProductDetailImagesProps {
-  imageUrls: string[];
+  imageUrls: string[] | undefined;
   className?: string;
 }
 
@@ -54,7 +54,7 @@ const ProductDetailImages: React.FC<ProductDetailImagesProps> = ({
     <div className={classNames(styles["product-detail-images"], className)}>
       <div className={styles["product-detail-images__main"]}>
         <div className={styles["product-detail-images__thumbnails"]}>
-          {imageUrls.map((imageUrl, index) => (
+          {imageUrls?.map((imageUrl, index) => (
             <img
               key={index}
               src={imageUrl}
@@ -75,7 +75,7 @@ const ProductDetailImages: React.FC<ProductDetailImagesProps> = ({
           setApi={setApi}
         >
           <CarouselContent>
-            {imageUrls.map((imageUrl, index) => (
+            {imageUrls?.map((imageUrl, index) => (
               <CarouselItem key={index}>
                 <div>
                   <Card>
@@ -93,7 +93,7 @@ const ProductDetailImages: React.FC<ProductDetailImagesProps> = ({
       </div>
       {isMobile && (
         <DotPageIndicator
-          count={imageUrls.length}
+          count={imageUrls ? imageUrls.length : 1}
           currentIndex={currentIndex}
           onClick={handleThumbnailClick}
           className={styles["product-detail-images__dots"]}

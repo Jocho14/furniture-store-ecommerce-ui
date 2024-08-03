@@ -1,31 +1,46 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+
 import classNames from "classnames";
+import { toast } from "sonner";
 
 import Grid from "@/components/Grid/Grid";
 import QuantityStepper from "@/components/QuantityStepper/QuantityStepper";
+import CartActionToast from "@/components/CartActionToast/CartActionToast";
 import ProductDetailImages from "@/components/ProductDetailImages/ProductDetailImages";
+
 import useFetch from "@/hooks/useFetch";
 import useMobile from "@/hooks/useMobile";
 
-import { productDetailImagesData } from "../../data/data";
+import { useCart } from "@/context/CartContext";
+
+import { BACKEND_URL } from "@/config/config";
 
 import styles from "./styles.module.scss";
 
 interface Product {
   name: string;
-  description: string;
   price: number;
+  description: string;
   imageUrls: string[];
 }
 
 const ProductDetailPage = () => {
   const { productId } = useParams<{ productId: string }>();
-  const isMobile = useMobile();
-  //const {data: product, loading, error} = useFetch<Product>(`BACKEND_URL/products/${productId}`);
-  const [quantity, setQuantity] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const productIdNumber = Number(productId);
 
+  const navigate = useNavigate();
+  const isMobile = useMobile();
+
+  const {
+    data: product,
+    loading,
+    error,
+  } = useFetch<Product | null>({ url: `${BACKEND_URL}/products/${productId}` });
+  const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
+  console.log(BACKEND_URL);
+  console.log(product?.imageUrls);
   const handleDecrement = () => {
     setQuantity((prev) => Math.max(1, prev - 1));
   };
@@ -43,6 +58,7 @@ const ProductDetailPage = () => {
 
   return (
     <div className={styles["product-detail-page__wrapper"]}>
+      <CartActionToast />
       <Grid>
         <div
           className={classNames(
@@ -57,7 +73,7 @@ const ProductDetailPage = () => {
             { "start-1 col-7": !isMobile },
             { "start-1 col-4": isMobile }
           )}
-          imageUrls={productDetailImagesData}
+          imageUrls={product?.imageUrls}
         />
         <div
           className={classNames(
@@ -68,13 +84,13 @@ const ProductDetailPage = () => {
           )}
         >
           <h3 className={styles["product-detail-page__details__name"]}>
-            Lorem Ipsum
+            {product?.name}
           </h3>
           <h4 className={styles["product-detail-page__details__description"]}>
-            Krótki opis
+            {product?.description}
           </h4>
           <h2 className={styles["product-detail-page__details__price"]}>
-            200zł
+            {product?.price}
           </h2>
           <div className={styles["product-detail-page__details__actions"]}>
             <QuantityStepper
@@ -90,6 +106,15 @@ const ProductDetailPage = () => {
               className={
                 styles["product-detail-page__details__actions__add-to-cart-btn"]
               }
+              onClick={() => {
+                addToCart(productIdNumber, quantity);
+                toast(`Dodano do koszyka`, {
+                  action: {
+                    label: "Zobacz koszyk",
+                    onClick: () => navigate("/shopping-cart"),
+                  },
+                });
+              }}
             >
               <span
                 className={

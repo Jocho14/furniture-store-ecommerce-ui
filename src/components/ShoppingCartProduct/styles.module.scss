@@ -50,7 +50,13 @@
         color: rgb(82, 82, 82);
         font-weight: 600;
         &__icon {
-          color: $green;
+          &--g {
+            color: $green;
+          }
+
+          &--r {
+            color: $red;
+          }
         }
       }
     }

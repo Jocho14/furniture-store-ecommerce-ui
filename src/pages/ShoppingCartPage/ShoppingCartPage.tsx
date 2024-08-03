@@ -1,28 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import classNames from "classnames";
 
 import Grid from "@/components/Grid/Grid";
 import ShoppingCartProduct from "@/components/ShoppingCartProduct/ShoppingCartProduct";
 import CheckoutButton from "@/components/CheckoutButton/CheckoutButton";
+import CartActionToast from "@/components/CartActionToast/CartActionToast";
+import { ShoppingCartProductProps } from "@/components/ShoppingCartProduct/ShoppingCartProduct";
 
-import useMobile from "@/hooks/useMobile";
-import useFetch from "@/hooks/useFetch";
-
-import { BACKEND_URL } from "@/config/config";
+import { Quantities, Availability } from "./ShoppingCartPageContainer";
 
 import styles from "./styles.module.scss";
 
-interface ShoppingCartPageProps {}
+interface ShoppingCartPageProps {
+  isMobile: boolean;
+  productsData: ShoppingCartProductProps[];
+  quantities: Quantities;
+  availability: Availability;
+  productsLoading: boolean;
+  quantitiesLoading: boolean;
+  onQuantityChange: (id: number, quantity: number) => void;
+}
 
-const ShoppingCartPage: React.FC<ShoppingCartPageProps> = () => {
-  console.log(BACKEND_URL);
-  const isMobile = useMobile();
-  const { data, loading, error } = useFetch({
-    url: `${BACKEND_URL}/products/1`,
-  });
-
+const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
+  isMobile,
+  productsData,
+  quantities,
+  availability,
+  productsLoading,
+  quantitiesLoading,
+  onQuantityChange,
+}) => {
   return (
     <div className={styles["cart-page__container"]}>
+      <CartActionToast />
       <Grid>
         <h1 className={styles["cart-page__container__info"]}>Koszyk</h1>
         <div
@@ -33,10 +43,22 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = () => {
             { "start-1 col-4": isMobile }
           )}
         >
-          <ShoppingCartProduct {...data} loading={loading} />
-          <ShoppingCartProduct {...data} loading={loading} />
-          <ShoppingCartProduct {...data} loading={loading} />
-          <ShoppingCartProduct {...data} loading={loading} />
+          {productsData ? (
+            productsData.map((product) => (
+              <ShoppingCartProduct
+                key={product.id}
+                {...product}
+                imageUrl={product.imageUrls[0]}
+                quantity={quantities[product.id] ?? 1}
+                availability={availability[product.id]}
+                detailsLoading={productsLoading}
+                availabilityLoading={quantitiesLoading}
+                onQuantityChange={onQuantityChange}
+              />
+            ))
+          ) : (
+            <h4>Brak produktów w koszyku</h4>
+          )}
 
           {isMobile && (
             <div
@@ -50,7 +72,6 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = () => {
               Podsumowanie
             </div>
           )}
-
           {isMobile && (
             <div className={styles["cart-page__container__summary__total"]}>
               <span>Wartość koszyka</span>
@@ -61,7 +82,6 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = () => {
               </span>
             </div>
           )}
-
           {isMobile && (
             <CheckoutButton
               className={classNames(

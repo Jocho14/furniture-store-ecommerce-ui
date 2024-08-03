@@ -12,7 +12,7 @@ const ProductDetailPage = lazy(
 // const ManagementPage = lazy(() => import("../pages/ManagementPage"));
 
 const ShoppingCartPage = lazy(
-  () => import("../pages/ShoppingCartPage/ShoppingCartPage")
+  () => import("../pages/ShoppingCartPage/ShoppingCartPageContainer")
 );
 // const CheckoutPage = lazy(() => import("../pages/CheckoutPage"));
 // const ReturnPage = lazy(() => import("../pages/ReturnPage"));
