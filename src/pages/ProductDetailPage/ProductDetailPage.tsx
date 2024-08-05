@@ -60,13 +60,6 @@ const ProductDetailPage = () => {
     <div className={styles["product-detail-page__wrapper"]}>
       <CartActionToast />
       <Grid>
-        <div
-          className={classNames(
-            styles["separator"],
-            { "start-1 col-12": !isMobile },
-            { "start-1 col-4": isMobile }
-          )}
-        ></div>
         <ProductDetailImages
           className={classNames(
             styles["product-detail-page__images"],

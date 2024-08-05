@@ -58,7 +58,7 @@ const Header: React.FC<Props> = () => {
           )}
 
           <li className={styles["header__user-tools__item"]}>
-            <ActionIcon icon={<User />} />
+            <ActionIcon icon={<User />} linkTo="/auth" />
           </li>
 
           {!isMobile && (

@@ -18,7 +18,7 @@ const ShoppingCartPage = lazy(
 // const ReturnPage = lazy(() => import("../pages/ReturnPage"));
 // const SuccessPage = lazy(() => import("../pages/SuccessPage"));
 
-// const LogInPage = lazy(() => import("../pages/LogInPage"));
+const AuthPage = lazy(() => import("../pages/AuthPage/AuthPage"));
 
 // const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
 
@@ -30,6 +30,7 @@ const routes = [
       { path: "", element: <HomePage /> },
       { path: "shopping-cart", element: <ShoppingCartPage /> },
       { path: "product/:productId", element: <ProductDetailPage /> },
+      { path: "auth", element: <AuthPage /> },
       //   { path: "account", element: <AccountPage /> },
       //   { path: "management", element: <ManagementPage /> },
     ],
