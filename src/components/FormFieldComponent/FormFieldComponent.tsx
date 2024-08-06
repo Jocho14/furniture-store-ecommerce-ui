@@ -39,6 +39,7 @@ const FormFieldComponent: React.FC<Props> = ({
               placeholder={placeholder ? placeholder : label}
               {...field}
               type={type}
+              className="rounded-md"
             />
           </FormControl>
 

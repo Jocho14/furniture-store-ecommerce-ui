@@ -41,7 +41,7 @@ const AuthPage: React.FC<Props> = () => {
           <Tabs defaultValue="login">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="login">Zaloguj się</TabsTrigger>
-              <TabsTrigger value="register">Zarejestruj się</TabsTrigger>
+              <TabsTrigger value="register">Utwórz konto</TabsTrigger>
             </TabsList>
             <TabsContent value="login">
               <AuthTab

@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 import {
   InputOTP,
@@ -147,8 +150,18 @@ export const RegisterForm: React.FC = () => {
           type="text"
           label="Miasto"
         />
-
-        <Button type="submit">Zarejestruj</Button>
+        <div className="flex items-center space-x-2 pt-10">
+          <Checkbox id="terms" />
+          <Label
+            control={form.control}
+            htmlFor="terms"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Przeczytałem(-am) i zrozumiałem(-am) Regulamin oraz Politykę
+            prywatności.
+          </Label>
+        </div>
+        <Button type="submit">Utwórz konto</Button>
       </form>
     </Form>
   );
