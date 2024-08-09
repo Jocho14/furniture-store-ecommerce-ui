@@ -7,26 +7,21 @@ import { Form } from "@/components/ui/form";
 
 import FormFieldComponent from "@/components/FormFieldComponent/FormFieldComponent";
 
-const loginFormSchema = z.object({
-  email: z.string().email({ message: "Niepoprawny format adresu e-mail" }),
-  password: z
-    .string()
-    .min(8, { message: "Hasło musi mieć co najmniej 8 znaków" }),
-});
+import { loginFormSchema } from "@/forms/schemas/loginSchema";
+import { loginFormFields } from "@/forms/fields/loginFormFields";
+
+const defaultValues = loginFormFields.reduce((acc, field) => {
+  acc[field.name] = "";
+  return acc;
+}, {} as Record<string, string>);
 
 export const LoginForm: React.FC = () => {
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+    defaultValues: defaultValues,
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof loginFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
   }
   return (
@@ -35,18 +30,15 @@ export const LoginForm: React.FC = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8 px-5 pb-5 flex flex-col justify-center"
       >
-        <FormFieldComponent
-          control={form.control}
-          name="email"
-          type="email"
-          label="E-mail"
-        />
-        <FormFieldComponent
-          control={form.control}
-          name="password"
-          type="password"
-          label="Hasło"
-        />
+        {loginFormFields.map((field) => (
+          <FormFieldComponent
+            key={field.name}
+            control={form.control}
+            name={field.name}
+            type={field.type}
+            label={field.label}
+          />
+        ))}
         <Button type="submit">Zaloguj</Button>
       </form>
     </Form>

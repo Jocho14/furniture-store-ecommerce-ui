@@ -52,7 +52,7 @@ const AuthPage: React.FC<Props> = () => {
             </TabsContent>
             <TabsContent value="register">
               <AuthTab
-                title="Zarejestruj się"
+                title="Utwórz konto"
                 description="Utwórz nowe konto w naszym serwisie."
                 form={<RegisterForm />}
               />
