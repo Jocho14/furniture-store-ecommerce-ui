@@ -1,12 +1,10 @@
-import { Link } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
+// import { Checkbox } from "@/components/ui/checkbox";
 
 import {
   InputOTP,
@@ -63,7 +61,7 @@ export const RegisterForm: React.FC = () => {
         </InputOTP>
 
         <div className="flex items-center space-x-2 pt-10">
-          <Controller
+          {/* <Controller
             name="termsAccepted"
             control={form.control}
             render={({ field }) => (
@@ -74,7 +72,7 @@ export const RegisterForm: React.FC = () => {
                 onChange={(e) => field.onChange(e.target.checked)}
               />
             )}
-          />
+          /> */}
           <label
             htmlFor="terms"
             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

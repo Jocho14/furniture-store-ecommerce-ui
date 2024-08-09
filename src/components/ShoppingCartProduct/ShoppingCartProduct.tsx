@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classNames from "classnames";
 import {
   CheckCircleSolid,
@@ -19,7 +19,7 @@ export interface ShoppingCartProductProps {
   name: string;
   price: number;
   description: string;
-  imageUrl: string;
+  imageUrls: string;
   quantity: number;
   availability: boolean;
   detailsLoading: boolean;
@@ -57,7 +57,7 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
         >
           <img
             className={styles["product__container__image"]}
-            src={props.imageUrl}
+            src={props.imageUrls}
             alt={props.name}
           />
         </SkeletonWrapper>
@@ -151,7 +151,10 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
       </div>
 
       <div className={styles["product__container__price"]}>
-        <SkeletonWrapper className="w-[50px] h-[24px]" loading={props.loading}>
+        <SkeletonWrapper
+          className="w-[50px] h-[24px]"
+          loading={props.detailsLoading}
+        >
           <h4>{props.price}zł</h4>
         </SkeletonWrapper>
       </div>

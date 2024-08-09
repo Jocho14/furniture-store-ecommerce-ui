@@ -2,7 +2,7 @@ import React from "react";
 
 import { Toaster } from "@/components/ui/sonner";
 
-import styles from "./styles.module.scss";
+// import styles from "./styles.module.scss";
 
 interface CartActionToastProps {
   //actionType: "add" | "remove";

@@ -52,6 +52,9 @@ const ShoppingCartPageContainer: React.FC = () => {
     captureList: [debouncedQuantities],
   });
 
+  productsError; /*eslint-disable-line @typescript-eslint/no-unused-vars*/
+  quantitiesError; /*eslint-disable-line @typescript-eslint/no-unused-vars*/
+
   useEffect(() => {
     if (quantitiesData) {
       const newAvailability = Object.keys(quantities).reduce((acc, key) => {

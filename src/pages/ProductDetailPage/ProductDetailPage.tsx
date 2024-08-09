@@ -45,6 +45,9 @@ const ProductDetailPage = () => {
     setQuantity((prev) => Math.max(1, prev - 1));
   };
 
+  loading; /*eslint-disable-line @typescript-eslint/no-unused-vars*/
+  error; /*eslint-disable-line @typescript-eslint/no-unused-vars*/
+
   const handleIncrement = () => {
     setQuantity((prev) => Math.min(999, prev + 1));
   };

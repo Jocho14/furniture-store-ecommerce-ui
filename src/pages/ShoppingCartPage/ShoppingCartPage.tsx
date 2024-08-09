@@ -48,7 +48,7 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
               <ShoppingCartProduct
                 key={product.id}
                 {...product}
-                imageUrl={product.imageUrls[0]}
+                imageUrls={product.imageUrls[0]}
                 quantity={quantities[product.id] ?? 1}
                 availability={availability[product.id]}
                 detailsLoading={productsLoading}
