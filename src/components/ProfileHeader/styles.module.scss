@@ -1,0 +1,26 @@
+@import "@/assets/styles/variables.scss";
+
+.user-header {
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    column-gap: $spacing-12px;
+  }
+  &__container {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: $primary-dark;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    font-size: $font-size-large;
+  }
+
+  &__name {
+    font-size: $font-size-large;
+    font-weight: $font-weight-bold;
+  }
+}
