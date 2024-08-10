@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/drawer";
 
 interface FavouritesDrawerProps {
-  trigger: React.ReactNode;
+  trigger?: React.ReactNode;
 }
 
 const FavouritesDrawer: React.FC<FavouritesDrawerProps> = ({ trigger }) => {
@@ -26,7 +26,7 @@ const FavouritesDrawer: React.FC<FavouritesDrawerProps> = ({ trigger }) => {
 
   return (
     <Drawer>
-      <DrawerTrigger asChild>{trigger}</DrawerTrigger>
+      <DrawerTrigger asChild>{trigger ? trigger : "Open"}</DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
