@@ -16,6 +16,7 @@ interface ShoppingCartPageProps {
   productsData: ShoppingCartProductProps[];
   quantities: Quantities;
   availability: Availability;
+  cartPrice: number;
   productsLoading: boolean;
   quantitiesLoading: boolean;
   onQuantityChange: (id: number, quantity: number) => void;
@@ -26,10 +27,12 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
   productsData,
   quantities,
   availability,
+  cartPrice,
   productsLoading,
   quantitiesLoading,
   onQuantityChange,
 }) => {
+  console.log("Cart price: ", cartPrice);
   return (
     <div className={styles["cart-page__container"]}>
       <CartActionToast />
@@ -78,7 +81,7 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
               <span
                 className={styles["cart-page__container__summary__total__sum"]}
               >
-                20zł
+                {cartPrice}zł
               </span>
             </div>
           )}
@@ -112,7 +115,7 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
               <span
                 className={styles["cart-page__container__summary__total__sum"]}
               >
-                20zł
+                {cartPrice}zł
               </span>
             </div>
           )}

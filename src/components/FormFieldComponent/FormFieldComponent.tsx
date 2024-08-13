@@ -1,13 +1,6 @@
 import React from "react";
-
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { FormField, FormItem, FormLabel, FormControl } from "../ui/form";
+import { Input } from "../ui/input";
 
 interface Props {
   control: any;
@@ -15,6 +8,7 @@ interface Props {
   placeholder?: string;
   type?: string;
   label?: string;
+  onDashInsertion?: (value: string) => string;
 }
 
 const FormFieldComponent: React.FC<Props> = ({
@@ -23,6 +17,7 @@ const FormFieldComponent: React.FC<Props> = ({
   placeholder,
   type,
   label,
+  onDashInsertion,
 }) => {
   return (
     <FormField
@@ -36,11 +31,16 @@ const FormFieldComponent: React.FC<Props> = ({
               placeholder={placeholder ? placeholder : label}
               {...field}
               type={type}
+              onChange={(e) =>
+                field.onChange(
+                  onDashInsertion
+                    ? onDashInsertion(e.target.value)
+                    : e.target.value
+                )
+              }
               className="rounded-md"
             />
           </FormControl>
-
-          <FormMessage />
         </FormItem>
       )}
     />

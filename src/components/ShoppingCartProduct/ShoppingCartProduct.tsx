@@ -82,30 +82,54 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
         </SkeletonWrapper>
 
         <SkeletonWrapper
-          className="w-[100px] h-[17px]"
+          className="w-[100px] h-[27px]"
           loading={props.detailsLoading || props.availabilityLoading}
         >
-          <h5 className={styles["product__container__details__availability"]}>
+          <div className={styles["product__container__details__availability"]}>
             {props.availability ? (
-              <>
+              <div
+                className={
+                  styles[
+                    "product__container__details__availability__container--g"
+                  ]
+                }
+              >
                 <CheckCircleSolid
                   className={
                     styles["product__container__details__availability__icon--g"]
                   }
-                />{" "}
-                Dostępny
-              </>
+                />
+                <span
+                  className={
+                    styles["product__container__details__availability__span"]
+                  }
+                >
+                  Dostępny
+                </span>
+              </div>
             ) : (
-              <>
+              <div
+                className={
+                  styles[
+                    "product__container__details__availability__container--r"
+                  ]
+                }
+              >
                 <XmarkCircleSolid
                   className={
                     styles["product__container__details__availability__icon--r"]
                   }
-                />{" "}
-                Niedostępny
-              </>
+                />
+                <span
+                  className={
+                    styles["product__container__details__availability__span"]
+                  }
+                >
+                  Niedostępny
+                </span>
+              </div>
             )}
-          </h5>
+          </div>
         </SkeletonWrapper>
 
         <div className={styles["product__container__actions"]}>

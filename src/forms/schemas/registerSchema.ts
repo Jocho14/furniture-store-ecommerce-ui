@@ -23,8 +23,9 @@ export const registerFormSchema = z
     localNumber: z.string().optional(),
     postalCode: z
       .string()
-      .length(6, { message: "Kod pocztowy musi mieć 6 znaków" }),
+      .length(6, { message: "Kod pocztowy musi mieć 5 znaków" }),
     city: z.string(),
+    termsAccepted: z.boolean(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Hasła nie pasują do siebie",

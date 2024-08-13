@@ -44,10 +44,30 @@
           height: 17px;
         }
 
-        display: flex;
-        column-gap: 5px;
-        font-size: $font-size-tiny;
+        &__container {
+          &--g {
+            background-color: $green-light;
+            display: inline-flex;
+            column-gap: 5px;
+            font-size: $font-size-tiny;
+            padding: 4px 8px;
+            border-radius: 20px;
+            color: $green;
+          }
+
+          &--r {
+            background-color: $red-light;
+            display: inline-flex;
+            column-gap: 5px;
+            font-size: $font-size-tiny;
+            padding: 4px 8px;
+            border-radius: 20px;
+            color: $red;
+          }
+        }
+
         color: rgb(82, 82, 82);
+
         font-weight: 600;
         &__icon {
           &--g {

@@ -1,16 +1,19 @@
+import React, { useEffect, useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+
 import ShoppingCartPage from "./ShoppingCartPage";
 
-import React, { useEffect, useState } from "react";
-
-import useFetch from "@/hooks/useFetch";
 import useMobile from "@/hooks/useMobile";
 import useDebounce from "@/hooks/useDebounce";
-
 import { useCart } from "@/context/CartContext";
 
-import { BACKEND_URL } from "@/config/config";
-import { buildMultipleIdUrl } from "@/utils/url";
 import { ShoppingCartProductProps } from "@/components/ShoppingCartProduct/ShoppingCartProduct";
+
+import {
+  getShoppingCartProducts,
+  getShoppingCartProductsQuantities,
+  getShoppingCartProductsPrice,
+} from "@/api/products";
 
 export type Quantities = Record<number, number>;
 export type Availability = Record<number, boolean>;
@@ -23,37 +26,40 @@ const ShoppingCartPageContainer: React.FC = () => {
   const [availability, setAvailability] = useState<Availability>({});
   const debouncedQuantities = useDebounce<Quantities>(quantities, 500);
 
-  const productsDataUrl = buildMultipleIdUrl(
-    BACKEND_URL,
-    "products",
-    getProductIds()
-  );
-
-  const quantitiesDataUrl = buildMultipleIdUrl(
-    BACKEND_URL,
-    "quantities",
-    getProductIds()
-  );
+  const productIds = getProductIds();
+  const queryClient = useQueryClient();
 
   const {
     data: productsData,
-    loading: productsLoading,
+    isLoading: productsLoading,
     error: productsError,
-  } = useFetch<ShoppingCartProductProps[]>({
-    url: productsDataUrl,
+  } = useQuery<ShoppingCartProductProps[]>({
+    queryKey: ["products", productIds],
+    queryFn: () => getShoppingCartProducts(productIds),
+    staleTime: 1000 * 60 * 5,
   });
 
   const {
     data: quantitiesData,
-    loading: quantitiesLoading,
+    isLoading: quantitiesLoading,
     error: quantitiesError,
-  } = useFetch<any[]>({
-    url: quantitiesDataUrl,
-    captureList: [debouncedQuantities],
+  } = useQuery<any[]>({
+    queryKey: ["quantities", debouncedQuantities],
+    queryFn: () => getShoppingCartProductsQuantities(productIds),
+    enabled: !!debouncedQuantities,
+    staleTime: 1000 * 60 * 1,
   });
 
-  productsError; /*eslint-disable-line @typescript-eslint/no-unused-vars*/
-  quantitiesError; /*eslint-disable-line @typescript-eslint/no-unused-vars*/
+  const {
+    data: priceData,
+    isLoading: priceLoading,
+    error: priceError,
+  } = useQuery<number>({
+    queryKey: ["price", debouncedQuantities],
+    queryFn: () => getShoppingCartProductsPrice(debouncedQuantities),
+    enabled: !!debouncedQuantities,
+    staleTime: 1000 * 60 * 1,
+  });
 
   useEffect(() => {
     if (quantitiesData) {
@@ -74,6 +80,13 @@ const ShoppingCartPageContainer: React.FC = () => {
   const handleQuantityChange = (id: number, quantity: number) => {
     setQuantities((prev) => ({ ...prev, [id]: quantity }));
     updateCart(id, quantity);
+    setAvailability((prev) => ({
+      ...prev,
+      [id]:
+        (quantitiesData?.find((item) => item.id === id)?.quantity || 0) >=
+        quantity,
+    }));
+    queryClient.invalidateQueries(["quantities", debouncedQuantities]);
   };
 
   const isMobile = useMobile();
@@ -84,6 +97,7 @@ const ShoppingCartPageContainer: React.FC = () => {
       productsData={productsData || []}
       quantities={quantities}
       availability={availability}
+      cartPrice={priceData || 0}
       productsLoading={productsLoading}
       quantitiesLoading={quantitiesLoading}
       onQuantityChange={handleQuantityChange}
