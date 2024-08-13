@@ -8,13 +8,13 @@ import ActionIcon from "../ActionIcon/ActionIcon";
 import { Cart, Heart, LogOut } from "iconoir-react";
 
 interface DropdownMenuProps {
-  trigger: React.ReactNode;
+  trigger?: React.ReactNode;
 }
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({ trigger }) => {
   return (
     <Sheet>
-      <SheetTrigger>{trigger}</SheetTrigger>
+      <SheetTrigger>{trigger ? trigger : "open"}</SheetTrigger>
       <SheetContent className={styles["dropdown-menu"]}>
         <ul className={styles["dropdown-menu__user-tools"]}>
           {" "}
