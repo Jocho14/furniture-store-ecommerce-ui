@@ -6,6 +6,8 @@ import styles from "./styles.module.scss";
 
 interface ActionIconProps {
   icon: React.ReactElement;
+  label?: string;
+  labelVisibility?: string;
   size?: "small" | "large";
   linkTo?: string;
   onClick?: () => void;
@@ -13,7 +15,19 @@ interface ActionIconProps {
 }
 
 const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
-  ({ icon, size, linkTo, onClick, className, ...props }, ref) => {
+  (
+    {
+      icon,
+      label,
+      labelVisibility,
+      size,
+      linkTo,
+      onClick,
+      className,
+      ...props
+    },
+    ref
+  ) => {
     const iconElement = React.cloneElement(icon, {
       className: classNames(styles.icon, className),
       ...props,
@@ -24,9 +38,22 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
         <Link
           to={linkTo}
           onClick={onClick}
-          className={classNames(styles["icon-container"], styles[`${size}`])}
+          className={classNames(styles["icon-wrapper"], styles[`${size}`])}
         >
-          {iconElement}
+          <div
+            className={classNames(styles["icon-container"], styles[`${size}`])}
+          >
+            {iconElement}{" "}
+            <span
+              className={
+                label
+                  ? classNames(styles[`label`], styles[`${labelVisibility}`])
+                  : ""
+              }
+            >
+              {label}
+            </span>
+          </div>
         </Link>
       );
     }
@@ -35,9 +62,22 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
       <button
         ref={ref}
         onClick={onClick}
-        className={classNames(styles["icon-container"], styles[`${size}`])}
+        className={classNames(styles["icon-wrapper"], styles[`${size}`])}
       >
-        {iconElement}
+        <div
+          className={classNames(styles["icon-container"], styles[`${size}`])}
+        >
+          {iconElement}{" "}
+          <span
+            className={
+              label
+                ? classNames(styles[`label`], styles[`${labelVisibility}`])
+                : ""
+            }
+          >
+            {label}
+          </span>
+        </div>
       </button>
     );
   }

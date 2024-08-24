@@ -40,7 +40,7 @@ const Header: React.FC = () => {
           cartCount={cartCount}
           isMobile={isMobile}
           className={classNames(
-            { "start-10 col-3": !isMobile },
+            { "start-9 col-4": !isMobile },
             { "start-3 col-1": isMobile }
           )}
         />

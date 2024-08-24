@@ -20,8 +20,19 @@ const Navbar: React.FC<NavbarProps> = ({ cartCount, isMobile, className }) => {
   const userTools = [
     { icon: <Search />, isMobile: true },
     { icon: <Shop />, linkTo: "/product/1", isMobile: false },
-    { icon: <User />, linkTo: "/auth" },
-    { icon: <Heart />, uiComponent: <FavouritesDrawer />, isMobile: false },
+    {
+      icon: <User />,
+      label: "Zaloguj się",
+      labelVisibility: "desktop-only",
+      linkTo: "/auth",
+    },
+    {
+      icon: <Heart />,
+      label: "Ulubione",
+      labelVisibility: "desktop-only",
+      uiComponent: <FavouritesDrawer />,
+      isMobile: false,
+    },
     { icon: <ShoppingCartIcon count={cartCount} />, linkTo: "/shopping-cart" },
     { icon: <Menu />, uiComponent: <DropdownMenu />, isMobile: true },
   ];
@@ -37,10 +48,21 @@ const Navbar: React.FC<NavbarProps> = ({ cartCount, isMobile, className }) => {
           <li key={index} className={styles["navbar__item"]}>
             {tool.uiComponent ? (
               React.cloneElement(tool.uiComponent, {
-                trigger: <ActionIcon icon={tool.icon} />,
+                trigger: (
+                  <ActionIcon
+                    icon={tool.icon}
+                    label={tool.label}
+                    labelVisibility={tool.labelVisibility}
+                  />
+                ),
               })
             ) : (
-              <ActionIcon icon={tool.icon} linkTo={tool.linkTo} />
+              <ActionIcon
+                icon={tool.icon}
+                label={tool.label}
+                labelVisibility={tool.labelVisibility}
+                linkTo={tool.linkTo}
+              />
             )}
           </li>
         );
