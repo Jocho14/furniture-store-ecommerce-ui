@@ -1,17 +1,24 @@
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
 
-import useFetch from "@/hooks/useFetch";
+import { getProducts } from "@/api/products";
 
 interface ProductFetcherProps {
   render: Function;
 }
 
 const ProductFetcher: React.FC<ProductFetcherProps> = ({ render }) => {
-  const { data } = useFetch({
-    url: "https://api.sampleapis.com/coffee/hot",
+  const {
+    data: productsData,
+    isLoading: productsLoading,
+    error: productsError,
+  } = useQuery<any[]>({
+    queryKey: ["products"],
+    queryFn: () => getProducts(),
+    staleTime: 1000 * 60 * 5,
   });
 
-  return render(data);
+  return render(productsData);
 };
 
 export default ProductFetcher;
