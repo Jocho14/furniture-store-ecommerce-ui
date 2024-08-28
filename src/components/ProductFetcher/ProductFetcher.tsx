@@ -3,8 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getProducts } from "@/api/products";
 
+import { HomePageProduct } from "@/interfaces/Product";
+
 interface ProductFetcherProps {
-  render: Function;
+  render: (productsData: HomePageProduct[] | undefined) => React.ReactNode;
 }
 
 const ProductFetcher: React.FC<ProductFetcherProps> = ({ render }) => {

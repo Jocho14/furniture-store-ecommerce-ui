@@ -12,21 +12,9 @@ import SkeletonWrapper from "@/components/SkeletonWrapper/SkeletonWrapper";
 import QuantityStepper from "@/components/QuantityStepper/QuantityStepper";
 import ActionIcon from "@/components/ActionIcon/ActionIcon";
 
-import styles from "./styles.module.scss";
+import { ShoppingCartProductProps } from "@/interfaces/Product";
 
-export interface ShoppingCartProductProps {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  imageUrls: string;
-  quantity: number;
-  availability: boolean;
-  detailsLoading: boolean;
-  availabilityLoading: boolean;
-  className?: string;
-  onQuantityChange: (id: number, quantity: number) => void;
-}
+import styles from "./styles.module.scss";
 
 const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
   const handleDecrement = () => {

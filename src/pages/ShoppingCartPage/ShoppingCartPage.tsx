@@ -5,7 +5,7 @@ import Grid from "@/components/Grid/Grid";
 import ShoppingCartProduct from "@/components/ShoppingCartProduct/ShoppingCartProduct";
 import CheckoutButton from "@/components/CheckoutButton/CheckoutButton";
 import CartActionToast from "@/components/CartActionToast/CartActionToast";
-import { ShoppingCartProductProps } from "@/components/ShoppingCartProduct/ShoppingCartProduct";
+import { ShoppingCartProductProps } from "@/interfaces/Product";
 
 import { Quantities, Availability } from "./ShoppingCartPageContainer";
 

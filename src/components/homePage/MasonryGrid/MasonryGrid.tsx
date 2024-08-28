@@ -1,11 +1,14 @@
 import React from "react";
 import classNames from "classnames";
-import styles from "./styles.module.scss";
+
+import { HomePageProduct } from "@/interfaces/Product";
 
 import useMobile from "@/hooks/useMobile";
 
+import styles from "./styles.module.scss";
+
 interface MasonryGridProps {
-  contentItems: any[];
+  contentItems: HomePageProduct[];
 }
 
 const MasonryGrid: React.FC<MasonryGridProps> = ({ contentItems }) => {
@@ -32,7 +35,7 @@ const MasonryGrid: React.FC<MasonryGridProps> = ({ contentItems }) => {
             key={item.id}
             className={styles["masonry-grid__item"]}
             src={item.imageUrls[0]}
-            alt={item.title}
+            alt={item.name}
           />
         );
       })}

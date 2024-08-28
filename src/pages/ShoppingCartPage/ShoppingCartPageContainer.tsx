@@ -7,7 +7,7 @@ import useMobile from "@/hooks/useMobile";
 import useDebounce from "@/hooks/useDebounce";
 import { useCart } from "@/context/CartContext";
 
-import { ShoppingCartProductProps } from "@/components/ShoppingCartProduct/ShoppingCartProduct";
+import { ShoppingCartProductProps } from "@/interfaces/Product";
 
 import {
   getShoppingCartProducts,
