@@ -24,13 +24,19 @@ const HorizontalScrollContainer: React.FC<HorizontalScrollContainerProps> = ({
 
   const handleLeftArrowClick = () => {
     if (containerRef.current) {
-      containerRef.current.scrollBy({ left: -500, behavior: "smooth" });
+      containerRef.current.scrollBy({
+        left: -containerRef.current.clientWidth * 0.6,
+        behavior: "smooth",
+      });
     }
   };
 
   const handleRightArrowClick = () => {
     if (containerRef.current) {
-      containerRef.current.scrollBy({ left: 500, behavior: "smooth" });
+      containerRef.current.scrollBy({
+        left: containerRef.current.clientWidth * 0.6,
+        behavior: "smooth",
+      });
     }
   };
 
