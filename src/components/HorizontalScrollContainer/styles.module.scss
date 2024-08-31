@@ -1,0 +1,64 @@
+@import "@/assets/styles/variables.scss";
+@import "@/assets/styles/mixins.scss";
+
+.horizontal-scroll-wrapper {
+  position: relative;
+
+  &__left-nav-arrow,
+  &__right-nav-arrow {
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    background-color: $neutral;
+    border-radius: 50%;
+    width: 60px;
+    aspect-ratio: 1;
+    cursor: pointer;
+    opacity: 0; // Initially hidden
+    transition: opacity 0.3s ease; // Smooth transition
+  }
+
+  &__left-nav-arrow,
+  &__right-nav-arrow {
+    &:hover {
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &:hover {
+    &__left-nav-arrow,
+    &__right-nav-arrow {
+      opacity: 1; // Show arrows on hover
+    }
+  }
+
+  &__left-nav-arrow {
+    left: -20px;
+  }
+
+  &__right-nav-arrow {
+    right: -20px;
+  }
+}
+
+.horizontal-scroll-container {
+  @include custom-scrollbar;
+  overflow-x: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+}
+
+.test-icon {
+  height: 45px;
+  width: 45px;
+}
+
+.show-arrow {
+  opacity: 1 !important;
+}

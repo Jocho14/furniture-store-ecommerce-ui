@@ -1,6 +1,11 @@
 .home-page {
+  &__container {
+    row-gap: 150px;
+  }
 }
 
-.masonry-grid {
+.masonry-grid,
+.horizontal-tiles,
+.scroll-container {
   width: 100%;
 }

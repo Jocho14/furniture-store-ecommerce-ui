@@ -1,0 +1,60 @@
+@import "@/assets/styles/variables.scss";
+@import "@/assets/styles/mixins.scss";
+
+.horizontal-tiles {
+  display: flex;
+  align-items: center;
+  height: 700px;
+  width: 100%;
+  padding: 0 20px;
+  column-gap: 20px;
+  &__item {
+    position: relative;
+    border-radius: $radius-xxlarge;
+    background-color: #ccc;
+    height: 650px;
+    min-width: 400px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    &__chip {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: $radius-xxlarge;
+      background-color: $white;
+      height: 50px;
+      min-width: 150px;
+      font-size: $font-size-base;
+    }
+
+    &__img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__item:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .horizontal-tiles {
+    height: 500px;
+    &__item {
+      height: 450px;
+      min-width: 250px;
+      &__chip {
+        top: 20px;
+        left: 20px;
+        min-width: 100px;
+        font-size: $font-size-small;
+      }
+    }
+  }
+}
