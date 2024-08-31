@@ -5,12 +5,12 @@
 }
 
 .header {
-  width: 100%;
-  height: 100px;
+  z-index: 40;
+  position: fixed;
   display: flex;
   justify-content: center;
-  position: fixed;
-  z-index: 40;
+  height: 100px;
+  width: 100%;
   transition: transform 0.3s ease-in-out;
 
   &--hidden {
@@ -18,13 +18,13 @@
   }
 
   &__logo {
-    height: 40px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     background-color: black;
-    color: $white;
+    height: 40px;
     font-weight: bold;
+    color: $white;
   }
 
   &__input {

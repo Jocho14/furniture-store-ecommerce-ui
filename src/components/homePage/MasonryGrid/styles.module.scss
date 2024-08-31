@@ -1,17 +1,17 @@
 @import "@/assets/styles/variables.scss";
 
 .masonry-grid {
-  min-height: 150vh;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 20px;
+  min-height: 150vh;
 
   &__discount-info {
-    background-color: $primary-dark;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: $primary-dark;
     &__span {
       font-size: $font-size-xxlarge;
       font-weight: $font-weight-bold;
@@ -22,8 +22,8 @@
 
   &__item {
     border-radius: $radius-large;
-    width: 100%;
     height: 100%;
+    width: 100%;
     object-fit: cover;
   }
 
@@ -60,10 +60,10 @@
 
 @media screen and (max-width: 767px) {
   .masonry-grid {
-    min-height: 100vh;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(4, 1fr);
     grid-gap: 15px;
+    min-height: 100vh;
 
     &__discount-info {
       &__span {

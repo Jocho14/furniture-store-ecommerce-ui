@@ -8,15 +8,15 @@
     column-gap: $spacing-12px;
   }
   &__container {
-    width: 50px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background-color: $primary-dark;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $white;
+    border-radius: 50%;
+    background-color: $primary-dark;
+    width: 50px;
     font-size: $font-size-large;
+    color: $white;
+    aspect-ratio: 1;
   }
 
   &__name {

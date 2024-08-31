@@ -1,29 +1,28 @@
 @import "../../assets/styles/variables";
 
 .product-detail-images {
-  width: 100%;
-  display: flex;
-  column-gap: $spacing-48px;
-  max-height: 700px;
   display: flex;
   flex-direction: column;
+  max-height: 700px;
+  width: 100%;
+  column-gap: $spacing-48px;
 
   &__main {
     display: flex;
   }
 
   &__thumbnails {
-    width: 15%;
     display: flex;
     flex-direction: column;
-    row-gap: $spacing-12px;
     margin-bottom: 10px;
+    width: 15%;
     overflow-y: scroll;
+    row-gap: $spacing-12px;
 
     img {
-      cursor: pointer;
-      margin: 5px;
       border: 2px solid transparent;
+      margin: 5px;
+      cursor: pointer;
 
       &.active {
         border: 1px solid #000;

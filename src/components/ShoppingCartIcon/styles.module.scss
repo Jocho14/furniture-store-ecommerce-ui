@@ -2,26 +2,26 @@
 
 .cart-icon {
   &__container {
-    display: block;
     position: relative;
+    display: block;
 
     &__badge {
-      padding: 4px;
+      z-index: 10;
       position: absolute;
       top: 12px;
       left: 13px;
-      width: auto;
-      height: 15px;
-      border-radius: 30px;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      border-radius: 30px;
+
+      background-color: $primary-dark;
+      height: 15px;
+      width: auto;
+      padding: 4px;
       font-size: 0.75rem;
       font-weight: 500;
       color: $white;
-
-      background-color: $primary-dark;
-      z-index: 10;
     }
   }
 }

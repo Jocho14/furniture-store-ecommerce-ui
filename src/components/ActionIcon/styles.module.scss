@@ -2,43 +2,43 @@
 
 .icon-wrapper {
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 10px;
+  align-items: center;
   border-radius: $radius-xxlarge;
+  padding: 10px;
 
   &:hover {
-    cursor: pointer;
     background-color: rgb(241, 241, 241);
+    cursor: pointer;
   }
 
   // Sizes
   &.small {
-    width: 30px;
     height: 30px;
+    width: 30px;
   }
   &.large {
-    width: 50px;
     height: 50px;
+    width: 50px;
   }
 }
 
 .icon-container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   &.small {
     .icon {
-      width: 20px;
       height: 20px;
+      width: 20px;
     }
   }
 
   &.large {
     .icon {
-      width: 40px;
       height: 40px;
+      width: 40px;
     }
   }
 }
@@ -49,6 +49,7 @@
 
 .label {
   margin-left: $spacing-8px;
+  font-size: $font-size-small;
 }
 
 .desktop-only {

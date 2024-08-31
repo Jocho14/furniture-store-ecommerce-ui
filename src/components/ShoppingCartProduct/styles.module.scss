@@ -2,16 +2,16 @@
 
 .product {
   &__container {
+    display: flex;
+    border-bottom: 1px solid rgb(241, 241, 241);
     max-height: 200px;
     width: 100%;
-    display: flex;
-    column-gap: 10px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgb(241, 241, 241);
+    column-gap: 10px;
 
     &__image {
-      width: 100%;
       height: 100%;
+      width: 100%;
       object-fit: cover;
 
       &__wrapper {
@@ -21,9 +21,9 @@
     }
 
     &__details {
-      width: 100%;
       display: flex;
       flex-direction: column;
+      width: 100%;
       row-gap: 12px;
       &__title {
         font-size: $font-size-medium;
@@ -31,44 +31,43 @@
       }
 
       &__description {
-        font-size: $font-size-small;
-        white-space: nowrap;
+        max-width: 250px;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 250px;
+        white-space: nowrap;
+        font-size: $font-size-small;
       }
 
       &__availability {
+        font-weight: 600;
+
+        color: rgb(82, 82, 82);
         &__wrapper {
-          width: 100px;
           height: 17px;
+          width: 100px;
         }
 
         &__container {
           &--g {
-            background-color: $green-light;
             display: inline-flex;
-            column-gap: 5px;
-            font-size: $font-size-tiny;
-            padding: 4px 8px;
             border-radius: 20px;
+            background-color: $green-light;
+            padding: 4px 8px;
+            font-size: $font-size-tiny;
             color: $green;
+            column-gap: 5px;
           }
 
           &--r {
-            background-color: $red-light;
             display: inline-flex;
-            column-gap: 5px;
-            font-size: $font-size-tiny;
-            padding: 4px 8px;
             border-radius: 20px;
+            background-color: $red-light;
+            padding: 4px 8px;
+            font-size: $font-size-tiny;
             color: $red;
+            column-gap: 5px;
           }
         }
-
-        color: rgb(82, 82, 82);
-
-        font-weight: 600;
         &__icon {
           &--g {
             color: $green;
@@ -82,8 +81,8 @@
     }
     &__actions {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       &__user-tools {
         display: flex;
         column-gap: 5px;

@@ -11,12 +11,12 @@
   }
 
   &__details {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    row-gap: $spacing-16px;
     position: sticky;
     top: 100px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: $spacing-16px;
 
     &__name {
       font-size: $h3-size;
@@ -42,10 +42,10 @@
         width: 150px;
       }
       &__add-to-cart-btn {
-        width: 100%;
-        height: 50px;
         border-radius: 32px;
         background-color: $primary-dark;
+        height: 50px;
+        width: 100%;
         color: $white;
 
         &:hover {

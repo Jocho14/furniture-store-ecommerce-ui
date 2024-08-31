@@ -11,17 +11,17 @@
 
     &__input {
       width: 45px;
+      font-size: $font-size-medium;
       text-align: center;
       appearance: none;
-      font-size: $font-size-medium;
+
+      -moz-appearance: textfield;
 
       &::-webkit-outer-spin-button,
       &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
         margin: 0;
+        -webkit-appearance: none;
       }
-
-      -moz-appearance: textfield;
     }
 
     &__button {
@@ -29,8 +29,8 @@
         pointer-events: none;
       }
       &:hover {
-        background-color: rgb(233, 233, 233);
         border-radius: 50%;
+        background-color: rgb(233, 233, 233);
       }
     }
 

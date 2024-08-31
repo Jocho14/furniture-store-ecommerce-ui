@@ -4,21 +4,20 @@
   padding-top: $spacing-48px;
 
   &__profile-header {
-    padding-bottom: $spacing-24px;
     border-bottom: 1px solid $neutral;
+    padding-bottom: $spacing-24px;
   }
 
   &__user-tools {
-    width: 100%;
     display: flex;
     flex-direction: column;
+    width: 100%;
     row-gap: $spacing-12px;
 
     &__item {
       display: flex;
       flex-direction: row;
       align-items: center;
-      //   font-size: $font-size-medium;
     }
   }
 }

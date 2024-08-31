@@ -3,21 +3,21 @@ $dotDiameter: 8px;
 
 .dot-page-indicator {
   position: relative;
-  height: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 16px;
 
   &__dot {
-    background-color: $dotColor;
-    width: $dotDiameter;
-    height: $dotDiameter;
-    border-radius: 50%;
     position: absolute;
-    left: 50%;
     top: 0;
-    transform-origin: left center;
+    left: 50%;
+    border-radius: 50%;
+    background-color: $dotColor;
+    height: $dotDiameter;
+    width: $dotDiameter;
     transition: all 400ms ease-out;
+    transform-origin: left center;
   }
 }
 
