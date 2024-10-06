@@ -20,3 +20,8 @@
     background-color: $thumb-color;
   }
 }
+
+@mixin custom-border {
+  border: 1px solid rgba(153, 153, 153, 0.1); /* Light border */
+  box-shadow: 1px 1px 2px rgba(138, 138, 138, 0.1); /* Subtle shadow */
+}

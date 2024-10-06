@@ -1,0 +1,38 @@
+@import "@/assets/styles/variables.scss";
+
+.base-nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+  }
+}
+
+.items-count {
+  display: flex;
+  flex-direction: row;
+}
+
+.add-icon {
+  background-color: $green-light;
+  border-radius: $radius-medium;
+  color: $green;
+}
+
+@media screen and (max-width: 768px) {
+  .add-icon__container,
+  .items-count {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dropdown-menu__container {
+    display: none;
+  }
+}

@@ -1,31 +1,45 @@
 import { lazy } from "react";
 
-const Main = lazy(() => import("../layout/Main/Main"));
-
-const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
-
+const ClientMain = lazy(() => import("../layout/clientLayout/Main/Main"));
+const HomePage = lazy(() => import("../pages/client/HomePage/HomePage"));
 const ProductDetailPage = lazy(
-  () => import("../pages/ProductDetailPage/ProductDetailPage")
+  () => import("../pages/client/ProductDetailPage/ProductDetailPage")
 );
+const ShoppingCartPage = lazy(
+  () => import("../pages/client/ShoppingCartPage/ShoppingCartPageContainer")
+);
+const AuthPage = lazy(() => import("../pages/client/AuthPage/AuthPage"));
 
 // const AccountPage = lazy(() => import("../pages/AccountPage"));
 // const ManagementPage = lazy(() => import("../pages/ManagementPage"));
 
-const ShoppingCartPage = lazy(
-  () => import("../pages/ShoppingCartPage/ShoppingCartPageContainer")
-);
 // const CheckoutPage = lazy(() => import("../pages/CheckoutPage"));
 // const ReturnPage = lazy(() => import("../pages/ReturnPage"));
 // const SuccessPage = lazy(() => import("../pages/SuccessPage"));
 
-const AuthPage = lazy(() => import("../pages/AuthPage/AuthPage"));
-
 // const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
+
+// client side:
+const EmployeeMain = lazy(() => import("../layout/employeeLayout/Main/Main"));
+const ProductDetailManagePage = lazy(
+  () =>
+    import(
+      "../pages/employee/ProductDetailManagementPage/ProductDetailManagementPage"
+    )
+);
+const ProductListPage = lazy(
+  () => import("../pages/employee/ProductListPage/ProductListPage")
+);
+
+const TestApp = lazy(() => import("../layout/employeeLayout/test/testapp"));
+const AppTestTwo = lazy(
+  () => import("../layout/employeeLayout/testv2/AppTestTwo")
+);
 
 const routes = [
   {
     path: "/",
-    element: <Main />,
+    element: <ClientMain />,
     children: [
       { path: "", element: <HomePage /> },
       { path: "shopping-cart", element: <ShoppingCartPage /> },
@@ -35,7 +49,30 @@ const routes = [
       //   { path: "management", element: <ManagementPage /> },
     ],
   },
-  //   { path: "login", element: <LogInPage /> },
+
+  {
+    path: "/employee",
+    element: <EmployeeMain />,
+    children: [
+      {
+        path: "product/:productId/manage",
+        element: <ProductDetailManagePage />,
+      },
+      {
+        path: "product-list",
+        element: <ProductListPage />,
+      },
+      {
+        path: "test",
+        element: <TestApp />,
+      },
+      {
+        path: "testv2",
+        element: <AppTestTwo />,
+      },
+    ],
+  },
+
   //   { path: "*", element: <NotFoundPage /> },
 ];
 

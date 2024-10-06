@@ -1,0 +1,22 @@
+@import "@/assets/styles/mixins.scss";
+@import "@/assets/styles/variables.scss";
+
+.header {
+  @include custom-border;
+  border-left: none;
+  display: flex;
+  align-items: center;
+  padding: 0 25px 0 35px;
+  background-color: $white;
+  scrollbar-gutter: stable;
+  min-height: 80px;
+  width: 100%;
+  top: 0;
+}
+
+.nav__container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}

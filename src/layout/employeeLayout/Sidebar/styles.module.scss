@@ -1,0 +1,9 @@
+@import "../../../assets/styles/variables.scss";
+@import "../../../assets/styles/mixins.scss";
+
+.sidebar {
+  width: 300px;
+  background-color: $white;
+  z-index: 40;
+  @include custom-border;
+}

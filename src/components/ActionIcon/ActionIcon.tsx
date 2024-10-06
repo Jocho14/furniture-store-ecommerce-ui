@@ -29,7 +29,7 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
     ref
   ) => {
     const iconElement = React.cloneElement(icon, {
-      className: classNames(styles.icon, className),
+      className: classNames(styles.icon),
       ...props,
     });
 
@@ -62,7 +62,11 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
       <button
         ref={ref}
         onClick={onClick}
-        className={classNames(styles["icon-wrapper"], styles[`${size}`])}
+        className={classNames(
+          styles["icon-wrapper"],
+          className,
+          styles[`${size}`]
+        )}
       >
         <div
           className={classNames(styles["icon-container"], styles[`${size}`])}

@@ -1,5 +1,5 @@
 import { BACKEND_URL } from "@/config/config";
-import { Quantities } from "@/pages/ShoppingCartPage/ShoppingCartPageContainer";
+import { Quantities } from "@/pages/client/ShoppingCartPage/ShoppingCartPageContainer";
 import axios from "axios";
 
 export const getShoppingCartProducts = async (ids: number[]) => {

@@ -1,0 +1,32 @@
+@import "../../../assets/styles/mixins.scss";
+@import "../../../assets/styles/variables.scss";
+
+.main {
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+  }
+  width: calc(100vw - 300px);
+}
+
+.sidebar {
+  width: 300px;
+  @include custom-border;
+  height: 100vh;
+  z-index: 40;
+}
+
+.header {
+  width: calc(100vw - 300px);
+  z-index: 30;
+}
+
+.outlet {
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    width: 100vw;
+  }
+}
