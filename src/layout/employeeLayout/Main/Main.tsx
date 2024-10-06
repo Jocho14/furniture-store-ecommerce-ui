@@ -16,14 +16,13 @@ const Main: React.FC<Props> = () => {
   const isMobile = useMobile();
   return (
     <div className={styles["main__wrapper"]}>
-      {!isMobile && <div className={styles["sidebar"]}></div>}
+      {!isMobile && <Sidebar />}
       <main className={styles["main"]}>
         <div className={styles["header"]}>
           <Header />
         </div>
 
         <div className={styles["outlet__container"]}>
-          {/* <div className={styles["outlet"]}></div> */}
           <Outlet />
         </div>
       </main>

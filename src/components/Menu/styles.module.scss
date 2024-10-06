@@ -1,0 +1,41 @@
+.nav,
+.main-group,
+.footer-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  height: 100%;
+  justify-content: space-between;
+}
+
+.li {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  cursor: pointer;
+  padding: 5px;
+  column-gap: 10px;
+}
+
+.li:hover {
+  background-color: #f4f4f4;
+}
+
+.title {
+  padding: 20px 0;
+}
+
+.main-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 20px;
+}
+
+.footer-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}

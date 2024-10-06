@@ -33,6 +33,7 @@ const BaseNav: React.FC<BaseNavProps> = ({ className }) => {
           className={classNames(styles["add-icon"])}
           icon={<Plus />}
           label="Nowy Produkt"
+          border="border-medium"
         />
       </div>
       <div className={styles["dropdown-menu__container"]}>

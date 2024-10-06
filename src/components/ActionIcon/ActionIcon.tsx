@@ -9,6 +9,7 @@ interface ActionIconProps {
   label?: string;
   labelVisibility?: string;
   size?: "small" | "large";
+  border?: "border-medium" | "border-large";
   linkTo?: string;
   onClick?: () => void;
   className?: string;
@@ -21,6 +22,7 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
       label,
       labelVisibility,
       size,
+      border,
       linkTo,
       onClick,
       className,
@@ -38,7 +40,11 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
         <Link
           to={linkTo}
           onClick={onClick}
-          className={classNames(styles["icon-wrapper"], styles[`${size}`])}
+          className={classNames(
+            styles["icon-wrapper"],
+            styles[`${size}`],
+            styles[`${border}`]
+          )}
         >
           <div
             className={classNames(styles["icon-container"], styles[`${size}`])}
@@ -65,7 +71,8 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
         className={classNames(
           styles["icon-wrapper"],
           className,
-          styles[`${size}`]
+          styles[`${size}`],
+          styles[`${border}`]
         )}
       >
         <div
