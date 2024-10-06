@@ -1,4 +1,5 @@
 import React from "react";
+import { ScrollArea } from "@/components/ui/scrollArea";
 import { Outlet } from "react-router-dom";
 
 import Header from "../Header/Header";
@@ -20,9 +21,11 @@ const Main: React.FC<Props> = () => {
         <div className={styles["header"]}>
           <Header />
         </div>
-        {/* <div className={styles["outlet"]}>
+
+        <div className={styles["outlet__container"]}>
+          {/* <div className={styles["outlet"]}></div> */}
           <Outlet />
-        </div> */}
+        </div>
       </main>
     </div>
   );
