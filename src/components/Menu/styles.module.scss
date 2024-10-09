@@ -1,3 +1,5 @@
+@import "@/assets/styles/variables.scss";
+
 .nav,
 .main-group,
 .footer-group {
@@ -15,8 +17,9 @@
   flex-direction: row;
   justify-content: flex-start;
   cursor: pointer;
-  padding: 5px;
+  padding: 15px 30px;
   column-gap: 10px;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .li:hover {
@@ -24,18 +27,21 @@
 }
 
 .title {
-  padding: 20px 0;
+  padding: 0px 30px 20px 30px;
+  font-size: $font-size-xlarge;
 }
 
 .main-list {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  row-gap: 20px;
 }
 
 .footer-list {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+}
+
+.separator__container {
+  padding: 20px 30px;
 }

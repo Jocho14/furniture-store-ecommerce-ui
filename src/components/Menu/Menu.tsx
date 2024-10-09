@@ -2,18 +2,14 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
+import { MenuItem } from "@/types/MenuItem";
 
 interface MenuProps {
   title: React.ReactNode;
-  primaryGroup: MenuElement[];
-  secondaryGroup: MenuElement[];
-  footerGroup: MenuElement[];
-}
-
-interface MenuElement {
-  icon: React.ReactNode;
-  name: string;
-  link: string;
+  primaryGroup: MenuItem[];
+  secondaryGroup: MenuItem[];
+  footerGroup: MenuItem[];
+  closeWrapper?: React.ComponentType<{ children: React.ReactNode }>;
 }
 
 const Menu: React.FC<MenuProps> = ({
@@ -21,32 +17,49 @@ const Menu: React.FC<MenuProps> = ({
   primaryGroup,
   secondaryGroup,
   footerGroup,
+  closeWrapper: Wrapper = (props) => <>{props.children}</>,
 }) => {
   return (
     <nav className={styles["nav"]}>
       <ul className={styles["main-list"]}>
-        <h1 className={styles["title"]}>{title}</h1>
+        <span className={styles["title"]}>{title} </span>
         {primaryGroup.map((item) => (
-          <Link key={item.name} to={item.link} className={styles["li"]}>
-            {item.icon}
-            {item.name}
-          </Link>
+          <li key={item.name}>
+            <Wrapper>
+              <Link to={item.link} className={styles["li"]}>
+                {item.icon}
+                {item.name}
+              </Link>
+            </Wrapper>
+          </li>
         ))}
-        <Separator />
-        {secondaryGroup.map((item) => (
-          <Link key={item.name} to={item.link} className={styles["li"]}>
-            {item.icon}
-            {item.name}
-          </Link>
-        ))}
+        {secondaryGroup.length > 0 && (
+          <>
+            <div className={styles["separator__container"]}>
+              <Separator />
+            </div>
+            {secondaryGroup.map((item) => (
+              <li key={item.name}>
+                <Link to={item.link} className={styles["li"]}>
+                  {item.icon}
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </>
+        )}
       </ul>
       <ul className={styles["footer-list"]}>
-        <Separator />
+        <div className={styles["separator__container"]}>
+          <Separator />
+        </div>
         {footerGroup.map((item) => (
-          <Link key={item.name} to={item.link} className={styles["li"]}>
-            {item.icon}
-            {item.name}
-          </Link>
+          <li key={item.name}>
+            <Link to={item.link} className={styles["li"]}>
+              {item.icon}
+              {item.name}
+            </Link>
+          </li>
         ))}
       </ul>
     </nav>

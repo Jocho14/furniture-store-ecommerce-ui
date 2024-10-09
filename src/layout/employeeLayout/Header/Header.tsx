@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import classNames from "classnames";
 
-import Grid from "@/components/Grid/Grid";
 import BaseNav from "../nav/BaseNav/BaseNav";
 import ManageNav from "../nav/ManageNav/ManageNav";
 
+import Menu from "@/components/Menu/Menu";
+import useMenu from "@/hooks/useMenu";
+import UserRole from "@/enums/UserRole";
+import DropdownMenu from "@/components/DropdownMenu/DropdownMenu";
+import SheetCloseWrapper from "@/components/SheetCloseWrapper/SheetCloseWrapper";
+
+import { Menu as MenuIcon } from "iconoir-react";
 import styles from "./styles.module.scss";
 
 interface Props {}
@@ -16,11 +21,18 @@ enum NavState {
 
 const Header: React.FC<Props> = () => {
   const [navState, setNavState] = useState<NavState>(NavState.Base);
+  const menuData = useMenu(UserRole.Employee);
 
   return (
     <header className={styles["header"]}>
       <div className={styles["nav__container"]}>
         <BaseNav />
+      </div>
+      <div className={styles["dropdown-menu__container"]}>
+        <DropdownMenu
+          trigger={<MenuIcon />}
+          menu={<Menu {...menuData} closeWrapper={SheetCloseWrapper} />}
+        />
       </div>
     </header>
   );

@@ -36,9 +36,6 @@ const BaseNav: React.FC<BaseNavProps> = ({ className }) => {
           border="border-medium"
         />
       </div>
-      <div className={styles["dropdown-menu__container"]}>
-        <DropdownMenu trigger={<Menu />} />
-      </div>
     </nav>
   );
 };
