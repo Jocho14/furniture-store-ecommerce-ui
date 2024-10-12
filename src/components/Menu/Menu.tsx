@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
-import { MenuItem } from "@/types/MenuItem";
+import { MenuItem } from "@/interfaces/MenuItem";
 
 interface MenuProps {
   title: React.ReactNode;

@@ -8,13 +8,20 @@ import { Search } from "iconoir-react";
 import ActionIcon from "@/components/ActionIcon/ActionIcon";
 import { Plus, Menu } from "iconoir-react";
 import DropdownMenu from "@/components/DropdownMenu/DropdownMenu";
+import { useSearch } from "@/context/SearchContext";
 
 interface BaseNavProps {
   className?: string;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 const BaseNav: React.FC<BaseNavProps> = ({ className }) => {
-  const isMobile = useMobile();
+  const { searchTerm, setSearchTerm } = useSearch();
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
   return (
     <nav className={styles["base-nav"]}>
       <div className={styles["base-nav__left"]}>
@@ -23,6 +30,8 @@ const BaseNav: React.FC<BaseNavProps> = ({ className }) => {
           type="text"
           icon={<Search />}
           placeholder="Wyszukaj"
+          value={searchTerm}
+          onChange={handleInputChange}
         />
         <div className={classNames(styles["items-count"])}>
           <span>{123} </span> • <span>produkty</span>

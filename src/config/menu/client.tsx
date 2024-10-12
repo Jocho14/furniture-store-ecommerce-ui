@@ -5,7 +5,7 @@ import {
   Phone,
   DesignPencil,
 } from "iconoir-react";
-import { MenuItem } from "@/types/MenuItem";
+import { MenuItem } from "@/interfaces/MenuItem";
 
 const title = "LOGO";
 const primaryGroup: MenuItem[] = [

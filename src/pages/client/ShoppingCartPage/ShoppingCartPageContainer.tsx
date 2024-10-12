@@ -13,7 +13,7 @@ import {
   getShoppingCartProducts,
   getShoppingCartProductsQuantities,
   getShoppingCartProductsPrice,
-} from "@/api/shoppingCart";
+} from "@/api/client/shoppingCart";
 
 export type Quantities = Record<number, number>;
 export type Availability = Record<number, boolean>;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { getProducts } from "@/api/products";
+import { getProducts } from "@/api/client/products";
 
 import { HomePageProduct } from "@/interfaces/Product";
 

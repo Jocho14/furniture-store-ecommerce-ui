@@ -9,6 +9,7 @@ import Footer from "../Footer/Footer";
 import styles from "./styles.module.scss";
 import useMobile from "@/hooks/useMobile";
 import classNames from "classnames";
+import SearchProvider from "@/context/SearchContext";
 
 interface Props {}
 
@@ -18,13 +19,14 @@ const Main: React.FC<Props> = () => {
     <div className={styles["main__wrapper"]}>
       {!isMobile && <Sidebar />}
       <main className={styles["main"]}>
-        <div className={styles["header"]}>
-          <Header />
-        </div>
-
-        <div className={styles["outlet__container"]}>
-          <Outlet />
-        </div>
+        <SearchProvider>
+          <div className={styles["header"]}>
+            <Header />
+          </div>
+          <div className={styles["outlet__container"]}>
+            <Outlet />
+          </div>
+        </SearchProvider>
       </main>
     </div>
   );
