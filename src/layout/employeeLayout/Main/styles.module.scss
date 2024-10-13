@@ -33,6 +33,7 @@
   margin-top: 80px;
   overflow: auto;
   scrollbar-gutter: stable;
+  @include custom-scrollbar-2;
 }
 
 @media screen and (max-width: 768px) {

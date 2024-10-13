@@ -1,0 +1,23 @@
+.li,
+.trigger {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  cursor: pointer;
+  padding: 15px 30px;
+  column-gap: 10px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.trigger {
+  justify-content: space-between;
+}
+
+.li:hover,
+.trigger:hover {
+  background-color: #f4f4f4;
+}
+
+.li {
+  padding-left: 50px;
+}

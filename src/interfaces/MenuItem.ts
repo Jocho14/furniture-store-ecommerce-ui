@@ -5,3 +5,7 @@ export interface MenuItem {
   name: string;
   link: string;
 }
+
+export interface ICollapsibleMenuItem extends MenuItem {
+  subItems: MenuItem[];
+}

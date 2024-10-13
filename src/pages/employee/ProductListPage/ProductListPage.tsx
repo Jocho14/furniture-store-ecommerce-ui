@@ -23,6 +23,30 @@ function getData(): ProductData[] {
       price: 190,
       quantity: 300,
     },
+    {
+      id: "7122f",
+      name: "kanapa",
+      price: 190,
+      quantity: 300,
+    },
+    {
+      id: "7122f",
+      name: "kanapa",
+      price: 190,
+      quantity: 300,
+    },
+    {
+      id: "7122f",
+      name: "kanapa",
+      price: 190,
+      quantity: 300,
+    },
+    {
+      id: "7122f",
+      name: "kanapa",
+      price: 190,
+      quantity: 300,
+    },
   ];
 }
 

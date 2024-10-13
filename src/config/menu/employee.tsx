@@ -5,13 +5,31 @@ import {
   BellNotification,
   LogOut,
   User,
+  List,
+  UserCart,
 } from "iconoir-react";
-import { MenuItem } from "@/interfaces/MenuItem";
+import { MenuItem, ICollapsibleMenuItem } from "@/interfaces/MenuItem";
 
 const title = "LOGO";
-const primaryGroup: MenuItem[] = [
+
+const managementItem: ICollapsibleMenuItem = {
+  icon: <BookStack />,
+  name: "Zarządzanie",
+  link: "",
+  subItems: [
+    { icon: <List />, name: "Lista produktów", link: "/employee/product-list" },
+    {
+      icon: <UserCart />,
+      name: "Dodaj produkt",
+      link: "/employee/orders",
+    },
+  ],
+};
+
+const primaryGroup: MenuItem[] | ICollapsibleMenuItem[] = [
   { icon: <Home />, name: "Strona główna", link: "/employee/test" },
-  { icon: <BookStack />, name: "Zarządzanie", link: "/employee/product-list" },
+  // { icon: <BookStack />, name: "Zarządzanie", link: "/employee/product-list" },
+  managementItem,
 ];
 
 const secondaryGroup: MenuItem[] = [
