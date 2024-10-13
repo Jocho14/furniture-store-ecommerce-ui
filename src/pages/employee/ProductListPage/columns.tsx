@@ -3,7 +3,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { enableAdvancedHeader, formatCurrency } from "@/utils/table/formats";
 import { createBaseColumn } from "@/config/table/baseColumn";
 import { ProductData } from "./TData";
-import exampleImage from "@/garbage/1_1.webp";
+import exampleImage from "@/assets/images/1_1.webp";
 
 export const columns: ColumnDef<ProductData>[] = [
   createBaseColumn<ProductData>(),
