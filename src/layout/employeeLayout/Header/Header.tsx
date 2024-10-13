@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 import BaseNav from "../nav/BaseNav/BaseNav";
-import ManageNav from "../nav/ManageNav/ManageNav";
+// import ManageNav from "../nav/ManageNav/ManageNav";
 
 import Menu from "@/components/Menu/Menu";
 import useMenu from "@/hooks/useMenu";
@@ -14,13 +14,13 @@ import styles from "./styles.module.scss";
 
 interface Props {}
 
-enum NavState {
-  Base = "base",
-  Manage = "manage",
-}
+// enum NavState {
+//   Base = "base",
+//   Manage = "manage",
+// }
 
 const Header: React.FC<Props> = () => {
-  const [navState, setNavState] = useState<NavState>(NavState.Base);
+  //const [navState, setNavState] = useState<NavState>(NavState.Base);
   const menuData = useMenu(UserRole.Employee);
 
   return (

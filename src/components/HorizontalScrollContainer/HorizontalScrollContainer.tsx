@@ -20,8 +20,6 @@ const HorizontalScrollContainer: React.FC<HorizontalScrollContainerProps> = ({
   const [hitLeftEdge, setHitLeftEdge] = useState(true);
   const [hitRightEdge, setHitRightEdge] = useState(false);
 
-  const [scrollPosition, setScrollPosition] = useState(0);
-
   const handleLeftArrowClick = () => {
     if (containerRef.current) {
       containerRef.current.scrollBy({

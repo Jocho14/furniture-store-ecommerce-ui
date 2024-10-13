@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import ShoppingCartPage from "./ShoppingCartPage";
 
@@ -27,34 +27,26 @@ const ShoppingCartPageContainer: React.FC = () => {
   const debouncedQuantities = useDebounce<Quantities>(quantities, 500);
 
   const productIds = getProductIds();
-  const queryClient = useQueryClient();
+  //const queryClient = useQueryClient();
 
-  const {
-    data: productsData,
-    isLoading: productsLoading,
-    error: productsError,
-  } = useQuery<ShoppingCartProductProps[]>({
+  const { data: productsData, isLoading: productsLoading } = useQuery<
+    ShoppingCartProductProps[]
+  >({
     queryKey: ["products", productIds],
     queryFn: () => getShoppingCartProducts(productIds),
     staleTime: 1000 * 60 * 5,
   });
 
-  const {
-    data: quantitiesData,
-    isLoading: quantitiesLoading,
-    error: quantitiesError,
-  } = useQuery<any[]>({
+  const { data: quantitiesData, isLoading: quantitiesLoading } = useQuery<
+    any[]
+  >({
     queryKey: ["quantities", debouncedQuantities],
     queryFn: () => getShoppingCartProductsQuantities(productIds),
     enabled: !!debouncedQuantities,
     staleTime: 1000 * 60 * 1,
   });
 
-  const {
-    data: priceData,
-    isLoading: priceLoading,
-    error: priceError,
-  } = useQuery<number>({
+  const { data: priceData } = useQuery<number>({
     queryKey: ["price", debouncedQuantities],
     queryFn: () => getShoppingCartProductsPrice(debouncedQuantities),
     enabled: !!debouncedQuantities,
@@ -86,7 +78,7 @@ const ShoppingCartPageContainer: React.FC = () => {
         (quantitiesData?.find((item) => item.id === id)?.quantity || 0) >=
         quantity,
     }));
-    queryClient.invalidateQueries(["quantities", debouncedQuantities]);
+    //queryClient.invalidateQueries(["quantities", debouncedQuantities]);
   };
 
   const isMobile = useMobile();

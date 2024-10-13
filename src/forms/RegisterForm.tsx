@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
@@ -32,7 +32,7 @@ const handleDashInsertion = (value: string) => {
 };
 
 export const RegisterForm: React.FC = () => {
-  const labelRef = useRef<HTMLLabelElement>("text-black");
+  const labelRef = useRef<HTMLLabelElement | null>(null);
   const form = useForm<z.infer<typeof registerFormSchema>>({
     resolver: zodResolver(registerFormSchema),
     defaultValues: defaultValues,

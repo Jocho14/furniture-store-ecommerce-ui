@@ -10,11 +10,7 @@ interface ProductFetcherProps {
 }
 
 const ProductFetcher: React.FC<ProductFetcherProps> = ({ render }) => {
-  const {
-    data: productsData,
-    isLoading: productsLoading,
-    error: productsError,
-  } = useQuery<any[]>({
+  const { data: productsData } = useQuery<any[]>({
     queryKey: ["products"],
     queryFn: () => getProducts(),
     staleTime: 1000 * 60 * 5,
