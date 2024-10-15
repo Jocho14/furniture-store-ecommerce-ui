@@ -7,6 +7,7 @@ import {
   User,
   List,
   UserCart,
+  UTurnArrowLeft,
 } from "iconoir-react";
 import { MenuItem, ICollapsibleMenuItem } from "@/interfaces/MenuItem";
 
@@ -22,6 +23,11 @@ const managementItem: ICollapsibleMenuItem = {
       icon: <UserCart />,
       name: "Zamówienia",
       link: "/employee/orders",
+    },
+    {
+      icon: <UTurnArrowLeft />,
+      name: "Zwroty",
+      link: "/employee/returns",
     },
   ],
 };

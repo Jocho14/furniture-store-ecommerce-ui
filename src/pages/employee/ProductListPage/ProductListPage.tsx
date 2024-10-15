@@ -1,60 +1,22 @@
 import { DataTable } from "@/components/ui/dataTable/data-table";
-
+import { useQuery } from "@tanstack/react-query";
 import { columns } from "./columns";
 import { ProductData } from "./TData";
 
-function getData(): ProductData[] {
-  return [
-    {
-      id: "712f",
-      name: "krzesło",
-      price: 100,
-      quantity: 200,
-    },
-    {
-      id: "7412f",
-      name: "szafa",
-      price: 150,
-      quantity: 100,
-    },
-    {
-      id: "7122f",
-      name: "kanapa",
-      price: 190,
-      quantity: 300,
-    },
-    {
-      id: "7122f",
-      name: "kanapa",
-      price: 190,
-      quantity: 300,
-    },
-    {
-      id: "7122f",
-      name: "kanapa",
-      price: 190,
-      quantity: 300,
-    },
-    {
-      id: "7122f",
-      name: "kanapa",
-      price: 190,
-      quantity: 300,
-    },
-    {
-      id: "7122f",
-      name: "kanapa",
-      price: 190,
-      quantity: 300,
-    },
-  ];
-}
+import { getAllProductsForProductList } from "@/api/employee/products";
 
 const ProductListPage = () => {
-  const data = getData();
+  const { data: productsData, isLoading: productsLoading } = useQuery<
+    ProductData[]
+  >({
+    queryKey: ["products"],
+    queryFn: () => getAllProductsForProductList(),
+    staleTime: 1000 * 60 * 5,
+  });
+
   return (
     <div>
-      <DataTable data={data} columns={columns} />
+      <DataTable data={productsData || []} columns={columns} />
     </div>
   );
 };

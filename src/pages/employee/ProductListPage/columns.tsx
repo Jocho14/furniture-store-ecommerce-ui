@@ -14,8 +14,8 @@ export const columns: ColumnDef<ProductData>[] = [
       <div className="flex flex-row items-center">
         <img
           className="w-[50px] aspect-square"
-          src={exampleImage}
-          alt="example"
+          src={row.original.thumbnail}
+          alt={row.original.alt}
         />
         <span>{row.getValue("name")}</span>
       </div>
@@ -26,9 +26,9 @@ export const columns: ColumnDef<ProductData>[] = [
     header: ({ column }) => enableAdvancedHeader(column, "Cena"),
     cell: ({ row }) => formatCurrency(row, "price", "PLN"),
   },
-  {
-    accessorKey: "quantity",
-    header: ({ column }) => enableAdvancedHeader(column, "Stan"),
-    cell: ({ row }) => row.getValue("quantity") + " szt.",
-  },
+  //   {
+  //     accessorKey: "quantity",
+  //     header: ({ column }) => enableAdvancedHeader(column, "Stan"),
+  //     cell: ({ row }) => row.getValue("quantity") + " szt.",
+  //   },
 ];

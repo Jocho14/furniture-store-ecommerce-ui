@@ -24,9 +24,9 @@ const HomePage: React.FC<Props> = () => {
             { "start-1 col-4": isMobile }
           )}
         >
-          {/* <ProductFetcher
+          <ProductFetcher
             render={(products: any) => <MasonryGrid contentItems={products} />}
-          /> */}
+          />
         </div>
 
         <div
@@ -37,12 +37,11 @@ const HomePage: React.FC<Props> = () => {
           )}
         >
           <HorizontalScrollContainer className={styles["scroll-container"]}>
-            {/* <ProductFetcher
+            <ProductFetcher
               render={(products: any) => (
                 <HorizontalTiles contentItems={products} />
               )}
-            /> */}
-            <div></div>
+            />
           </HorizontalScrollContainer>
         </div>
       </Grid>

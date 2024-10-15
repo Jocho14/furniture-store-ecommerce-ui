@@ -67,6 +67,12 @@ export function DataTable<TData, TValue>({
       columnVisibility,
       rowSelection,
     },
+    initialState: {
+      pagination: {
+        pageIndex: 0,
+        pageSize: 6,
+      },
+    },
   });
 
   useEffect(() => {
