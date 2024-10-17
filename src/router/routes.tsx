@@ -21,11 +21,8 @@ const AuthPage = lazy(() => import("../pages/client/AuthPage/AuthPage"));
 
 // client side:
 const EmployeeMain = lazy(() => import("../layout/employeeLayout/Main/Main"));
-const ProductDetailManagePage = lazy(
-  () =>
-    import(
-      "../pages/employee/ProductDetailManagementPage/ProductDetailManagementPage"
-    )
+const ProductManagePage = lazy(
+  () => import("../pages/employee/ProductManagePage/ProductManagePage")
 );
 const ProductListPage = lazy(
   () => import("../pages/employee/ProductListPage/ProductListPage")
@@ -55,12 +52,16 @@ const routes = [
     element: <EmployeeMain />,
     children: [
       {
-        path: "product/:productId/manage",
-        element: <ProductDetailManagePage />,
+        path: "product/list",
+        element: <ProductListPage />,
       },
       {
-        path: "product-list",
-        element: <ProductListPage />,
+        path: "product/:productId/manage",
+        element: <ProductManagePage />,
+      },
+      {
+        path: "product/add",
+        element: <ProductManagePage isAdding={true} />,
       },
       {
         path: "test",

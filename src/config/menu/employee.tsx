@@ -18,7 +18,7 @@ const managementItem: ICollapsibleMenuItem = {
   name: "Zarządzanie",
   link: "",
   subItems: [
-    { icon: <List />, name: "Lista produktów", link: "/employee/product-list" },
+    { icon: <List />, name: "Lista produktów", link: "/employee/product/list" },
     {
       icon: <UserCart />,
       name: "Zamówienia",

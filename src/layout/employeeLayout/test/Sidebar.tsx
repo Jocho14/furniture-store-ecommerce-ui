@@ -2,7 +2,6 @@ import "./styles.scss";
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <h2 className="logo">Conceals.</h2>
       <nav className="sidebar__nav">
         <ul>
           <li>Overview</li>

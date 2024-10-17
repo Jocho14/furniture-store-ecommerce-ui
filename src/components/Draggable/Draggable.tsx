@@ -1,0 +1,28 @@
+import React from "react";
+import { useDraggable } from "@dnd-kit/core";
+import styles from "./styles.module.scss";
+
+interface DraggableProps {
+  id: string;
+  children: React.ReactNode;
+}
+
+const Draggable: React.FC<DraggableProps> = ({ id, children }) => {
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: id,
+  });
+
+  const style = {
+    transform: transform
+      ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
+      : "none",
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
+      {children}
+    </div>
+  );
+};
+
+export default Draggable;

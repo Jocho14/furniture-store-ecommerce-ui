@@ -40,6 +40,7 @@ const BaseNav: React.FC<BaseNavProps> = () => {
       <div className={styles["add-icon__container"]}>
         <ActionIcon
           className={classNames(styles["add-icon"])}
+          linkTo="/employee/product/add"
           icon={<Plus />}
           label="Nowy Produkt"
           border="border-medium"
