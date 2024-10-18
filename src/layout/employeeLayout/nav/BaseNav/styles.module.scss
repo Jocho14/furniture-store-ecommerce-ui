@@ -19,9 +19,11 @@
 }
 
 .add-icon {
-  background-color: $green-light;
-  border-radius: $radius-medium;
-  color: $green;
+  background-color: $green-highlight;
+}
+
+.add-icon:hover {
+  background-color: $green-highlight-hover;
 }
 
 @media screen and (max-width: 768px) {

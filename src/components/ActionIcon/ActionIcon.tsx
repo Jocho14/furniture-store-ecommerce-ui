@@ -47,6 +47,7 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
           to={linkTo}
           onClick={onClick}
           className={classNames(
+            className,
             styles["icon-wrapper"],
             styles[`${size}`],
             styles[`${border}`]
@@ -109,8 +110,8 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
         ref={ref}
         onClick={onClick}
         className={classNames(
-          styles["icon-wrapper"],
           className,
+          styles["icon-wrapper"],
           styles[`${size}`],
           styles[`${border}`]
         )}

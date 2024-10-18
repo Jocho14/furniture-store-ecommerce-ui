@@ -8,13 +8,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Upload } from "iconoir-react";
 import { Separator } from "@/components/ui/separator";
-import ActionIcon from "@/components/ActionIcon/ActionIcon";
+
+import ImageUploader from "@/components/ImageUploader/ImageUploader";
+
 import styles from "./styles.module.scss";
-import Draggable from "@/components/Draggable/Draggable";
-import { DndContext } from "@dnd-kit/core";
-import ImageContainer from "@/components/ImageContainer/ImageContainer";
 
 interface ProductManagePageProps {
   isAdding?: boolean;
@@ -33,7 +31,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
             <Separator />
           </CardHeader>
           <CardContent>
-            <ImageContainer />
+            <ImageUploader />
           </CardContent>
         </Card>
       </div>

@@ -36,9 +36,9 @@
   }
   &-name {
     width: 80px;
-    display: block; /* Ensure the container is a block element */
-    overflow: hidden; /* Hide overflowed content */
-    white-space: nowrap; /* Prevent the text from wrapping to the next line */
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
   }
 }
