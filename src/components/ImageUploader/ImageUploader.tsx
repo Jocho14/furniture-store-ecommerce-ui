@@ -20,9 +20,13 @@ import ImageUploadButton from "./ImageUploadButton";
 
 import { MediaImageList } from "iconoir-react";
 
-const ImageUploader = () => {
+interface ImageUploaderProps {
+  onImagesChange: (imageFiles: File[]) => void;
+}
+
+const ImageUploader: React.FC<ImageUploaderProps> = ({ onImagesChange }) => {
   const [images, setImages] = useState<
-    Array<{ id: string; url: string; name: string }>
+    Array<{ id: string; url: string; name: string; file: File }>
   >([]);
 
   const sensors = useSensors(
@@ -43,26 +47,39 @@ const ImageUploader = () => {
       id: URL.createObjectURL(file),
       url: URL.createObjectURL(file),
       name: file.name,
+      file,
     }));
 
-    setImages((prev) => [...prev, ...newImages]);
+    setImages((prevImages) => {
+      const updatedImages = [...prevImages, ...newImages];
+      onImagesChange(updatedImages.map((image) => image.file));
+      return updatedImages;
+    });
   };
 
   const handleDragEnd = (event: any) => {
     const { active, over } = event;
 
     if (active.id !== over.id) {
-      setImages((items) => {
-        const oldIndex = items.findIndex((item) => item.id === active.id);
-        const newIndex = items.findIndex((item) => item.id === over.id);
+      setImages((prevImages) => {
+        const oldIndex = prevImages.findIndex((item) => item.id === active.id);
+        const newIndex = prevImages.findIndex((item) => item.id === over.id);
+        const updatedImages = arrayMove(prevImages, oldIndex, newIndex);
 
-        return arrayMove(items, oldIndex, newIndex);
+        console.log("UPDATED IMAGES: ", updatedImages);
+
+        onImagesChange(updatedImages.map((image) => image.file));
+        return updatedImages;
       });
     }
   };
 
   const removeImage = (id: string) => {
-    setImages((prev) => prev.filter((image) => image.id !== id));
+    setImages((prev) => {
+      const updatedImages = prev.filter((image) => image.id !== id);
+      onImagesChange(updatedImages.map((image) => image.file));
+      return updatedImages;
+    });
   };
 
   const thumbnail = images.length > 0 ? images[0].url : null;
