@@ -13,6 +13,8 @@ import { Textarea } from "@/components/ui/textarea";
 
 import ImageUploader from "@/components/ImageUploader/ImageUploader";
 import CollapsibleCard from "@/components/CollapsibleCard/CollapsibleCard";
+import { useMutation } from "@tanstack/react-query";
+import { addProduct } from "@/api/employee/products";
 
 import styles from "./styles.module.scss";
 
@@ -20,12 +22,22 @@ interface ProductManagePageProps {
   isAdding?: boolean;
 }
 
-interface Product {
+export interface Product {
   images: File[];
   name: string;
   price: number;
   description: string;
-  stock: number;
+  quantity: number;
+}
+
+export interface DetailedProductDto {
+  images: File[];
+  details: {
+    name: string;
+    price: number;
+    description: string;
+  };
+  quantity: number;
 }
 
 const ProductManagePage: React.FC<ProductManagePageProps> = ({
@@ -36,7 +48,17 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     name: "",
     price: 0,
     description: "",
-    stock: 0,
+    quantity: 0,
+  });
+
+  const mutation = useMutation({
+    mutationFn: addProduct,
+    onSuccess: (data) => {
+      console.log("Product added:", data);
+    },
+    onError: (error) => {
+      console.error("Error adding product:", error);
+    },
   });
 
   const handleInputChange = (
@@ -49,12 +71,26 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     }));
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const detailedProductDto = {
+      images: productData.images,
+      details: {
+        name: productData.name,
+        price: productData.price,
+        description: productData.description,
+      },
+      quantity: productData.quantity,
+    };
+
+    mutation.mutate(detailedProductDto);
+  };
+
   console.log(productData);
 
   return (
     <div className={styles["product-manage-page"]}>
       <div className={styles["product-manage-page__left"]}>
-        {" "}
         <Card>
           <CardHeader>
             <CardTitle className="mb-4">Zdjęcie produktu</CardTitle>
@@ -99,10 +135,11 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
             <Input
               className="rounded-md mt-1 w-[130px]"
               placeholder="Wprowadź stan"
-              onBlur={(e) => handleInputChange("stock", e.target.value)}
+              onBlur={(e) => handleInputChange("quantity", e.target.value)}
             />
           </CardContent>
         </CollapsibleCard>
+        <button onClick={handleSubmit}>Dodaj produkt do bazy</button>
       </div>
     </div>
   );

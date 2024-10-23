@@ -11,7 +11,7 @@ export const columns: ColumnDef<ProductData>[] = [
     accessorKey: "name",
     header: ({ column }) => enableAdvancedHeader(column, "Nazwa"),
     cell: ({ row }) => (
-      <div className="flex flex-row items-center">
+      <div className="flex flex-row items-center gap-3">
         <img
           className="w-[50px] aspect-square"
           src={row.original.thumbnail}
