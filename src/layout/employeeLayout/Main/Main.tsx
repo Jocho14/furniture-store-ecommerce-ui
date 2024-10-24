@@ -9,13 +9,14 @@ import Sidebar from "../Sidebar/Sidebar";
 import styles from "./styles.module.scss";
 import useMobile from "@/hooks/useMobile";
 import SearchProvider from "@/context/SearchContext";
-
+import { Toaster } from "@/components/ui/toaster";
 interface Props {}
 
 const Main: React.FC<Props> = () => {
   const isMobile = useMobile();
   return (
     <div className={styles["main__wrapper"]}>
+      <Toaster />
       {!isMobile && <Sidebar />}
       <main className={styles["main"]}>
         <SearchProvider>

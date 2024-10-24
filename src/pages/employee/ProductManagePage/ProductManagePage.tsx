@@ -10,6 +10,8 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/hooks/use-toast";
+import { Button } from "@/components/ui/button";
 
 import ImageUploader from "@/components/ImageUploader/ImageUploader";
 import CollapsibleCard from "@/components/CollapsibleCard/CollapsibleCard";
@@ -43,6 +45,7 @@ export interface DetailedProductDto {
 const ProductManagePage: React.FC<ProductManagePageProps> = ({
   isAdding = false,
 }) => {
+  const { toast } = useToast();
   const [productData, setProductData] = useState<Product>({
     images: [],
     name: "",
@@ -53,8 +56,16 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
 
   const mutation = useMutation({
     mutationFn: addProduct,
-    onSuccess: (data) => {
-      console.log("Product added:", data);
+    onSuccess: (data: any) => {
+      toast({
+        title: "Produkt został dodany do bazy",
+        description: (
+          <div className="flex flex-row gap-3 items-center">
+            <img className="h-[50px] aspect-square" src={data.thumbnailUrl} />
+            <h1 className="font-bold"> {data.name}</h1>
+          </div>
+        ),
+      });
     },
     onError: (error) => {
       console.error("Error adding product:", error);
@@ -85,8 +96,6 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
 
     mutation.mutate(detailedProductDto);
   };
-
-  console.log(productData);
 
   return (
     <div className={styles["product-manage-page"]}>
@@ -139,6 +148,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
             />
           </CardContent>
         </CollapsibleCard>
+
         <button onClick={handleSubmit}>Dodaj produkt do bazy</button>
       </div>
     </div>

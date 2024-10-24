@@ -8,7 +8,7 @@ import useMenu from "@/hooks/useMenu";
 import UserRole from "@/enums/UserRole";
 import DropdownMenu from "@/components/DropdownMenu/DropdownMenu";
 import SheetCloseWrapper from "@/components/SheetCloseWrapper/SheetCloseWrapper";
-
+import { Toaster } from "@/components/ui/toaster";
 import { Menu as MenuIcon } from "iconoir-react";
 import styles from "./styles.module.scss";
 
