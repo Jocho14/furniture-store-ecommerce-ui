@@ -32,13 +32,11 @@ export interface Product {
   quantity: number;
 }
 
-export interface DetailedProductDto {
+export interface DetailProductEmployeeDto {
   images: File[];
-  details: {
-    name: string;
-    price: number;
-    description: string;
-  };
+  name: string;
+  price: number;
+  description: string;
   quantity: number;
 }
 
@@ -58,11 +56,14 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     mutationFn: addProduct,
     onSuccess: (data: any) => {
       toast({
-        title: "Produkt został dodany do bazy",
+        title: "Dodano pomyślnie!",
         description: (
-          <div className="flex flex-row gap-3 items-center">
+          <div className="flex flex-row gap-3 items-center mt-3">
             <img className="h-[50px] aspect-square" src={data.thumbnailUrl} />
-            <h1 className="font-bold"> {data.name}</h1>
+            <div className="flex flex-col gap-2">
+              <h1 className="font-bold">{data.name}</h1>
+              <h1>{`${data.price}zł`}</h1>
+            </div>
           </div>
         ),
       });
@@ -84,17 +85,15 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const detailedProductDto = {
+    const detailProductEmployeeDto = {
       images: productData.images,
-      details: {
-        name: productData.name,
-        price: productData.price,
-        description: productData.description,
-      },
+      name: productData.name,
+      price: productData.price,
+      description: productData.description,
       quantity: productData.quantity,
     };
-
-    mutation.mutate(detailedProductDto);
+    console.log(detailProductEmployeeDto);
+    mutation.mutate(detailProductEmployeeDto);
   };
 
   return (

@@ -8,10 +8,10 @@ import Grid from "@/components/Grid/Grid";
 import QuantityStepper from "@/components/QuantityStepper/QuantityStepper";
 import CartActionToast from "@/components/CartActionToast/CartActionToast";
 import ProductDetailImages from "@/components/ProductDetailImages/ProductDetailImages";
+import { getProductDetails } from "@/api/client/products";
 
-import useFetch from "@/hooks/useFetch";
 import useMobile from "@/hooks/useMobile";
-
+import { useQuery } from "@tanstack/react-query";
 import { useCart } from "@/context/CartContext";
 
 import { BACKEND_URL } from "@/config/config";
@@ -32,11 +32,12 @@ const ProductDetailPage = () => {
   const navigate = useNavigate();
   const isMobile = useMobile();
 
-  const {
-    data: product,
-    loading,
-    error,
-  } = useFetch<Product | null>({ url: `${BACKEND_URL}/products/${productId}` });
+  const { data: product, isLoading: productsLoading } = useQuery<Product>({
+    queryKey: ["products"],
+    queryFn: () => getProductDetails(productIdNumber),
+    staleTime: 1000 * 60 * 5,
+  });
+
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
   console.log(BACKEND_URL);
@@ -44,9 +45,6 @@ const ProductDetailPage = () => {
   const handleDecrement = () => {
     setQuantity((prev) => Math.max(1, prev - 1));
   };
-
-  loading; /*eslint-disable-line @typescript-eslint/no-unused-vars*/
-  error; /*eslint-disable-line @typescript-eslint/no-unused-vars*/
 
   const handleIncrement = () => {
     setQuantity((prev) => Math.min(999, prev + 1));

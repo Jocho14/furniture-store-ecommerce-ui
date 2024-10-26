@@ -2,7 +2,7 @@ import { BACKEND_URL } from "@/config/config";
 import axios from "axios";
 import { objectToFormData } from "@/utils/objectToFormData";
 import { ProductData } from "@/pages/employee/ProductListPage/TData";
-import { DetailedProductDto } from "@/pages/employee/ProductManagePage/ProductManagePage";
+import { DetailProductEmployeeDto } from "@/pages/employee/ProductManagePage/ProductManagePage";
 
 export const getAllProductsForProductList = async (): Promise<
   ProductData[]
@@ -14,7 +14,7 @@ export const getAllProductsForProductList = async (): Promise<
 };
 
 export const addProduct = async (
-  detailedProductDto: DetailedProductDto
+  detailedProductDto: DetailProductEmployeeDto
 ): Promise<string> => {
   const formData = objectToFormData(detailedProductDto);
   const response = await axios.post(`${BACKEND_URL}/products/add`, formData, {
