@@ -11,6 +11,8 @@ import { Quantities, Availability } from "./ShoppingCartPageContainer";
 
 import styles from "./styles.module.scss";
 
+import { IProductPreview } from "@/interfaces/Product";
+
 interface ShoppingCartPageProps {
   isMobile: boolean;
   productsData: ShoppingCartProductProps[];
@@ -49,11 +51,11 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
           {productsData ? (
             productsData.map((product) => (
               <ShoppingCartProduct
-                key={product.id}
+                key={product.productId}
                 {...product}
-                imageUrls={product.imageUrls[0]}
-                quantity={quantities[product.id] ?? 1}
-                availability={availability[product.id]}
+                thumbnailUrl={product.thumbnailUrl}
+                quantity={quantities[product.productId] ?? 1}
+                availability={availability[product.productId]}
                 detailsLoading={productsLoading}
                 availabilityLoading={quantitiesLoading}
                 onQuantityChange={onQuantityChange}

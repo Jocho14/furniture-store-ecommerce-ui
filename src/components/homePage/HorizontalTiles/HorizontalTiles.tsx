@@ -11,21 +11,22 @@ interface HorizontalTilesProps {
 const HorizontalTiles: React.FC<HorizontalTilesProps> = ({ contentItems }) => {
   return (
     <div className={styles["horizontal-tiles"]}>
-      {contentItems?.map((item) => {
-        return (
-          <div className={styles["horizontal-tiles__item"]}>
-            <div className={styles["horizontal-tiles__item__chip"]}>
-              {item.name}
+      {Array.isArray(contentItems) &&
+        contentItems.map((item) => {
+          return (
+            <div className={styles["horizontal-tiles__item"]}>
+              <div className={styles["horizontal-tiles__item__chip"]}>
+                {item.name}
+              </div>
+              <img
+                key={item.id}
+                className={styles["horizontal-tiles__item__img"]}
+                src={item.imageUrls[0]}
+                alt={item.name}
+              />
             </div>
-            <img
-              key={item.id}
-              className={styles["horizontal-tiles__item__img"]}
-              src={item.imageUrls[0]}
-              alt={item.name}
-            />
-          </div>
-        );
-      })}
+          );
+        })}
     </div>
   );
 };

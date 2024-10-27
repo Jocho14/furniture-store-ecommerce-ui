@@ -18,11 +18,11 @@ import styles from "./styles.module.scss";
 
 const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
   const handleDecrement = () => {
-    props.onQuantityChange(props.id, Math.max(0, props.quantity - 1));
+    props.onQuantityChange(props.productId, Math.max(0, props.quantity - 1));
   };
 
   const handleIncrement = () => {
-    props.onQuantityChange(props.id, Math.min(999, props.quantity + 1));
+    props.onQuantityChange(props.productId, Math.min(999, props.quantity + 1));
   };
 
   const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -32,7 +32,7 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
     if (!isNaN(value) && value >= 0) {
-      props.onQuantityChange(props.id, Math.min(999, value));
+      props.onQuantityChange(props.productId, Math.min(999, value));
     }
   };
 
@@ -45,7 +45,7 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
         >
           <img
             className={styles["product__container__image"]}
-            src={props.imageUrls}
+            src={props.thumbnailUrl}
             alt={props.name}
           />
         </SkeletonWrapper>

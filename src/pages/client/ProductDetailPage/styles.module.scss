@@ -56,3 +56,18 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .product-detail-page {
+    &__details {
+      &__actions {
+        flex-direction: column;
+        row-gap: 10px;
+
+        &__stepper {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

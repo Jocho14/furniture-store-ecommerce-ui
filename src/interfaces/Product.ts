@@ -5,15 +5,22 @@ export interface HomePageProduct {
 }
 
 export interface ShoppingCartProductProps {
-  id: number;
+  productId: number;
   name: string;
   price: number;
   description: string;
-  imageUrls: string;
+  thumbnailUrl: string;
   quantity: number;
   availability: boolean;
   detailsLoading: boolean;
   availabilityLoading: boolean;
   className?: string;
-  onQuantityChange: (id: number, quantity: number) => void;
+  onQuantityChange: (productId: number, quantity: number) => void;
+}
+
+export interface IProductPreview {
+  productId: number;
+  name: string;
+  price: number;
+  thumbnailUrl: string;
 }

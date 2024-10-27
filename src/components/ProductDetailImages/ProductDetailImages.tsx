@@ -79,7 +79,7 @@ const ProductDetailImages: React.FC<ProductDetailImagesProps> = ({
               <CarouselItem key={index}>
                 <div>
                   <Card>
-                    <CardContent className="flex aspect-square items-center justify-center">
+                    <CardContent className="flex aspect-square items-center justify-center p-0">
                       <img src={imageUrl} alt={`Product ${index + 1}`} />
                     </CardContent>
                   </Card>

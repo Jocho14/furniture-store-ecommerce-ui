@@ -3,11 +3,11 @@
 .quantity-stepper {
   &__container {
     display: inline-flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     border: 1px solid black;
     border-radius: $radius-xxlarge;
-    padding: 3px;
+    padding: 3px 20px;
 
     &__input {
       width: 45px;
