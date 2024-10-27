@@ -40,17 +40,13 @@ const HorizontalScrollContainer: React.FC<HorizontalScrollContainerProps> = ({
 
   useEffect(() => {
     if (containerRef.current) {
-      console.log("Container width:", containerRef.current.clientWidth);
-      console.log("Content width:", containerRef.current.scrollWidth);
     }
     const handleScroll = () => {
       if (containerRef.current) {
         const scrollLeft = containerRef.current.scrollLeft;
 
-        console.log("scrollLEFT", scrollLeft);
         const maxScrollLeft =
           containerRef.current.scrollWidth - containerRef.current.clientWidth;
-        console.log("maxScrollLeft", maxScrollLeft);
 
         if (scrollLeft === 0) {
           setHitLeftEdge(true);

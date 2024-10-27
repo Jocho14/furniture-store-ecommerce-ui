@@ -39,10 +39,8 @@ export const RegisterForm: React.FC = () => {
   });
 
   function onSubmit(values: z.infer<typeof registerFormSchema>) {
-    console.log(values.termsAccepted);
     if (!values.termsAccepted) {
       if (labelRef.current) {
-        console.log("set red");
         labelRef.current.classList.add("text-red-500");
         labelRef.current.classList.remove("text-black");
       }
@@ -51,7 +49,6 @@ export const RegisterForm: React.FC = () => {
         labelRef.current.classList.add("text-black");
         labelRef.current.classList.remove("text-red-500");
       }
-      console.log(values);
     }
   }
 

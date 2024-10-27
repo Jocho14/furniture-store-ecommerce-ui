@@ -92,7 +92,6 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
       description: productData.description,
       quantity: productData.quantity,
     };
-    console.log(detailProductEmployeeDto);
     mutation.mutate(detailProductEmployeeDto);
   };
 

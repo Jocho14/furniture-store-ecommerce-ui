@@ -1,3 +1,4 @@
+import path from "path";
 import { lazy } from "react";
 
 const ClientMain = lazy(() => import("../layout/clientLayout/Main/Main"));
@@ -13,13 +14,15 @@ const AuthPage = lazy(() => import("../pages/client/AuthPage/AuthPage"));
 // const AccountPage = lazy(() => import("../pages/AccountPage"));
 // const ManagementPage = lazy(() => import("../pages/ManagementPage"));
 
-// const CheckoutPage = lazy(() => import("../pages/CheckoutPage"));
+const CheckoutPage = lazy(
+  () => import("../pages/client/CheckoutPage/CheckoutPage")
+);
 // const ReturnPage = lazy(() => import("../pages/ReturnPage"));
 // const SuccessPage = lazy(() => import("../pages/SuccessPage"));
 
 // const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
 
-// client side:
+// employee side:
 const EmployeeMain = lazy(() => import("../layout/employeeLayout/Main/Main"));
 const ProductManagePage = lazy(
   () => import("../pages/employee/ProductManagePage/ProductManagePage")
@@ -42,6 +45,7 @@ const routes = [
       { path: "shopping-cart", element: <ShoppingCartPage /> },
       { path: "product/:productId", element: <ProductDetailPage /> },
       { path: "auth", element: <AuthPage /> },
+      { path: "checkout", element: <CheckoutPage /> },
       //   { path: "account", element: <AccountPage /> },
       //   { path: "management", element: <ManagementPage /> },
     ],

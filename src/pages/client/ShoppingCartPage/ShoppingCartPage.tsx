@@ -34,7 +34,6 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
   quantitiesLoading,
   onQuantityChange,
 }) => {
-  console.log("Cart price: ", cartPrice);
   return (
     <div className={styles["cart-page__container"]}>
       <CartActionToast />

@@ -24,7 +24,10 @@ const ShoppingCartPageContainer: React.FC = () => {
   const productIds = getProductIds();
 
   const [quantities, setQuantities] = useState<Quantities>(
-    cart.reduce((acc, item) => ({ ...acc, [item.id]: item.quantity }), {})
+    cart.reduce(
+      (acc, item) => ({ ...acc, [item.productId]: item.quantity }),
+      {}
+    )
   );
   const [availability, setAvailability] = useState<Availability>({});
   const debouncedQuantities = useDebounce<Quantities>(quantities, 500);
@@ -39,16 +42,6 @@ const ShoppingCartPageContainer: React.FC = () => {
       staleTime: 1000 * 60 * 5,
     });
 
-  console.log("PRODUCT PREVIEWS DATA: ", productPreviewsData);
-
-  // const { data: productsData, isLoading: productsLoading } = useQuery<
-  //   ShoppingCartProductProps[]
-  // >({
-  //   queryKey: ["products", productIds],
-  //   queryFn: () => getShoppingCartProducts(productIds),
-  //   staleTime: 1000 * 60 * 5,
-  // });
-
   const { data: quantitiesData, isLoading: quantitiesLoading } = useQuery<
     any[]
   >({
@@ -57,8 +50,6 @@ const ShoppingCartPageContainer: React.FC = () => {
     enabled: !!debouncedQuantities,
     staleTime: 1000 * 60 * 1,
   });
-
-  console.log("QUANTITIES DATA: ", quantitiesData);
 
   const { data: priceData } = useQuery<number>({
     queryKey: ["price", debouncedQuantities],

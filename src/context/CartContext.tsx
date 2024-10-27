@@ -6,8 +6,8 @@ import React, {
   useContext,
 } from "react";
 
-interface CartItem {
-  id: number;
+export interface CartItem {
+  productId: number;
   quantity: number;
 }
 
@@ -31,34 +31,41 @@ export const useCart = () => {
 };
 
 type CartAction =
-  | { type: "ADD_TO_CART"; payload: { id: number; quantity: number } }
-  | { type: "REMOVE_FROM_CART"; payload: { id: number } }
-  | { type: "UPDATE_CART"; payload: { id: number; quantity: number } }
+  | { type: "ADD_TO_CART"; payload: { productId: number; quantity: number } }
+  | { type: "REMOVE_FROM_CART"; payload: { productId: number } }
+  | { type: "UPDATE_CART"; payload: { productId: number; quantity: number } }
   | { type: "SET_CART"; payload: { cart: CartItem[] } };
 
 const cartReducer = (state: CartItem[], action: CartAction): CartItem[] => {
   switch (action.type) {
     case "ADD_TO_CART":
-      const existingItem = state.find((item) => item.id === action.payload.id);
+      const existingItem = state.find(
+        (item) => item.productId === action.payload.productId
+      );
       if (existingItem) {
         return state.map((item) =>
-          item.id === action.payload.id
+          item.productId === action.payload.productId
             ? { ...item, quantity: item.quantity + action.payload.quantity }
             : item
         );
       }
       return [
         ...state,
-        { id: action.payload.id, quantity: action.payload.quantity },
+        {
+          productId: action.payload.productId,
+          quantity: action.payload.quantity,
+        },
       ];
 
     case "REMOVE_FROM_CART":
-      return state.filter((item) => item.id !== action.payload.id);
+      return state.filter(
+        (item) => item.productId !== action.payload.productId
+      );
 
     case "UPDATE_CART":
       return state
         .map((item) =>
-          item.id === action.payload.id
+          item.productId === action.payload.productId
             ? { ...item, quantity: action.payload.quantity }
             : item
         )
@@ -81,25 +88,23 @@ const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
-    console.log("SETTING iN LOCAL STORAGE: ", cart);
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (id?: number, quantity: number = 1) => {
-    if (!id) return;
-    dispatch({ type: "ADD_TO_CART", payload: { id, quantity } });
+  const addToCart = (productId?: number, quantity: number = 1) => {
+    if (!productId) return;
+    dispatch({ type: "ADD_TO_CART", payload: { productId, quantity } });
   };
 
-  const removeFromCart = (id: number) => {
-    dispatch({ type: "REMOVE_FROM_CART", payload: { id } });
+  const removeFromCart = (productId: number) => {
+    dispatch({ type: "REMOVE_FROM_CART", payload: { productId } });
   };
 
-  const updateCart = (id: number, quantity: number) => {
-    console.log("updating cart: ", id, quantity);
-    dispatch({ type: "UPDATE_CART", payload: { id, quantity } });
+  const updateCart = (productId: number, quantity: number) => {
+    dispatch({ type: "UPDATE_CART", payload: { productId, quantity } });
   };
 
-  const getProductIds = () => cart.map((item) => item.id);
+  const getProductIds = () => cart.map((item) => item.productId);
 
   return (
     <CartContext.Provider

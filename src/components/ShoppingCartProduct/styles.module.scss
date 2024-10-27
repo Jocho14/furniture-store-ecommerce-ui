@@ -7,7 +7,6 @@
     max-height: 200px;
     width: 100%;
     padding-bottom: 20px;
-    column-gap: 10px;
 
     &__image {
       height: 100%;
@@ -24,6 +23,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
+      padding-left: 10px;
       row-gap: 12px;
       &__title {
         font-size: $font-size-medium;
@@ -48,24 +48,23 @@
         }
 
         &__container {
-          &--g {
-            display: inline-flex;
-            border-radius: 20px;
-            background-color: $green-light;
-            padding: 4px 8px;
-            font-size: $font-size-tiny;
-            color: $green;
-            column-gap: 5px;
-          }
-
+          &--g,
           &--r {
             display: inline-flex;
             border-radius: 20px;
-            background-color: $red-light;
             padding: 4px 8px;
             font-size: $font-size-tiny;
-            color: $red;
             column-gap: 5px;
+          }
+
+          &--g {
+            background-color: $green-light;
+            color: $green;
+          }
+
+          &--r {
+            background-color: $red-light;
+            color: $red;
           }
         }
         &__icon {
@@ -81,7 +80,7 @@
     }
     &__actions {
       display: flex;
-      justify-content: space-between;
+      //column-gap: 20px;
       align-items: center;
       &__user-tools {
         display: flex;

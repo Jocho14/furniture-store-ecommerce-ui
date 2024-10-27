@@ -21,9 +21,7 @@ export const LoginForm: React.FC = () => {
     defaultValues: defaultValues,
   });
 
-  function onSubmit(values: z.infer<typeof loginFormSchema>) {
-    console.log(values);
-  }
+  function onSubmit(values: z.infer<typeof loginFormSchema>) {}
   return (
     <Form {...form}>
       <form

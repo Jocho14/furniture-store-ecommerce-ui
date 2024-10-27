@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 
 import { ArrowRight } from "iconoir-react";
 
@@ -11,10 +12,13 @@ interface CheckoutButtonProps {
 
 const CheckoutButton: React.FC<CheckoutButtonProps> = ({ className }) => {
   return (
-    <button className={classNames(styles["checkout-btn"], className)}>
+    <Link
+      to="/checkout"
+      className={classNames(styles["checkout-btn"], className)}
+    >
       <span className={styles["checkout-btn__info"]}>Przejdź dalej</span>{" "}
       <ArrowRight className={styles["checkout-btn__icon"]} />
-    </button>
+    </Link>
   );
 };
 

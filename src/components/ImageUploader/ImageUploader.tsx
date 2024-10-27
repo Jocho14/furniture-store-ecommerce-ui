@@ -66,8 +66,6 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImagesChange }) => {
         const newIndex = prevImages.findIndex((item) => item.id === over.id);
         const updatedImages = arrayMove(prevImages, oldIndex, newIndex);
 
-        console.log("UPDATED IMAGES: ", updatedImages);
-
         onImagesChange(updatedImages.map((image) => image.file));
         return updatedImages;
       });

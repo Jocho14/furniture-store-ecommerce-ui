@@ -40,8 +40,7 @@ const ProductDetailPage = () => {
 
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
-  console.log(BACKEND_URL);
-  console.log(product?.imageUrls);
+
   const handleDecrement = () => {
     setQuantity((prev) => Math.max(1, prev - 1));
   };
