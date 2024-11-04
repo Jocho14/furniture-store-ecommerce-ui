@@ -23,7 +23,7 @@ const CollapsibleCard: React.FC<CollapsibleCardProps> = ({
   title,
   children,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
   const toggleExpand = () => setIsExpanded((prev) => !prev);
 
   return (

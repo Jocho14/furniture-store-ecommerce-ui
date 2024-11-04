@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Card,
@@ -16,7 +16,13 @@ import { Button } from "@/components/ui/button";
 import ImageUploader from "@/components/ImageUploader/ImageUploader";
 import CollapsibleCard from "@/components/CollapsibleCard/CollapsibleCard";
 import { useMutation } from "@tanstack/react-query";
-import { addProduct } from "@/api/employee/products";
+import {
+  addProduct,
+  updateProduct,
+  getProductDetails,
+} from "@/api/employee/products";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
 
 import styles from "./styles.module.scss";
 
@@ -43,6 +49,8 @@ export interface DetailProductEmployeeDto {
 const ProductManagePage: React.FC<ProductManagePageProps> = ({
   isAdding = false,
 }) => {
+  const { id } = useParams<{ id: string }>();
+
   const { toast } = useToast();
   const [productData, setProductData] = useState<Product>({
     images: [],
@@ -52,7 +60,23 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     quantity: 0,
   });
 
-  const mutation = useMutation({
+  const {
+    data: product,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["product", id],
+    queryFn: () => getProductDetails(Number(id)),
+    enabled: !!id,
+  });
+
+  useEffect(() => {
+    if (product) {
+      setProductData(product);
+    }
+  }, [product]);
+
+  const mutationAdd = useMutation({
     mutationFn: addProduct,
     onSuccess: (data: any) => {
       toast({
@@ -73,6 +97,32 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     },
   });
 
+  const mutationUpdate = useMutation({
+    mutationFn: (updatedProduct: Product) =>
+      updateProduct(Number(id), updatedProduct),
+    onSuccess: (data: any) => {
+      toast({
+        title: "Product updated successfully!",
+        description: (
+          <div className="flex flex-row gap-3 items-center mt-3">
+            <img
+              className="h-[50px] aspect-square"
+              src={data.thumbnailUrl}
+              alt={data.name}
+            />
+            <div className="flex flex-col gap-2">
+              <h1 className="font-bold">{data.name}</h1>
+              <h1>{`${data.price}zł`}</h1>
+            </div>
+          </div>
+        ),
+      });
+    },
+    onError: (error) => {
+      console.error("Error updating product:", error);
+    },
+  });
+
   const handleInputChange = (
     field: keyof Product,
     value: string | number | File[]
@@ -83,7 +133,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleAddSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const detailProductEmployeeDto = {
       images: productData.images,
@@ -92,7 +142,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
       description: productData.description,
       quantity: productData.quantity,
     };
-    mutation.mutate(detailProductEmployeeDto);
+    mutationAdd.mutate(detailProductEmployeeDto);
   };
 
   return (
@@ -105,6 +155,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
           </CardHeader>
           <CardContent>
             <ImageUploader
+              initialImages={productData.images}
               onImagesChange={(images) => handleInputChange("images", images)}
             />
           </CardContent>
@@ -117,7 +168,8 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
             <Input
               className="rounded-md mt-1"
               placeholder="Wprowadź nazwę produktu"
-              onBlur={(e) => handleInputChange("name", e.target.value)}
+              value={productData.name}
+              onChange={(e) => handleInputChange("name", e.target.value)}
             />
           </CardContent>
           <CardContent>
@@ -125,14 +177,16 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
             <Input
               className="rounded-md mt-1 w-[130px]"
               placeholder="Wprowadź cenę"
-              onBlur={(e) => handleInputChange("price", e.target.value)}
+              value={productData.price}
+              onChange={(e) => handleInputChange("price", e.target.value)}
             />
           </CardContent>
           <CardContent>
             <p>Opis</p>
             <Textarea
               placeholder="Wprowadź opis"
-              onBlur={(e) => handleInputChange("description", e.target.value)}
+              value={productData.description}
+              onChange={(e) => handleInputChange("description", e.target.value)}
             />
           </CardContent>
         </CollapsibleCard>
@@ -142,12 +196,13 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
             <Input
               className="rounded-md mt-1 w-[130px]"
               placeholder="Wprowadź stan"
-              onBlur={(e) => handleInputChange("quantity", e.target.value)}
+              value={productData.quantity}
+              onChange={(e) => handleInputChange("quantity", e.target.value)}
             />
           </CardContent>
         </CollapsibleCard>
 
-        <button onClick={handleSubmit}>Dodaj produkt do bazy</button>
+        <button onClick={handleAddSubmit}>Dodaj produkt do bazy</button>
       </div>
     </div>
   );

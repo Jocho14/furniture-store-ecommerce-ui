@@ -60,12 +60,12 @@ const routes = [
         element: <ProductListPage />,
       },
       {
-        path: "product/:productId/manage",
-        element: <ProductManagePage />,
-      },
-      {
         path: "product/add",
         element: <ProductManagePage isAdding={true} />,
+      },
+      {
+        path: "product/:id/manage",
+        element: <ProductManagePage isAdding={false} />,
       },
       {
         path: "test",

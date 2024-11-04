@@ -3,6 +3,7 @@ import axios from "axios";
 import { objectToFormData } from "@/utils/objectToFormData";
 import { ProductData } from "@/pages/employee/ProductListPage/TData";
 import { DetailProductEmployeeDto } from "@/pages/employee/ProductManagePage/ProductManagePage";
+import { urlToFile } from "@/utils/urlToFile";
 
 export const getAllProductsForProductList = async (): Promise<
   ProductData[]
@@ -23,4 +24,36 @@ export const addProduct = async (
     },
   });
   return response.data;
+};
+
+export const updateProduct = async (
+  productId: number,
+  productData: DetailProductEmployeeDto
+) => {
+  const response = await axios.put(
+    `${BACKEND_URL}/products/${productId}`,
+    productData
+  );
+  return response.data;
+};
+
+export const getProductDetails = async (
+  productId: number
+): Promise<DetailProductEmployeeDto> => {
+  const response = await axios.get(
+    `${BACKEND_URL}/products/${productId}/managed-details`
+  );
+
+  const images = await Promise.all(
+    response.data.images.map((imageUrl: string, index: number) =>
+      urlToFile(imageUrl, `image_${index + 1}`, "image/webp")
+    )
+  );
+
+  const productDetails: DetailProductEmployeeDto = {
+    ...response.data,
+    images,
+  };
+
+  return productDetails;
 };

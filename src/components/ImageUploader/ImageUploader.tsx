@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   DndContext,
@@ -22,12 +22,28 @@ import { MediaImageList } from "iconoir-react";
 
 interface ImageUploaderProps {
   onImagesChange: (imageFiles: File[]) => void;
+  initialImages?: File[];
 }
 
-const ImageUploader: React.FC<ImageUploaderProps> = ({ onImagesChange }) => {
+const ImageUploader: React.FC<ImageUploaderProps> = ({
+  onImagesChange,
+  initialImages = [],
+}) => {
   const [images, setImages] = useState<
     Array<{ id: string; url: string; name: string; file: File }>
   >([]);
+
+  useEffect(() => {
+    if (initialImages.length > 0) {
+      const processedImages = initialImages.map((file) => ({
+        id: URL.createObjectURL(file),
+        url: URL.createObjectURL(file),
+        name: file.name,
+        file,
+      }));
+      setImages(processedImages);
+    }
+  }, [initialImages]);
 
   const sensors = useSensors(
     useSensor(MouseSensor),
