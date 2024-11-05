@@ -28,11 +28,17 @@ export const addProduct = async (
 
 export const updateProduct = async (
   productId: number,
-  productData: DetailProductEmployeeDto
+  detailedProductDto: DetailProductEmployeeDto
 ) => {
+  const formData = objectToFormData(detailedProductDto);
   const response = await axios.put(
-    `${BACKEND_URL}/products/${productId}`,
-    productData
+    `${BACKEND_URL}/products/${productId}/update`,
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
   );
   return response.data;
 };

@@ -98,11 +98,11 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
   });
 
   const mutationUpdate = useMutation({
-    mutationFn: (updatedProduct: Product) =>
+    mutationFn: (updatedProduct: DetailProductEmployeeDto) =>
       updateProduct(Number(id), updatedProduct),
     onSuccess: (data: any) => {
       toast({
-        title: "Product updated successfully!",
+        title: "Zaktualizowano pomyślnie!",
         description: (
           <div className="flex flex-row gap-3 items-center mt-3">
             <img
@@ -142,7 +142,9 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
       description: productData.description,
       quantity: productData.quantity,
     };
-    mutationAdd.mutate(detailProductEmployeeDto);
+    isAdding
+      ? mutationAdd.mutate(detailProductEmployeeDto)
+      : mutationUpdate.mutate(detailProductEmployeeDto);
   };
 
   return (

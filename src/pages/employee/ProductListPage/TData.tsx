@@ -5,5 +5,5 @@ export type ProductData = TBaseData & {
   price: number;
   thumbnail: string;
   alt: string;
-  //quantity: number;
+  quantity: number;
 };

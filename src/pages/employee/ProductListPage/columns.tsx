@@ -37,9 +37,15 @@ export const columns: ColumnDef<ProductData>[] = [
     header: ({ column }) => enableAdvancedHeader(column, "Cena"),
     cell: ({ row }) => formatCurrency(row, "price", "PLN"),
   },
-  //   {
-  //     accessorKey: "quantity",
-  //     header: ({ column }) => enableAdvancedHeader(column, "Stan"),
-  //     cell: ({ row }) => row.getValue("quantity") + " szt.",
-  //   },
+  {
+    accessorKey: "quantity",
+    header: ({ column }) => enableAdvancedHeader(column, "Stan"),
+    cell: ({ row }) => {
+      return (
+        <div>
+          {row.getValue("quantity")} <span> szt.</span>
+        </div>
+      );
+    },
+  },
 ];
