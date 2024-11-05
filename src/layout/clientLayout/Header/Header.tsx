@@ -9,7 +9,7 @@ import CustomInput from "@/components/CustomInput/CustomInput";
 import useMobile from "@/hooks/useMobile";
 import useScroll from "@/hooks/useScroll";
 
-import { useCart } from "@/context/CartContext";
+import { useCart } from "@/context/client/CartContext";
 
 import { Search } from "iconoir-react";
 

@@ -5,7 +5,7 @@ import ShoppingCartPage from "./ShoppingCartPage";
 
 import useMobile from "@/hooks/useMobile";
 import useDebounce from "@/hooks/useDebounce";
-import { useCart } from "@/context/CartContext";
+import { useCart } from "@/context/client/CartContext";
 
 import { ShoppingCartProductProps } from "@/interfaces/Product";
 import { IProductPreview } from "@/interfaces/Product";

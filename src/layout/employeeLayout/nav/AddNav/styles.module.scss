@@ -1,7 +1,7 @@
 @import "@/assets/styles/variables.scss";
 @import "@/assets/styles/mixins.scss";
 
-.base-nav {
+.add-nav {
   width: 100%;
   display: flex;
   align-items: center;
@@ -11,6 +11,21 @@
     display: flex;
     align-items: center;
     column-gap: 20px;
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+
+      &__secondary {
+        font-size: $font-size-base;
+        font-weight: $font-weight-light;
+        color: $ghost;
+      }
+
+      &__primary {
+        font-size: $font-size-medium;
+      }
+    }
   }
 }
 
@@ -20,12 +35,21 @@
 }
 
 .add-icon {
-  background-color: $green-highlight;
+  background-color: rgb(245, 245, 245);
   @include custom-border;
 }
 
 .add-icon:hover {
-  background-color: $green-highlight-hover;
+  background-color: rgb(236, 236, 236);
+}
+
+.arrow-icon {
+  background-color: rgb(252, 252, 252);
+  @include custom-border;
+}
+
+.arrow-icon:hover {
+  background-color: rgb(247, 247, 247);
 }
 
 @media screen and (max-width: 768px) {

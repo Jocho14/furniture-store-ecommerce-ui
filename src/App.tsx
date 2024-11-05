@@ -3,7 +3,7 @@ import AppRouter from "./router/AppRouter";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 //import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-import CartProvider from "./context/CartContext";
+import CartProvider from "./context/client/CartContext";
 
 import "./App.css";
 

@@ -23,7 +23,7 @@ import {
 
 import { DataTablePagination } from "@/components/ui/dataTable/data-table-pagination";
 import { DataTableViewOptions } from "@/components/ui/dataTable/data-table-view-options";
-import { useSearch } from "@/context/SearchContext";
+import { useSearch } from "@/context/employee/SearchContext";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

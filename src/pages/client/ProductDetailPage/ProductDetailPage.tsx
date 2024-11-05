@@ -12,7 +12,7 @@ import { getProductDetails } from "@/api/client/products";
 
 import useMobile from "@/hooks/useMobile";
 import { useQuery } from "@tanstack/react-query";
-import { useCart } from "@/context/CartContext";
+import { useCart } from "@/context/client/CartContext";
 
 import { BACKEND_URL } from "@/config/config";
 

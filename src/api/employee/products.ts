@@ -43,11 +43,19 @@ export const updateProduct = async (
   return response.data;
 };
 
+export const deleteProduct = async (productId: number) => {
+  const response = await axios.put(
+    `${BACKEND_URL}/products/${productId}/deactivate`
+  );
+
+  return response.data;
+};
+
 export const getProductDetails = async (
   productId: number
 ): Promise<DetailProductEmployeeDto> => {
   const response = await axios.get(
-    `${BACKEND_URL}/products/${productId}/managed-details`
+    `${BACKEND_URL}/products/${productId}/details/employee`
   );
 
   const images = await Promise.all(

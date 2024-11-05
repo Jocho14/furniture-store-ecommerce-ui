@@ -1,28 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useQuery, useMutation } from "@tanstack/react-query";
 
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  addProduct,
+  updateProduct,
+  deleteProduct,
+  getProductDetails,
+} from "@/api/employee/products";
+
+import { useHeader } from "@/context/employee/HeaderContext";
+import { useNavigate } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/hooks/use-toast";
-import { Button } from "@/components/ui/button";
-
 import ImageUploader from "@/components/ImageUploader/ImageUploader";
 import CollapsibleCard from "@/components/CollapsibleCard/CollapsibleCard";
-import { useMutation } from "@tanstack/react-query";
-import {
-  addProduct,
-  updateProduct,
-  getProductDetails,
-} from "@/api/employee/products";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
 
 import styles from "./styles.module.scss";
 
@@ -49,8 +44,9 @@ export interface DetailProductEmployeeDto {
 const ProductManagePage: React.FC<ProductManagePageProps> = ({
   isAdding = false,
 }) => {
+  const { setMode, setSaveFunction, setDeactivateFunction } = useHeader();
   const { id } = useParams<{ id: string }>();
-
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [productData, setProductData] = useState<Product>({
     images: [],
@@ -75,6 +71,20 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
       setProductData(product);
     }
   }, [product]);
+
+  useEffect(() => {
+    setSaveFunction(() => handleSubmit);
+    return () => setSaveFunction(() => {});
+  }, [productData]);
+
+  useEffect(() => {
+    setDeactivateFunction(() => handleDeactivate);
+    return () => setDeactivateFunction(() => {});
+  }, [productData]);
+
+  useEffect(() => {
+    isAdding ? setMode("add") : setMode("edit");
+  }, [setMode]);
 
   const mutationAdd = useMutation({
     mutationFn: addProduct,
@@ -123,6 +133,32 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     },
   });
 
+  const mutationDelete = useMutation({
+    mutationFn: () => deleteProduct(Number(id)),
+    onSuccess: (data: any) => {
+      toast({
+        title: "Usunięto pomyślnie!",
+        description: (
+          <div className="flex flex-row gap-3 items-center mt-3">
+            <img
+              className="h-[50px] aspect-square"
+              src={data.thumbnailUrl}
+              alt={data.name}
+            />
+            <div className="flex flex-col gap-2">
+              <h1 className="font-bold">{data.name}</h1>
+              <h1>{`${data.price}zł`}</h1>
+            </div>
+          </div>
+        ),
+      });
+      navigate("/employee/product/list");
+    },
+    onError: (error) => {
+      console.error("Error deleting product:", error);
+    },
+  });
+
   const handleInputChange = (
     field: keyof Product,
     value: string | number | File[]
@@ -133,7 +169,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     }));
   };
 
-  const handleAddSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const detailProductEmployeeDto = {
       images: productData.images,
@@ -145,6 +181,10 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     isAdding
       ? mutationAdd.mutate(detailProductEmployeeDto)
       : mutationUpdate.mutate(detailProductEmployeeDto);
+  };
+
+  const handleDeactivate = async () => {
+    mutationDelete.mutate();
   };
 
   return (
@@ -204,7 +244,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
           </CardContent>
         </CollapsibleCard>
 
-        <button onClick={handleAddSubmit}>Dodaj produkt do bazy</button>
+        <button onClick={handleSubmit}>Dodaj produkt do bazy</button>
       </div>
     </div>
   );

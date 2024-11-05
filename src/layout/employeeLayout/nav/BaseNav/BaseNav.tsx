@@ -2,7 +2,7 @@ import React from "react";
 
 import classNames from "classnames";
 
-import { useSearch } from "@/context/SearchContext";
+import { useSearch } from "@/context/employee/SearchContext";
 import { Search, Plus } from "iconoir-react";
 import CustomInput from "@/components/CustomInput/CustomInput";
 import ActionIcon from "@/components/ActionIcon/ActionIcon";

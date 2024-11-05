@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 
 interface Props {}
 
-import { useCart } from "@/context/CartContext";
+import { useCart } from "@/context/client/CartContext";
 import CheckoutForm from "@/components/CheckoutForm/CheckoutForm";
 
 const CheckoutPage: React.FC<Props> = () => {
