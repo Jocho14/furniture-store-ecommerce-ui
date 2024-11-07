@@ -9,6 +9,8 @@ interface HeaderContextType {
   setSaveFunction: (saveFn: () => void) => void;
   deactivate?: () => void;
   setDeactivateFunction: (deleteFn: () => void) => void;
+  productCount?: number;
+  setProductCount: (count: number) => void;
 }
 
 interface HeaderProviderProps {
@@ -20,6 +22,7 @@ const HeaderContext = createContext<HeaderContextType | undefined>({
   setMode: () => {},
   setSaveFunction: () => {},
   setDeactivateFunction: () => {},
+  setProductCount: () => {},
 });
 
 export const HeaderProvider: React.FC<HeaderProviderProps> = ({ children }) => {
@@ -28,6 +31,7 @@ export const HeaderProvider: React.FC<HeaderProviderProps> = ({ children }) => {
   const [deactivate, setDeactivateFunction] = useState<() => void>(
     () => () => {}
   );
+  const [productCount, setProductCount] = useState<number>(0);
 
   return (
     <HeaderContext.Provider
@@ -38,6 +42,8 @@ export const HeaderProvider: React.FC<HeaderProviderProps> = ({ children }) => {
         setSaveFunction,
         deactivate,
         setDeactivateFunction,
+        productCount,
+        setProductCount,
       }}
     >
       {children}

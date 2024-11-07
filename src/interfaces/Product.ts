@@ -4,6 +4,11 @@ export interface HomePageProduct {
   imageUrls: string[];
 }
 
+export interface MasonryContent {
+  name: string;
+  imageUrls: string[];
+}
+
 export interface ShoppingCartProductProps {
   productId: number;
   name: string;

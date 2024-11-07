@@ -1,0 +1,53 @@
+@import "../../assets/styles/variables";
+
+.landing {
+  width: 100%;
+  padding: 60px;
+  height: 80vh;
+  background-color: rgb(94, 94, 94);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+
+    &__title {
+      font-size: 4rem;
+      font-weight: 900;
+    }
+
+    &__info {
+      font-size: $font-size-xlarge;
+      text-align: center;
+      color: $white-ghost;
+    }
+
+    &__buttons {
+      display: flex;
+      column-gap: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .landing {
+    padding: 20px;
+    height: 100vh;
+
+    &__container {
+      row-gap: 10px;
+
+      &__title {
+        font-size: 2rem;
+      }
+
+      &__info {
+        font-size: $font-size-medium;
+      }
+    }
+  }
+}

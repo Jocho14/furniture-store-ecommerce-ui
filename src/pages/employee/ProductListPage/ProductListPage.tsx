@@ -9,7 +9,7 @@ import { getAllProductsForProductList } from "@/api/employee/products";
 import { useHeader } from "@/context/employee/HeaderContext";
 
 const ProductListPage = () => {
-  const { setMode } = useHeader();
+  const { setMode, setProductCount } = useHeader();
   const { data: productsData, isLoading: productsLoading } = useQuery<
     ProductData[]
   >({
@@ -20,7 +20,8 @@ const ProductListPage = () => {
 
   useEffect(() => {
     setMode("list");
-  }, [setMode]);
+    setProductCount(productsData?.length || 0);
+  }, [setMode, productsData]);
 
   return (
     <div>

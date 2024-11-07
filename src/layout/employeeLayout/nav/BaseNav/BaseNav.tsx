@@ -6,11 +6,13 @@ import { useSearch } from "@/context/employee/SearchContext";
 import { Search, Plus } from "iconoir-react";
 import CustomInput from "@/components/CustomInput/CustomInput";
 import ActionIcon from "@/components/ActionIcon/ActionIcon";
+import { useHeader } from "@/context/employee/HeaderContext";
 
 import styles from "./styles.module.scss";
 
 const BaseNav = () => {
   const { searchTerm, setSearchTerm } = useSearch();
+  const { productCount } = useHeader();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -28,7 +30,7 @@ const BaseNav = () => {
           onChange={handleInputChange}
         />
         <div className={classNames(styles["items-count"])}>
-          <span>{123}</span> • <span>produkty</span>
+          <span>{productCount}</span> • <span>produkty</span>
         </div>
       </div>
       <div className={styles["add-icon__container"]}>

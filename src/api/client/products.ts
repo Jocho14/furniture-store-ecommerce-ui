@@ -12,3 +12,22 @@ export const getProductDetails = async (id: number) => {
   );
   return response.data;
 };
+
+export const getMasonryContent = async (id: number) => {
+  const response = await axios.get(`${BACKEND_URL}/categories/${id}/masonry`);
+  return response.data;
+};
+
+export const getHorizontalTilesContent = async (id: number) => {
+  const response = await axios.get(
+    `${BACKEND_URL}/categories/${id}/horizontal-tiles`
+  );
+  return response.data;
+};
+
+export const getHorizontalListContent = async (id: number) => {
+  const response = await axios.get(
+    `${BACKEND_URL}/products/${id}/horizontal-list`
+  );
+  return response.data;
+};

@@ -25,6 +25,12 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+    transition: filter 0.2s ease;
+    cursor: pointer;
+  }
+
+  &__item:hover {
+    filter: brightness(0.8);
   }
 
   &__item:nth-child(1) {

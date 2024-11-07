@@ -74,12 +74,11 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
 
   useEffect(() => {
     setSaveFunction(() => handleSubmit);
-    return () => setSaveFunction(() => {});
-  }, [productData]);
-
-  useEffect(() => {
     setDeactivateFunction(() => handleDeactivate);
-    return () => setDeactivateFunction(() => {});
+    return () => {
+      setSaveFunction(() => {});
+      setDeactivateFunction(() => {});
+    };
   }, [productData]);
 
   useEffect(() => {
