@@ -27,13 +27,13 @@ const Navbar: React.FC<NavbarProps> = ({ cartCount, isMobile, className }) => {
     { icon: <Shop />, linkTo: "/product/1", isMobile: false },
     {
       icon: <User />,
-      label: "Zaloguj się",
+      label: "Login",
       labelVisibility: "desktop-only",
       linkTo: "/auth",
     },
     {
       icon: <Heart />,
-      label: "Ulubione",
+      label: "Favourites",
       labelVisibility: "desktop-only",
       uiComponent: <FavouritesDrawer />,
       isMobile: false,

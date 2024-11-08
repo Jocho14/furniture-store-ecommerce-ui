@@ -34,7 +34,7 @@ const Header: React.FC = () => {
             { "grid-hidden": isMobile }
           )}
         >
-          <CustomInput type="text" icon={<Search />} placeholder="Wyszukaj" />
+          <CustomInput type="text" icon={<Search />} placeholder="Search" />
         </div>
         <Navbar
           cartCount={cartCount}

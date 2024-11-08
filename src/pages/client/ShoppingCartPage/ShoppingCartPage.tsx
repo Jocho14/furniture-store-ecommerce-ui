@@ -38,7 +38,16 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
     <div className={styles["cart-page__container"]}>
       <CartActionToast />
       <Grid>
-        <h1 className={styles["cart-page__container__info"]}>Koszyk</h1>
+        <h1
+          className={classNames(
+            styles["cart-page__container__info"],
+            "align-top",
+            { "start-1 col-7": !isMobile },
+            { "start-1 col-4": isMobile }
+          )}
+        >
+          Shopping Cart
+        </h1>
         <div
           className={classNames(
             styles["cart-page__container__items"],
@@ -61,7 +70,7 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
               />
             ))
           ) : (
-            <h4>Brak produktów w koszyku</h4>
+            <h4>No products in the cart</h4>
           )}
 
           {isMobile && (
@@ -73,12 +82,12 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
                 styles["cart-page__container__summary__header"]
               )}
             >
-              Podsumowanie
+              Summary
             </div>
           )}
           {isMobile && (
             <div className={styles["cart-page__container__summary__total"]}>
-              <span>Wartość koszyka</span>
+              <span>Products</span>
               <span
                 className={styles["cart-page__container__summary__total__sum"]}
               >
@@ -107,12 +116,12 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
         >
           {!isMobile && (
             <h4 className={styles["cart-page__container__summary__header"]}>
-              Podsumowanie
+              Summary
             </h4>
           )}
           {!isMobile && (
             <div className={styles["cart-page__container__summary__total"]}>
-              <span>Wartość koszyka</span>
+              <span>Products</span>
               <span
                 className={styles["cart-page__container__summary__total__sum"]}
               >

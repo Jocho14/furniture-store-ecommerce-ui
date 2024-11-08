@@ -9,16 +9,16 @@ import { MenuItem } from "@/interfaces/MenuItem";
 
 const title = "LOGO";
 const primaryGroup: MenuItem[] = [
-  { icon: <ViewGrid />, name: "Wszystkie produkty", link: "/all-products" },
-  { icon: <Percentage />, name: "Oferty i promocje", link: "/offers" },
-  { icon: <BrightStar />, name: "Inspiracje", link: "/inspirations" },
-  { icon: <DesignPencil />, name: "Projektowanie", link: "/designing" },
+  { icon: <ViewGrid />, name: "All products", link: "/all-products" },
+  { icon: <Percentage />, name: "Offers", link: "/offers" },
+  { icon: <BrightStar />, name: "Inspirations", link: "/inspirations" },
+  { icon: <DesignPencil />, name: "Designing", link: "/designing" },
 ];
 
 const secondaryGroup: MenuItem[] = [];
 
 const footerGroup: MenuItem[] = [
-  { icon: <Phone />, name: "Kontakt", link: "/contact" },
+  { icon: <Phone />, name: "Contact", link: "/contact" },
 ];
 
 export { title, primaryGroup, secondaryGroup, footerGroup };

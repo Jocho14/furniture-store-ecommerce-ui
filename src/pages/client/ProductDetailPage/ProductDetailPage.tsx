@@ -101,9 +101,9 @@ const ProductDetailPage = () => {
               }
               onClick={() => {
                 addToCart(productIdNumber, quantity);
-                toast(`Dodano do koszyka`, {
+                toast(`Added to cart`, {
                   action: {
-                    label: "Zobacz koszyk",
+                    label: "Go to cart",
                     onClick: () => navigate("/shopping-cart"),
                   },
                 });
@@ -116,7 +116,7 @@ const ProductDetailPage = () => {
                   ]
                 }
               >
-                Dodaj do koszyka
+                Add to cart
               </span>
             </button>
           </div>

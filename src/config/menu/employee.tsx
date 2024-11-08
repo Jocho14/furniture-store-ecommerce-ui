@@ -15,43 +15,43 @@ const title = "LOGO";
 
 const managementItem: ICollapsibleMenuItem = {
   icon: <BookStack />,
-  name: "Zarządzanie",
+  name: "Management",
   link: "",
   subItems: [
-    { icon: <List />, name: "Lista produktów", link: "/employee/product/list" },
+    { icon: <List />, name: "Product list", link: "/employee/product/list" },
     {
       icon: <UserCart />,
-      name: "Zamówienia",
+      name: "Orders",
       link: "/employee/orders",
     },
     {
       icon: <UTurnArrowLeft />,
-      name: "Zwroty",
+      name: "Returns",
       link: "/employee/returns",
     },
   ],
 };
 
 const primaryGroup: MenuItem[] | ICollapsibleMenuItem[] = [
-  { icon: <Home />, name: "Strona główna", link: "/employee/test" },
+  { icon: <Home />, name: "Home page", link: "/employee/test" },
   // { icon: <BookStack />, name: "Zarządzanie", link: "/employee/product-list" },
   managementItem,
 ];
 
 const secondaryGroup: MenuItem[] = [
-  { icon: <Settings />, name: "Ustawienia", link: "/employee/settings" },
+  { icon: <Settings />, name: "Settings", link: "/employee/settings" },
   {
     icon: <BellNotification />,
-    name: "Powiadomienia",
+    name: "Notifications",
     link: "/employee/notifications",
   },
 ];
 
 const footerGroup: MenuItem[] = [
-  { icon: <LogOut />, name: "Wyloguj", link: "/employee/logout" },
+  { icon: <LogOut />, name: "Logout", link: "/employee/logout" },
   {
     icon: <User />,
-    name: "Konto",
+    name: "Account",
     link: "/employee/account",
   },
 ];

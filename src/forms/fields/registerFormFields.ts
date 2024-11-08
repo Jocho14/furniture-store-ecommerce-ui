@@ -1,9 +1,9 @@
 export const registerFormFields = [
-  { name: "firstName", type: "text", label: "Imię" },
-  { name: "lastName", type: "text", label: "Nazwisko" },
+  { name: "firstName", type: "text", label: "First name" },
+  { name: "lastName", type: "text", label: "Last name" },
   { name: "email", type: "email", label: "E-mail" },
-  { name: "password", type: "password", label: "Hasło" },
-  { name: "confirmPassword", type: "password", label: "Potwórz hasło" },
-  { name: "phoneNumber", type: "number", label: "Telefon komórkowy" },
-  { name: "dateOfBirth", type: "date", label: "Data urodzenia" },
+  { name: "password", type: "password", label: "Password" },
+  { name: "confirmPassword", type: "password", label: "Repeat password" },
+  { name: "phoneNumber", type: "number", label: "Phone number" },
+  { name: "dateOfBirth", type: "date", label: "Date of birth" },
 ];

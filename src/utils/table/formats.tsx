@@ -14,5 +14,10 @@ export const formatCurrency = (row: any, rowName: string, currency: string) => {
 };
 
 export const enableAdvancedHeader = (column: any, title: string) => {
-  return <DataTableColumnHeader column={column} title={title} />;
+  return (
+    <DataTableColumnHeader
+      column={column}
+      title={title.charAt(0).toUpperCase() + title.slice(1)}
+    />
+  );
 };

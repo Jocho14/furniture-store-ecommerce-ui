@@ -25,12 +25,12 @@ const BaseNav = () => {
           className="rounded-md"
           type="text"
           icon={<Search />}
-          placeholder="Wyszukaj"
+          placeholder="Search"
           value={searchTerm}
           onChange={handleInputChange}
         />
         <div className={classNames(styles["items-count"])}>
-          <span>{productCount}</span> • <span>produkty</span>
+          <span>{productCount}</span> • <span>products</span>
         </div>
       </div>
       <div className={styles["add-icon__container"]}>
@@ -38,7 +38,7 @@ const BaseNav = () => {
           className={styles["add-icon"]}
           linkTo="/employee/product/add"
           icon={<Plus />}
-          label="Nowy Produkt"
+          label="Add Product"
           border="border-medium"
         />
       </div>

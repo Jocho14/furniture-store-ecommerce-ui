@@ -13,8 +13,6 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
-import { columnTranslations } from "@/utils/table/columnTranslations";
-
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>;
 }
@@ -31,11 +29,11 @@ export function DataTableViewOptions<TData>({
           className="ml-auto hidden h-8 lg:flex"
         >
           <Eye className="mr-2 h-4 w-4" />
-          Widok
+          View
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[150px]">
-        <DropdownMenuLabel>Zaznacz kolumny</DropdownMenuLabel>
+        <DropdownMenuLabel>Choose columns</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {table
           .getAllColumns()
@@ -44,7 +42,6 @@ export function DataTableViewOptions<TData>({
               typeof column.accessorFn !== "undefined" && column.getCanHide()
           )
           .map((column) => {
-            const translatedName = columnTranslations[column.id] || column.id;
             return (
               <DropdownMenuCheckboxItem
                 key={column.id}
@@ -52,7 +49,7 @@ export function DataTableViewOptions<TData>({
                 checked={column.getIsVisible()}
                 onCheckedChange={(value) => column.toggleVisibility(!!value)}
               >
-                {translatedName}
+                {column.id}
               </DropdownMenuCheckboxItem>
             );
           })}

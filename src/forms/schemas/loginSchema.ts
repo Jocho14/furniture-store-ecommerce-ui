@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const loginFormSchema = z.object({
-  email: z.string().email({ message: "Niepoprawny format adresu e-mail" }),
+  email: z.string().email({ message: "Incorrect format for e-mail address" }),
   password: z
     .string()
-    .min(8, { message: "Hasło musi mieć co najmniej 8 znaków" }),
+    .min(8, { message: "Password must contain atleast 8 characters" }),
 });

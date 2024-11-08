@@ -19,10 +19,10 @@ const EditNav = () => {
         />
         <div className={styles["edit-nav__left-info"]}>
           <span className={styles["edit-nav__left-info__secondary"]}>
-            Powrót do listy
+            Back to list
           </span>
           <span className={styles["edit-nav__left-info__primary"]}>
-            Edytowanie produktu
+            Editing product
           </span>
         </div>
       </div>
@@ -34,7 +34,7 @@ const EditNav = () => {
             <ActionIcon
               className={styles["edit-icon"]}
               icon={<TrashSolid />}
-              label="Usuń produkt"
+              label="Delete Product"
               border="border-medium"
             />
           }
@@ -42,7 +42,7 @@ const EditNav = () => {
         <ActionIcon
           className={styles["edit-icon"]}
           icon={<FloppyDisk />}
-          label="Zapisz zmiany"
+          label="Save changes"
           border="border-medium"
           onClick={save}
         />

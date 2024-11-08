@@ -191,7 +191,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
       <div className={styles["product-manage-page__left"]}>
         <Card>
           <CardHeader>
-            <CardTitle className="mb-4">Zdjęcie produktu</CardTitle>
+            <CardTitle className="mb-4">Product Image</CardTitle>
             <Separator />
           </CardHeader>
           <CardContent>
@@ -203,47 +203,47 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
         </Card>
       </div>
       <div className={styles["product-manage-page__right"]}>
-        <CollapsibleCard title="Informacje ogólne">
+        <CollapsibleCard title="General Information">
           <CardContent>
-            <p>Nazwa produktu</p>
+            <p>Product Name</p>
             <Input
               className="rounded-md mt-1"
-              placeholder="Wprowadź nazwę produktu"
+              placeholder="Enter product name"
               value={productData.name}
               onChange={(e) => handleInputChange("name", e.target.value)}
             />
           </CardContent>
           <CardContent>
-            <p>Cena</p>
+            <p>Price</p>
             <Input
               className="rounded-md mt-1 w-[130px]"
-              placeholder="Wprowadź cenę"
+              placeholder="Enter price"
               value={productData.price}
               onChange={(e) => handleInputChange("price", e.target.value)}
             />
           </CardContent>
           <CardContent>
-            <p>Opis</p>
+            <p>Description</p>
             <Textarea
-              placeholder="Wprowadź opis"
+              placeholder="Enter description"
               value={productData.description}
               onChange={(e) => handleInputChange("description", e.target.value)}
             />
           </CardContent>
         </CollapsibleCard>
-        <CollapsibleCard title="Stan">
+        <CollapsibleCard title="Manage Stock">
           <CardContent>
-            <p>Stan magazynu</p>
+            <p>Stock</p>
             <Input
               className="rounded-md mt-1 w-[130px]"
-              placeholder="Wprowadź stan"
+              placeholder="Enter stock quantity"
               value={productData.quantity}
               onChange={(e) => handleInputChange("quantity", e.target.value)}
             />
           </CardContent>
         </CollapsibleCard>
 
-        <button onClick={handleSubmit}>Dodaj produkt do bazy</button>
+        <button onClick={handleSubmit}>Save changes</button>
       </div>
     </div>
   );

@@ -29,20 +29,20 @@ const AuthPage: React.FC<Props> = () => {
         >
           <Tabs defaultValue="login">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">Zaloguj się</TabsTrigger>
-              <TabsTrigger value="register">Utwórz konto</TabsTrigger>
+              <TabsTrigger value="login">Log In</TabsTrigger>
+              <TabsTrigger value="register">Create Account</TabsTrigger>
             </TabsList>
             <TabsContent value="login">
               <AuthTab
-                title="Zaloguj się"
-                description="Wpisz swoje dane logowania, aby kontynuować."
+                title="Log In"
+                description="Enter your login details to continue."
                 form={<LoginForm />}
               />
             </TabsContent>
             <TabsContent value="register">
               <AuthTab
-                title="Utwórz konto"
-                description="Utwórz nowe konto w naszym serwisie."
+                title="Create Account"
+                description="Create a new account on our website."
                 form={<RegisterForm />}
               />
             </TabsContent>

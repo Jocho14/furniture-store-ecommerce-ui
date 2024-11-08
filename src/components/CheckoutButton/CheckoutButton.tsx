@@ -16,7 +16,7 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({ className }) => {
       to="/checkout"
       className={classNames(styles["checkout-btn"], className)}
     >
-      <span className={styles["checkout-btn__info"]}>Przejdź dalej</span>{" "}
+      <span className={styles["checkout-btn__info"]}>Continue to checkout</span>{" "}
       <ArrowRight className={styles["checkout-btn__icon"]} />
     </Link>
   );

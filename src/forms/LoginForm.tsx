@@ -37,7 +37,7 @@ export const LoginForm: React.FC = () => {
             label={field.label}
           />
         ))}
-        <Button type="submit">Zaloguj</Button>
+        <Button type="submit">Log in</Button>
       </form>
     </Form>
   );

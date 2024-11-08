@@ -20,7 +20,7 @@ const ImageUploadButton: React.FC<ImageUploadButtonProps> = ({ onUpload }) => {
           styles["upload-icon"],
           "border bg-primary-foreground"
         )}
-        label="Dodaj obraz"
+        label="Add image"
         border="border-medium"
         isInput={true}
         multiple={true}

@@ -19,21 +19,21 @@ const calculateAge = (birthDate: Date) => {
 
 export const registerFormSchema = z
   .object({
-    email: z.string().email({ message: "Niepoprawny format adresu e-mail" }),
+    email: z.string().email({ message: "Incorrect format for e-mail address" }),
     password: z
       .string()
-      .min(8, { message: "Hasło musi mieć co najmniej 8 znaków" }),
+      .min(8, { message: "Password must contain atleast 8 characters" }),
     confirmPassword: z
       .string()
-      .min(8, { message: "Hasło musi mieć co najmniej 8 znaków" }),
+      .min(8, { message: "Password must contain atleast 8 characters" }),
     firstName: z
       .string()
-      .min(2, { message: "Imię musi mieć co najmniej 2 znaki" }),
+      .min(2, { message: "First name must contain atleast 2 characters" }),
     lastName: z
       .string()
-      .min(2, { message: "Nazwisko musi mieć co najmniej 2 znaki" }),
+      .min(2, { message: "Last name must contain atleast 2 characters" }),
     phoneNumber: z.string().regex(phoneNumberRegex, {
-      message: "Niepoprawny format numeru telefonu",
+      message: "Incorrect format for phone number",
     }),
     dateOfBirth: z.preprocess(
       (value) => (typeof value === "string" ? new Date(value) : value),
@@ -43,13 +43,13 @@ export const registerFormSchema = z
           return age >= minAge;
         },
         {
-          message: `Musisz mieć conajmniej ${minAge} lat`,
+          message: `You have to be atleast ${minAge} years old`,
         }
       )
     ),
     termsAccepted: z.boolean(),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "Hasła nie pasują do siebie",
+    message: "Passwords do not match",
     path: ["confirmPassword"],
   });

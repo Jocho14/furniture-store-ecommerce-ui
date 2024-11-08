@@ -29,7 +29,7 @@ const MasonryGrid: React.FC<MasonryGridProps> = ({ content }) => {
                   )}
                 >
                   <span className={styles["masonry-grid__discount-info__span"]}>
-                    {`Zobacz meble ${content.name}`}
+                    {`See more ${content.name} furniture`}
                   </span>
                 </div>
               </Link>

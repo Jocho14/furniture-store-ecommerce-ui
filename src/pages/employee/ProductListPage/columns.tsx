@@ -10,7 +10,7 @@ export const columns: ColumnDef<ProductData>[] = [
   createBaseColumn<ProductData>(),
   {
     accessorKey: "name",
-    header: ({ column }) => enableAdvancedHeader(column, "Nazwa"),
+    header: ({ column }) => enableAdvancedHeader(column, column.id),
     cell: ({ row }) => {
       const navigate = useNavigate();
       const handleClick = () => {
@@ -34,12 +34,12 @@ export const columns: ColumnDef<ProductData>[] = [
   },
   {
     accessorKey: "price",
-    header: ({ column }) => enableAdvancedHeader(column, "Cena"),
+    header: ({ column }) => enableAdvancedHeader(column, column.id),
     cell: ({ row }) => formatCurrency(row, "price", "PLN"),
   },
   {
     accessorKey: "quantity",
-    header: ({ column }) => enableAdvancedHeader(column, "Stan"),
+    header: ({ column }) => enableAdvancedHeader(column, column.id),
     cell: ({ row }) => {
       return (
         <div>

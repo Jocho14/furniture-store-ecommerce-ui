@@ -19,10 +19,10 @@ const AddNav = () => {
         />
         <div className={styles["add-nav__left-info"]}>
           <span className={styles["add-nav__left-info__secondary"]}>
-            Powrót do listy
+            Back to list
           </span>
           <span className={styles["add-nav__left-info__primary"]}>
-            Dodawanie produktu
+            Adding product
           </span>
         </div>
       </div>
@@ -30,7 +30,7 @@ const AddNav = () => {
         <ActionIcon
           className={styles["add-icon"]}
           icon={<FloppyDisk />}
-          label="Zapisz zmiany"
+          label="Save changes"
           border="border-medium"
           onClick={save}
         />

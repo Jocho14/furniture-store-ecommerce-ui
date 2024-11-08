@@ -20,7 +20,7 @@ const ThumbnailPreview: React.FC<ThumbnailPreviewProps> = ({ thumbnail }) => {
             <MediaImageList opacity={"40%"} />
           </>
         ) : (
-          <h3 className="text-md">Brak zdjęć</h3>
+          <h3 className="text-md">No images</h3>
         )}
       </div>
     </div>

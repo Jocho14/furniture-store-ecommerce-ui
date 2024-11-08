@@ -92,7 +92,7 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
                     styles["product__container__details__availability__span"]
                   }
                 >
-                  Dostępny
+                  Available
                 </span>
               </div>
             ) : (
@@ -113,7 +113,7 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
                     styles["product__container__details__availability__span"]
                   }
                 >
-                  Niedostępny
+                  Unavailable
                 </span>
               </div>
             )}
@@ -149,10 +149,10 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
                 />
               }
               onClick={() =>
-                toast(`${props.name} - został usunięty z koszyka`, {
+                toast(`${props.name} - has been remove from the cart`, {
                   action: {
-                    label: "Cofnij",
-                    onClick: () => console.log("Cofnięto"),
+                    label: "Undo",
+                    onClick: () => console.log("Undo"),
                   },
                 })
               }
