@@ -31,3 +31,8 @@ export const getHorizontalListContent = async (id: number) => {
   );
   return response.data;
 };
+
+export const getReviews = async (id: number) => {
+  const response = await axios.get(`${BACKEND_URL}/products/${id}/reviews`);
+  return response.data;
+};

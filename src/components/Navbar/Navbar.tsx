@@ -9,8 +9,17 @@ import SheetCloseWrapper from "../SheetCloseWrapper/SheetCloseWrapper";
 import Menu from "@/components/Menu/Menu";
 import useMenu from "@/hooks/useMenu";
 import UserRole from "@/enums/UserRole";
+import { useAuth } from "@/context/common/AuthContext";
+import ProfileHeader from "../ProfileHeader/ProfileHeader";
 
-import { Shop, User, Heart, Menu as MenuIcon, Search } from "iconoir-react";
+import {
+  Shop,
+  User,
+  ProfileCircle,
+  Heart,
+  Menu as MenuIcon,
+  Search,
+} from "iconoir-react";
 
 import styles from "./styles.module.scss";
 
@@ -22,15 +31,26 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ cartCount, isMobile, className }) => {
   const menuData = useMenu(UserRole.Client);
+  const account = useAuth();
+
+  const userIcon = account?.account.accountId
+    ? {
+        icon: <ProfileCircle />,
+        labelVisibility: "desktop-only",
+        label: `Hi, ${account?.account.firstName}`,
+        linkTo: "/profile",
+      }
+    : {
+        icon: <User />,
+        label: "Login",
+        labelVisibility: "desktop-only",
+        linkTo: "/auth",
+      };
+
   const userTools = [
     { icon: <Search />, isMobile: true },
     { icon: <Shop />, linkTo: "/product/1", isMobile: false },
-    {
-      icon: <User />,
-      label: "Login",
-      labelVisibility: "desktop-only",
-      linkTo: "/auth",
-    },
+    userIcon,
     {
       icon: <Heart />,
       label: "Favourites",

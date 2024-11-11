@@ -1,0 +1,25 @@
+@import "../../assets/styles/variables.scss";
+
+.stars-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.star-container {
+  width: 24px;
+  height: 24px;
+
+  &.small {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.star-icon {
+  color: $primary-dark;
+}
+
+.star-icon.filled {
+  fill: $primary-dark;
+}

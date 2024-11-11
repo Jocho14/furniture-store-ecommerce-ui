@@ -9,6 +9,7 @@ import QuantityStepper from "@/components/QuantityStepper/QuantityStepper";
 import CartActionToast from "@/components/CartActionToast/CartActionToast";
 import ProductDetailImages from "@/components/ProductDetailImages/ProductDetailImages";
 import { getProductDetails } from "@/api/client/products";
+import ReviewsDialog from "@/components/ReviewsDialog/ReviewsDialog";
 
 import useMobile from "@/hooks/useMobile";
 import { useQuery } from "@tanstack/react-query";
@@ -17,6 +18,7 @@ import { useCart } from "@/context/client/CartContext";
 import { BACKEND_URL } from "@/config/config";
 
 import styles from "./styles.module.scss";
+import { Button } from "@/components/ui/button";
 
 interface Product {
   name: string;
@@ -120,6 +122,18 @@ const ProductDetailPage = () => {
               </span>
             </button>
           </div>
+        </div>
+        <div
+          className={classNames(
+            styles["product-detail-page__secondary__details"],
+            { "start-1 col-8": !isMobile },
+            { "start-1 col-4": isMobile }
+          )}
+        >
+          <ReviewsDialog
+            trigger={<Button variant="link">click me</Button>}
+            productName={product?.name || ""}
+          />
         </div>
       </Grid>
     </div>

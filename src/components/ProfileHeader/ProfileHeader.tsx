@@ -1,21 +1,42 @@
 import React from "react";
 import styles from "./styles.module.scss";
+import classNames from "classnames";
 
 interface ProfileHeaderProps {
   name: string;
-  surname: string;
+  surname?: string;
+  size?: "small" | "medium" | "large";
+  disableLabel?: boolean;
 }
 
-const ProfileHeader: React.FC<ProfileHeaderProps> = ({ name, surname }) => {
-  const capitalizedInitials = name[0].toUpperCase() + surname[0].toUpperCase();
+const ProfileHeader: React.FC<ProfileHeaderProps> = ({
+  name,
+  surname,
+  size,
+  disableLabel = false,
+}) => {
+  let capitalizedInitials = name[0].toUpperCase();
+  if (surname) {
+    capitalizedInitials += surname[0].toUpperCase();
+  }
+
   return (
-    <div className={styles["user-header__wrapper"]}>
-      <div className={styles["user-header__container"]}>
+    <div
+      className={classNames(styles["user-header__wrapper"], styles[`${size}`])}
+    >
+      <div
+        className={classNames(
+          styles["user-header__container"],
+          styles[`${size}`]
+        )}
+      >
         {capitalizedInitials}
       </div>
-      <span
-        className={styles["user-header__name"]}
-      >{`${name} ${surname}`}</span>
+      {!disableLabel && (
+        <span
+          className={classNames(styles["user-header__name"], styles[`${size}`])}
+        >{`${name} ${surname ? surname : ""}`}</span>
+      )}
     </div>
   );
 };

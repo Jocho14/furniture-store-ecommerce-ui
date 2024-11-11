@@ -31,11 +31,9 @@ const PopupAlert: React.FC<PopupAlertProps> = ({
       <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>
-            {title ? title : "Czy jesteś pewien?"}
-          </AlertDialogTitle>
+          <AlertDialogTitle>{title ? title : "Are you sure?"}</AlertDialogTitle>
           <AlertDialogDescription>
-            {description ? description : "Tej akcji nie można cofnąć"}
+            {description ? description : "You can't undo this action."}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

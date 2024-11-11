@@ -15,10 +15,13 @@ import { Search } from "iconoir-react";
 
 import styles from "./styles.module.scss";
 
+import { useAuth } from "@/context/common/AuthContext";
+
 const Header: React.FC = () => {
-  const isMobile = useMobile();
   const { cartCount } = useCart();
+  const isMobile = useMobile();
   const headerRef = useRef<HTMLDivElement>(null);
+
   useScroll(headerRef, styles);
 
   return (

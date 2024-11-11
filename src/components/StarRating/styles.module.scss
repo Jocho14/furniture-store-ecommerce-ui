@@ -1,0 +1,11 @@
+@import "../../assets/styles/variables.scss";
+
+.star-rating {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.star:hover {
+  color: #4e4e4e;
+}

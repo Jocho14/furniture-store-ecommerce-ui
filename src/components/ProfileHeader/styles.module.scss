@@ -6,6 +6,10 @@
     flex-direction: row;
     align-items: flex-start;
     column-gap: $spacing-12px;
+
+    &.small {
+      width: 70px;
+    }
   }
   &__container {
     display: flex;
@@ -17,10 +21,18 @@
     font-size: $font-size-large;
     color: $white;
     aspect-ratio: 1;
+
+    &.small {
+      font-size: $font-size-small;
+    }
   }
 
   &__name {
     font-size: $font-size-large;
+    &.small {
+      font-size: $font-size-small;
+      font-weight: $font-weight-medium;
+    }
     font-weight: $font-weight-bold;
   }
 }

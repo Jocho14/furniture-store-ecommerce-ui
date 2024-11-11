@@ -10,6 +10,9 @@ import FormFieldComponent from "@/components/FormFieldComponent/FormFieldCompone
 import { loginFormSchema } from "@/forms/schemas/loginSchema";
 import { loginFormFields } from "@/forms/fields/loginFormFields";
 
+import { useMutation } from "@tanstack/react-query";
+import { loginUser } from "@/api/client/account";
+
 const defaultValues = loginFormFields.reduce((acc, field) => {
   acc[field.name] = "";
   return acc;
@@ -21,7 +24,19 @@ export const LoginForm: React.FC = () => {
     defaultValues: defaultValues,
   });
 
-  function onSubmit(values: z.infer<typeof loginFormSchema>) {}
+  const loginMutation = useMutation({
+    mutationFn: loginUser,
+    onSuccess: (data) => {
+      console.log("Login success:", data);
+    },
+    onError: (error) => {
+      console.error("Login error:", error);
+    },
+  });
+
+  function onSubmit(values: z.infer<typeof loginFormSchema>) {
+    loginMutation.mutate(values);
+  }
   return (
     <Form {...form}>
       <form

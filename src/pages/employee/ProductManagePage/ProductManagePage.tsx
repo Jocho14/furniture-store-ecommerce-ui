@@ -89,7 +89,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     mutationFn: addProduct,
     onSuccess: (data: any) => {
       toast({
-        title: "Dodano pomyślnie!",
+        title: "Product added successfully!",
         description: (
           <div className="flex flex-row gap-3 items-center mt-3">
             <img className="h-[50px] aspect-square" src={data.thumbnailUrl} />

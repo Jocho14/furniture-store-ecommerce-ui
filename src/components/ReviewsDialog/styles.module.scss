@@ -1,0 +1,66 @@
+@import "../../assets/styles/variables.scss";
+@import "../../assets/styles/mixins.scss";
+
+.dialog-content {
+  border-radius: $radius-large;
+  &__wrapper {
+    height: 100vh;
+    border-radius: 20px;
+  }
+
+  padding: 5px;
+  width: 100%;
+  max-width: 80%;
+
+  &__container {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__header {
+    flex: 1 1 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+  }
+
+  &__scroll-area,
+  &__add-review {
+    flex: 1 1 60%;
+    display: flex;
+    flex-direction: column;
+    row-gap: $spacing-8px;
+
+    &__title {
+      font-size: $font-size-large;
+      font-weight: $font-weight-bold;
+      margin-bottom: $spacing-16px;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex: 1 1 15%;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(153, 153, 153, 0.1);
+    width: 100%;
+  }
+}
+
+.x-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .dialog-content {
+    max-width: 100%;
+  }
+}

@@ -4,6 +4,7 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 //import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import CartProvider from "./context/client/CartContext";
+import { AuthProvider } from "./context/common/AuthContext";
 
 import "./App.css";
 
@@ -13,11 +14,13 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <CartProvider>
-          <BrowserRouter>
-            <AppRouter />
-          </BrowserRouter>
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <BrowserRouter>
+              <AppRouter />
+            </BrowserRouter>
+          </CartProvider>
+        </AuthProvider>
         {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </>
