@@ -28,7 +28,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   });
 
   console.log("auth status data from context: ", authStatusData);
-  const account = authStatusData;
+  const account = authStatusData || {};
 
   return (
     <AuthContext.Provider value={{ account, loading: authStatusLoading }}>

@@ -11,6 +11,7 @@ import useMenu from "@/hooks/useMenu";
 import UserRole from "@/enums/UserRole";
 import { useAuth } from "@/context/common/AuthContext";
 import ProfileHeader from "../ProfileHeader/ProfileHeader";
+import { useEffect } from "react";
 
 import {
   Shop,
@@ -33,24 +34,22 @@ const Navbar: React.FC<NavbarProps> = ({ cartCount, isMobile, className }) => {
   const menuData = useMenu(UserRole.Client);
   const account = useAuth();
 
-  const userIcon = account?.account.accountId
-    ? {
-        icon: <ProfileCircle />,
-        labelVisibility: "desktop-only",
-        label: `Hi, ${account?.account.firstName}`,
-        linkTo: "/profile",
-      }
-    : {
-        icon: <User />,
-        label: "Login",
-        labelVisibility: "desktop-only",
-        linkTo: "/auth",
-      };
-
   const userTools = [
     { icon: <Search />, isMobile: true },
     { icon: <Shop />, linkTo: "/product/1", isMobile: false },
-    userIcon,
+    account?.account?.accountId
+      ? {
+          icon: <ProfileCircle />,
+          label: `Hi, ${account?.account.firstName}`,
+          labelVisibility: "desktop-only",
+          linkTo: "/profile",
+        }
+      : {
+          icon: <User />,
+          label: "Login",
+          labelVisibility: "desktop-only",
+          linkTo: "/auth",
+        },
     {
       icon: <Heart />,
       label: "Favourites",

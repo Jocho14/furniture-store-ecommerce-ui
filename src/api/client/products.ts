@@ -36,3 +36,21 @@ export const getReviews = async (id: number) => {
   const response = await axios.get(`${BACKEND_URL}/products/${id}/reviews`);
   return response.data;
 };
+
+export const addReview = async (
+  id: number,
+  rating: number,
+  comment: string
+) => {
+  const response = await axios.post(
+    `${BACKEND_URL}/products/${id}/add-review`,
+    {
+      rating,
+      comment,
+    },
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};

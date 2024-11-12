@@ -12,6 +12,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -23,10 +24,11 @@ import Review from "@/components/Review/Review";
 import { useParams } from "react-router-dom";
 import { getReviews } from "@/api/client/products";
 import { ReviewProps } from "@/components/Review/Review";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import ActionIcon from "../ActionIcon/ActionIcon";
 import { Xmark, ArrowLeft } from "iconoir-react";
 import StarRating from "@/components/StarRating/StarRating";
+import { addReview } from "@/api/client/products";
 
 interface ReviewsDialogProps {
   trigger?: React.ReactNode;
@@ -53,6 +55,16 @@ const ReviewsDialog: React.FC<ReviewsDialogProps> = ({
     staleTime: 1000 * 60 * 5,
   });
 
+  const mutationAddReview = useMutation({
+    mutationFn: () => addReview(Number(productId), rating, comment),
+    onSuccess: (data: any) => {
+      console.log("Review added successfully:", data);
+    },
+    onError: (error) => {
+      console.error("Error adding product:", error);
+    },
+  });
+
   const handleClickOutside = (event: any) => {
     if (dialogRef.current && !dialogRef.current.contains(event.target)) {
       setOpen(false);
@@ -64,8 +76,7 @@ const ReviewsDialog: React.FC<ReviewsDialogProps> = ({
   };
 
   const handleSubmitReview = () => {
-    console.log("Rating:", rating);
-    console.log("Comment:", comment);
+    mutationAddReview.mutate();
   };
 
   useEffect(() => {
