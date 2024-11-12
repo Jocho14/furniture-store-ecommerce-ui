@@ -1,9 +1,12 @@
-import { BACKEND_URL } from "@/config/config";
 import axios from "axios";
+
+import { BACKEND_URL } from "@/config/config";
+
+import { urlToFile } from "@/utils/urlToFile";
 import { objectToFormData } from "@/utils/objectToFormData";
+
 import { ProductData } from "@/pages/employee/ProductListPage/TData";
 import { DetailProductEmployeeDto } from "@/pages/employee/ProductManagePage/ProductManagePage";
-import { urlToFile } from "@/utils/urlToFile";
 
 export const getAllProductsForProductList = async (): Promise<
   ProductData[]

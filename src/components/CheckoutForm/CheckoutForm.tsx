@@ -1,19 +1,14 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React from "react";
+import axios from "axios";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout,
 } from "@stripe/react-stripe-js";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from "react-router-dom";
-import { STRIPE_PUBLIC_KEY } from "@/config/config";
-import axios from "axios";
-import { CartItem } from "@/context/client/CartContext";
+
 import { PAYMENT_SERVER_URL } from "@/config/config";
+import { STRIPE_PUBLIC_KEY } from "@/config/config";
+import { CartItem } from "@/context/client/CartContext";
 
 const stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
 

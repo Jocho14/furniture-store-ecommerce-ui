@@ -8,10 +8,12 @@ import CartActionToast from "@/components/CartActionToast/CartActionToast";
 import { ShoppingCartProductProps } from "@/interfaces/Product";
 
 import { Quantities, Availability } from "./ShoppingCartPageContainer";
+import { Button } from "@/components/ui/button";
 
 import styles from "./styles.module.scss";
 
 import { IProductPreview } from "@/interfaces/Product";
+import { Link } from "react-router-dom";
 
 interface ShoppingCartPageProps {
   isMobile: boolean;
@@ -56,7 +58,7 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
             { "start-1 col-4": isMobile }
           )}
         >
-          {productsData ? (
+          {productsData.length > 0 ? (
             productsData.map((product) => (
               <ShoppingCartProduct
                 key={product.productId}
@@ -70,7 +72,13 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
               />
             ))
           ) : (
-            <h4>No products in the cart</h4>
+            <div className="flex flex-col gap-6 items-center">
+              {" "}
+              <h2>No products in the cart</h2>
+              <Link to="/">
+                <Button>Shop now</Button>
+              </Link>
+            </div>
           )}
 
           {isMobile && (

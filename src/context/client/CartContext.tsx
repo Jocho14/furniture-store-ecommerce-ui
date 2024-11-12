@@ -18,6 +18,7 @@ interface CartContextType {
   removeFromCart: (id: number) => void;
   updateCart: (id: number, quantity: number) => void;
   getProductIds: () => number[];
+  clearCart: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -34,7 +35,8 @@ type CartAction =
   | { type: "ADD_TO_CART"; payload: { productId: number; quantity: number } }
   | { type: "REMOVE_FROM_CART"; payload: { productId: number } }
   | { type: "UPDATE_CART"; payload: { productId: number; quantity: number } }
-  | { type: "SET_CART"; payload: { cart: CartItem[] } };
+  | { type: "SET_CART"; payload: { cart: CartItem[] } }
+  | { type: "CLEAR_CART" };
 
 const cartReducer = (state: CartItem[], action: CartAction): CartItem[] => {
   switch (action.type) {
@@ -74,6 +76,9 @@ const cartReducer = (state: CartItem[], action: CartAction): CartItem[] => {
     case "SET_CART":
       return action.payload.cart;
 
+    case "CLEAR_CART":
+      return [];
+
     default:
       return state;
   }
@@ -104,6 +109,11 @@ const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     dispatch({ type: "UPDATE_CART", payload: { productId, quantity } });
   };
 
+  const clearCart = () => {
+    dispatch({ type: "CLEAR_CART" });
+    localStorage.removeItem("cart");
+  };
+
   const getProductIds = () => cart.map((item) => item.productId);
 
   return (
@@ -115,6 +125,7 @@ const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         removeFromCart,
         updateCart,
         getProductIds,
+        clearCart,
       }}
     >
       {children}

@@ -22,12 +22,7 @@ const managementItem: ICollapsibleMenuItem = {
     {
       icon: <UserCart />,
       name: "Orders",
-      link: "/employee/orders",
-    },
-    {
-      icon: <UTurnArrowLeft />,
-      name: "Returns",
-      link: "/employee/returns",
+      link: "/employee/order/list",
     },
   ],
 };

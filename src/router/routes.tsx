@@ -1,4 +1,3 @@
-import path from "path";
 import { lazy } from "react";
 
 const ClientMain = lazy(() => import("../layout/clientLayout/Main/Main"));
@@ -17,6 +16,11 @@ const AuthPage = lazy(() => import("../pages/client/AuthPage/AuthPage"));
 const CheckoutPage = lazy(
   () => import("../pages/client/CheckoutPage/CheckoutPage")
 );
+
+const CheckoutReturnPage = lazy(
+  () => import("../pages/client/CheckoutReturnPage/CheckoutReturnPage")
+);
+
 // const ReturnPage = lazy(() => import("../pages/ReturnPage"));
 // const SuccessPage = lazy(() => import("../pages/SuccessPage"));
 
@@ -24,17 +28,17 @@ const CheckoutPage = lazy(
 
 // employee side:
 const EmployeeMain = lazy(() => import("../layout/employeeLayout/Main/Main"));
-const ProductManagePage = lazy(
-  () => import("../pages/employee/ProductManagePage/ProductManagePage")
-);
 const ProductListPage = lazy(
   () => import("../pages/employee/ProductListPage/ProductListPage")
 );
+const ProductManagePage = lazy(
+  () => import("../pages/employee/ProductManagePage/ProductManagePage")
+);
+const OrderListPage = lazy(
+  () => import("../pages/employee/OrderListPage/OrderListPage")
+);
 
 const TestApp = lazy(() => import("../layout/employeeLayout/test/TestApp"));
-const AppTestTwo = lazy(
-  () => import("../layout/employeeLayout/testv2/AppTestTwo")
-);
 
 const routes = [
   {
@@ -46,6 +50,7 @@ const routes = [
       { path: "product/:productId", element: <ProductDetailPage /> },
       { path: "auth", element: <AuthPage /> },
       { path: "checkout", element: <CheckoutPage /> },
+      { path: "return", element: <CheckoutReturnPage /> },
       //   { path: "account", element: <AccountPage /> },
       //   { path: "management", element: <ManagementPage /> },
     ],
@@ -68,12 +73,12 @@ const routes = [
         element: <ProductManagePage isAdding={false} />,
       },
       {
-        path: "test",
-        element: <TestApp />,
+        path: "order/list",
+        element: <OrderListPage />,
       },
       {
-        path: "testv2",
-        element: <AppTestTwo />,
+        path: "test",
+        element: <TestApp />,
       },
     ],
   },
