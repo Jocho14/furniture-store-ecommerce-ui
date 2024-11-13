@@ -9,6 +9,9 @@ const ShoppingCartPage = lazy(
   () => import("../pages/client/ShoppingCartPage/ShoppingCartPageContainer")
 );
 const AuthPage = lazy(() => import("../pages/client/AuthPage/AuthPage"));
+const DeliveryDetailsPage = lazy(
+  () => import("../pages/client/DeliveryDetailsPage/DeliveryDetailsPage")
+);
 
 // const AccountPage = lazy(() => import("../pages/AccountPage"));
 // const ManagementPage = lazy(() => import("../pages/ManagementPage"));
@@ -51,6 +54,7 @@ const routes = [
       { path: "auth", element: <AuthPage /> },
       { path: "checkout", element: <CheckoutPage /> },
       { path: "return", element: <CheckoutReturnPage /> },
+      { path: "delivery-details", element: <DeliveryDetailsPage /> },
       //   { path: "account", element: <AccountPage /> },
       //   { path: "management", element: <ManagementPage /> },
     ],

@@ -33,6 +33,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ cartCount, isMobile, className }) => {
   const menuData = useMenu(UserRole.Client);
   const account = useAuth();
+  console.log("account: ", account);
 
   const userTools = [
     { icon: <Search />, isMobile: true },
