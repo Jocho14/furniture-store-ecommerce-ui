@@ -25,6 +25,7 @@ const ImageUploadButton: React.FC<ImageUploadButtonProps> = ({ onUpload }) => {
         isInput={true}
         multiple={true}
         onChange={onUpload}
+        acceptInputTypes="image/*"
       />
     </div>
   );

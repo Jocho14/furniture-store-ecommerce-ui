@@ -1,3 +1,4 @@
+import { forwardRef, useImperativeHandle } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -9,6 +10,10 @@ import FormFieldComponent from "@/components/FormFieldComponent/FormFieldCompone
 
 import { shippingInfoFormSchema } from "@/forms/schemas/shippingInfoSchema";
 import { shippingInfoFormFields } from "@/forms/fields/shippingInfoFormFields";
+
+export interface ShippingInfoFormHandles {
+  submit: () => void;
+}
 
 const defaultValues = shippingInfoFormFields.reduce((acc, field) => {
   acc[field.name] = "";
@@ -29,42 +34,51 @@ const handleDashInsertion = (value: string) => {
   return value;
 };
 
-export const ShippingInfoForm: React.FC = () => {
-  const form = useForm<z.infer<typeof shippingInfoFormSchema>>({
-    resolver: zodResolver(shippingInfoFormSchema),
-    defaultValues: defaultValues,
-  });
+export const ShippingInfoForm = forwardRef<ShippingInfoFormHandles>(
+  (_, ref) => {
+    const form = useForm<z.infer<typeof shippingInfoFormSchema>>({
+      resolver: zodResolver(shippingInfoFormSchema),
+      defaultValues: defaultValues,
+    });
 
-  function onSubmit(values: z.infer<typeof shippingInfoFormSchema>) {}
+    function onSubmit(values: z.infer<typeof shippingInfoFormSchema>) {
+      console.log("Submitted values:", values);
+    }
 
-  return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 px-5 pb-5 flex flex-col justify-center"
-      >
-        {shippingInfoFormFields.map((field) =>
-          field.name === "postalCode" ? (
-            <FormFieldComponent
-              key={field.name}
-              control={form.control}
-              name={field.name}
-              type={field.type}
-              label={field.label}
-              onDashInsertion={handleDashInsertion}
-            />
-          ) : (
-            <FormFieldComponent
-              control={form.control}
-              name={field.name}
-              type={field.type}
-              label={field.label}
-            />
-          )
-        )}
+    useImperativeHandle(ref, () => ({
+      submit: () => form.handleSubmit(onSubmit)(),
+    }));
 
-        <div className="flex items-center space-x-2 pt-10"></div>
-      </form>
-    </Form>
-  );
-};
+    return (
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 px-5 pb-5 flex flex-col justify-center"
+        >
+          {shippingInfoFormFields.map((field) =>
+            field.name === "postalCode" ? (
+              <FormFieldComponent
+                key={field.name}
+                control={form.control}
+                name={field.name}
+                type={field.type}
+                label={field.label}
+                onDashInsertion={handleDashInsertion}
+              />
+            ) : (
+              <FormFieldComponent
+                key={field.name}
+                control={form.control}
+                name={field.name}
+                type={field.type}
+                label={field.label}
+              />
+            )
+          )}
+
+          <div className="flex items-center space-x-2 pt-10"></div>
+        </form>
+      </Form>
+    );
+  }
+);

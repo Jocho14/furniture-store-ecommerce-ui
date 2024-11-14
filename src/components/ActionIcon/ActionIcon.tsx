@@ -16,6 +16,7 @@ interface ActionIconProps {
   onClick?: () => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
+  acceptInputTypes?: string;
 }
 
 const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
@@ -32,6 +33,7 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
       multiple = false,
       onChange,
       className,
+      acceptInputTypes = "*",
       ...props
     },
     ref
@@ -85,6 +87,7 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
             type="file"
             multiple={multiple}
             onChange={onChange}
+            accept={acceptInputTypes}
             className={classNames(styles["input"], "hidden")}
           />
           <div

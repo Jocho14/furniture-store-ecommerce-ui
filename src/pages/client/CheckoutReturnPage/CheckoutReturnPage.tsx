@@ -19,7 +19,7 @@ const CheckoutReturnPage: React.FC = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   if (data?.status === "open") {
-    return <Navigate to="/checkout" />;
+    return <Navigate to="/order/checkout" />;
   }
 
   if (data?.status === "paid") {

@@ -14,13 +14,17 @@ const stripePromise = loadStripe(STRIPE_PUBLIC_KEY);
 
 interface CheckoutFormProps {
   cartItems: CartItem[];
+  customerEmail: string;
 }
 
-const CheckoutForm: React.FC<CheckoutFormProps> = (cartItems) => {
+const CheckoutForm: React.FC<CheckoutFormProps> = ({
+  cartItems,
+  customerEmail,
+}) => {
   const fetchClientSecret = async (): Promise<string> => {
     const response = await axios.post(
       `${PAYMENT_SERVER_URL}/checkout/create-checkout-session`,
-      cartItems
+      { cartItems, customer_email: customerEmail }
     );
     return response.data.clientSecret;
   };

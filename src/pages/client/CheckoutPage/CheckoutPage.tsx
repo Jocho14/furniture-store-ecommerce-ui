@@ -9,7 +9,7 @@ import CheckoutForm from "@/components/CheckoutForm/CheckoutForm";
 const CheckoutPage: React.FC<Props> = () => {
   const { cart } = useCart();
 
-  return <CheckoutForm cartItems={cart} />;
+  return <CheckoutForm cartItems={cart} customerEmail={"example@email.com"} />;
 };
 
 export default CheckoutPage;
