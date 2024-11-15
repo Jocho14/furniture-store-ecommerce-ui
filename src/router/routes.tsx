@@ -52,7 +52,7 @@ const routes = [
       { path: "shopping-cart", element: <ShoppingCartPage /> },
       { path: "product/:productId", element: <ProductDetailPage /> },
       { path: "auth", element: <AuthPage /> },
-      { path: "order/checkout", element: <CheckoutPage /> },
+      { path: "order/checkout/:orderId", element: <CheckoutPage /> },
       { path: "return", element: <CheckoutReturnPage /> },
       { path: "order/delivery-details", element: <DeliveryDetailsPage /> },
       //   { path: "account", element: <AccountPage /> },

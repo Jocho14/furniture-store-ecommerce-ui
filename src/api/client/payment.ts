@@ -1,4 +1,3 @@
-import { BACKEND_URL } from "@/config/config";
 import { PAYMENT_SERVER_URL } from "@/config/config";
 import axios from "axios";
 

@@ -1,14 +1,5 @@
-import React, { useRef } from "react";
+import React, { useRef, useCallback, useState } from "react";
 import styles from "./styles.module.scss";
-
-import {
-  ShippingInfoForm,
-  ShippingInfoFormHandles,
-} from "@/forms/ShippingInfoForm";
-import {
-  CustomerInfoForm,
-  CustomerInfoFormHandles,
-} from "@/forms/CustomerInfoForm";
 
 import { User, DeliveryTruck } from "iconoir-react";
 import {
@@ -24,6 +15,7 @@ import Grid from "@/components/Grid/Grid";
 import useMobile from "@/hooks/useMobile";
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
+import { DeliveryDetailsForm } from "@/forms/DeliveryDetailsForm";
 
 interface DeliveryDetailsPageProps {}
 
@@ -31,54 +23,27 @@ const DeliveryDetailsPage: React.FC<DeliveryDetailsPageProps> = () => {
   const isMobile = useMobile();
   const navigate = useNavigate();
 
-  const customerInfoFormRef = useRef<CustomerInfoFormHandles>(null);
-  const shippingInfoFormRef = useRef<ShippingInfoFormHandles>(null);
-
-  const handleCombinedSubmit = () => {
-    console.log("handleCombinedSubmit clicked");
-    customerInfoFormRef.current?.submit();
-    shippingInfoFormRef.current?.submit();
-  };
+  // const handleShippingInfoChange = useCallback((data: any) => {
+  //   setFormData((prev) => ({ ...prev, shippingInfo: data }));
+  // }, []); // Empty dependency array ensures it's only created once
 
   return (
     <div>
       <Grid>
         <Card
           className={classNames(
-            "w-full",
+            "w-full pt-4",
             { "start-4 col-6": !isMobile },
             { "start-1 col-4": isMobile }
           )}
         >
           <CardHeader>
-            <CardTitle>Delivery Informations</CardTitle>
+            <CardTitle>Delivery Details</CardTitle>
             <CardDescription>
-              Please provide the following information to proceed with your
-              order
+              Please provide your delivery details
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <CardTitle className="text-base mb-2 flex gap-1">
-              Customer Details <User />
-            </CardTitle>
-            <CustomerInfoForm ref={customerInfoFormRef} />
-          </CardContent>
-          <CardContent>
-            <CardTitle className="text-base mb-2 flex gap-2">
-              Shipping Details <DeliveryTruck />
-            </CardTitle>
-            <ShippingInfoForm ref={shippingInfoFormRef} />
-          </CardContent>
-          <CardFooter className="flex justify-center">
-            <Button
-              onClick={() => {
-                handleCombinedSubmit();
-                navigate("/order/checkout");
-              }}
-            >
-              Continue to checkout
-            </Button>
-          </CardFooter>
+          <DeliveryDetailsForm />
         </Card>
       </Grid>
     </div>
