@@ -19,6 +19,10 @@ $gutter: 16px;
     display: flex;
     align-items: center;
 
+    &.centerNav-true {
+      margin-top: 28px;
+    }
+
     &.align-center {
       align-items: center;
     }

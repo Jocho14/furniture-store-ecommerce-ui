@@ -111,7 +111,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
       updateProduct(Number(id), updatedProduct),
     onSuccess: (data: any) => {
       toast({
-        title: "Zaktualizowano pomyślnie!",
+        title: "Product updated successfully!",
         description: (
           <div className="flex flex-row gap-3 items-center mt-3">
             <img
@@ -136,7 +136,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     mutationFn: () => deleteProduct(Number(id)),
     onSuccess: (data: any) => {
       toast({
-        title: "Usunięto pomyślnie!",
+        title: "Product deleted successfully!",
         description: (
           <div className="flex flex-row gap-3 items-center mt-3">
             <img

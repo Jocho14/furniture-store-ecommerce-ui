@@ -41,7 +41,9 @@ const OrderListPage = lazy(
   () => import("../pages/employee/OrderListPage/OrderListPage")
 );
 
-const TestApp = lazy(() => import("../layout/employeeLayout/test/TestApp"));
+const EmployeeHomePage = lazy(
+  () => import("../pages/employee/HomePage/HomePage")
+);
 
 const routes = [
   {
@@ -81,8 +83,8 @@ const routes = [
         element: <OrderListPage />,
       },
       {
-        path: "test",
-        element: <TestApp />,
+        path: "home",
+        element: <EmployeeHomePage />,
       },
     ],
   },

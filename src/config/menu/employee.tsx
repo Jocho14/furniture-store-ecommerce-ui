@@ -28,7 +28,7 @@ const managementItem: ICollapsibleMenuItem = {
 };
 
 const primaryGroup: MenuItem[] | ICollapsibleMenuItem[] = [
-  { icon: <Home />, name: "Home page", link: "/employee/test" },
+  { icon: <Home />, name: "Home page", link: "/employee/home" },
   // { icon: <BookStack />, name: "Zarządzanie", link: "/employee/product-list" },
   managementItem,
 ];

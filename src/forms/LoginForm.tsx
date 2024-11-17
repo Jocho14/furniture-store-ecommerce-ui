@@ -13,6 +13,9 @@ import { loginFormFields } from "@/forms/fields/loginFormFields";
 import { useMutation } from "@tanstack/react-query";
 import { loginUser } from "@/api/client/account";
 
+import { useToast } from "@/components/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
+
 const defaultValues = loginFormFields.reduce((acc, field) => {
   acc[field.name] = "";
   return acc;
@@ -23,14 +26,26 @@ export const LoginForm: React.FC = () => {
     resolver: zodResolver(loginFormSchema),
     defaultValues: defaultValues,
   });
+  const { toast } = useToast();
+  const navigate = useNavigate();
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
-    onSuccess: (data) => {
-      console.log("Login success:", data);
+    onSuccess: () => {
+      toast({
+        variant: "constructive",
+        title: "Logged in!",
+        description: "You are now logged in.",
+      });
+      navigate("/");
     },
-    onError: (error) => {
-      console.error("Login error:", error);
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+      });
+      form.resetField("password");
     },
   });
 

@@ -31,18 +31,29 @@ export async function getProductPreviews(productIds: number[]) {
   return response.data;
 }
 
+export const getPrices = async (ids: number[]) => {
+  const response = await axios.get(`${BACKEND_URL}/products/prices`, {
+    params: {
+      ids: ids,
+    },
+  });
+  console.log();
+  return response.data;
+};
+
 export const getShoppingCartProductsPrice = async (
   idToQuantity: Quantities
 ): Promise<number> => {
-  const productIds = Object.keys(idToQuantity).join(",");
-  //const response = await axios.get(`${BACKEND_URL}/prices?id=${productIds}`);
-  const response = await { data: [{ id: 1, price: 100 }] };
-  const prices = response.data;
+  const productIds = Object.entries(idToQuantity).map(([id, _]) => Number(id));
+
+  console.log("product ids: ", productIds);
+
+  const idToPrice = await getPrices(productIds);
 
   let totalSum = 0;
 
   Object.entries(idToQuantity).forEach(([id, quantity]) => {
-    const productPrice = prices.find(
+    const productPrice = idToPrice.find(
       (product: any) => product.id === Number(id)
     )?.price;
 

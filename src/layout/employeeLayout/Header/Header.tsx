@@ -1,9 +1,11 @@
 import React from "react";
 
-import BaseNav from "../nav/BaseNav/BaseNav";
-import EditNav from "../nav/EditNav/EditNav";
-import AddNav from "../nav/AddNav/AddNav";
+import BaseNav from "../nav/product/BaseNav/BaseNav";
+import EditNav from "../nav/product/EditNav/EditNav";
+import AddNav from "../nav/product/AddNav/AddNav";
 // import ManageNav from "../nav/ManageNav/ManageNav";
+
+import OrderBaseNav from "../nav/order/BaseNav/BaseNav";
 
 import Menu from "@/components/Menu/Menu";
 import useMenu from "@/hooks/useMenu";
@@ -38,6 +40,8 @@ const Header: React.FC<Props> = () => {
               return <EditNav />;
             case "add":
               return <AddNav />;
+            case "order-list":
+              return <OrderBaseNav />;
             default:
               return <BaseNav />;
           }

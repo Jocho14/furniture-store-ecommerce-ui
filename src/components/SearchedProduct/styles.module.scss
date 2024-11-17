@@ -1,0 +1,25 @@
+@import "../../assets/styles/variables.scss";
+
+.search-product {
+  &__container {
+    display: flex;
+    column-gap: $spacing-16px;
+    &__image {
+      height: 60px;
+      aspect-ratio: 1;
+    }
+    &__info {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      row-gap: $spacing-4px;
+      &__name {
+        font-size: $font-size-base;
+      }
+      &__category {
+        font-size: $font-size-small;
+        color: $ghost;
+      }
+    }
+  }
+}

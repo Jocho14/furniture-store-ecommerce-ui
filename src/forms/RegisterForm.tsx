@@ -16,6 +16,10 @@ import FormFieldComponent from "@/components/FormFieldComponent/FormFieldCompone
 import { registerFormSchema } from "@/forms/schemas/registerSchema";
 import { registerFormFields } from "@/forms/fields/registerFormFields";
 
+import { useToast } from "@/components/hooks/use-toast";
+
+import Loader from "@/components/Loader/Loader";
+
 const defaultValues = registerFormFields.reduce((acc, field) => {
   acc[field.name] = "";
   return acc;
@@ -27,14 +31,24 @@ export const RegisterForm: React.FC = () => {
     resolver: zodResolver(registerFormSchema),
     defaultValues: defaultValues,
   });
+  const { toast } = useToast();
 
   const mutation = useMutation({
     mutationFn: registerUser,
-    onSuccess: (data: any) => {
-      console.log("User registered:", data);
+    onSuccess: () => {
+      toast({
+        variant: "constructive",
+        title: "Account created!",
+        description: "You can now log in.",
+      });
+      form.reset();
     },
-    onError: (error) => {
-      console.error("Error adding product:", error);
+    onError: () => {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+      });
     },
   });
 
@@ -106,7 +120,9 @@ export const RegisterForm: React.FC = () => {
             Policy.
           </label>
         </div>
-        <Button type="submit">Create account</Button>
+        <Button type="submit">
+          {mutation.isPending ? <Loader /> : "Create account"}
+        </Button>
       </form>
     </Form>
   );

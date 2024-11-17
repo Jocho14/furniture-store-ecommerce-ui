@@ -19,7 +19,7 @@ const OrderListPage = () => {
   });
 
   useEffect(() => {
-    setMode("list");
+    setMode("order-list");
     setProductCount(productsData?.length || 0);
   }, [setMode, productsData]);
 

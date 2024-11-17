@@ -20,14 +20,16 @@ export const columns: ColumnDef<OrderData>[] = [
         <div
           className="flex flex-row items-center gap-3 cursor-pointer"
           onClick={handleClick}
-        ></div>
+        >
+          {row.original.status}
+        </div>
       );
     },
   },
   {
     accessorKey: "email",
     header: ({ column }) => enableAdvancedHeader(column, column.id),
-    cell: ({ row }) => formatCurrency(row, "price", "PLN"),
+    //cell: ({ row }) => formatCurrency(row, "price", "PLN"),
   },
   {
     accessorKey: "amount",

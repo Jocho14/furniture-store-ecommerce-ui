@@ -39,16 +39,16 @@ const PopupAlert: React.FC<PopupAlertProps> = ({
         <AlertDialogFooter>
           {primaryAction === "confirm" ? (
             <>
-              <AlertDialogCancel>Anuluj</AlertDialogCancel>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction onClick={handleConfirm}>
-                Kontynuuj
+                Continue
               </AlertDialogAction>
             </>
           ) : (
             <>
-              <AlertDialogAction>Anuluj</AlertDialogAction>
+              <AlertDialogAction>Cancel</AlertDialogAction>
               <AlertDialogCancel onClick={handleConfirm}>
-                Kontynuuj
+                Continue
               </AlertDialogCancel>
             </>
           )}

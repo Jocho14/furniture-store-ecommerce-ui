@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 
-type HeaderMode = "list" | "add" | "edit";
+type HeaderMode = "list" | "add" | "edit" | "order-list";
 
 interface HeaderContextType {
   mode: HeaderMode;
