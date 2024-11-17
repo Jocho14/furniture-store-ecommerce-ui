@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 import { NavArrowDown, NavArrowUp } from "iconoir-react";

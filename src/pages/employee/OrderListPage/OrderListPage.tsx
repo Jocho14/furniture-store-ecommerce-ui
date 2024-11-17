@@ -10,9 +10,7 @@ import { DataTable } from "@/components/ui/dataTable/data-table";
 
 const OrderListPage = () => {
   const { setMode, setProductCount } = useHeader();
-  const { data: productsData, isLoading: productsLoading } = useQuery<
-    OrderData[]
-  >({
+  const { data: productsData } = useQuery<OrderData[]>({
     queryKey: ["orders"],
     queryFn: () => getAllOrdersForOrderList(),
     staleTime: 1000 * 60 * 5,

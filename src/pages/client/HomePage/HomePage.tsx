@@ -2,10 +2,10 @@ import React from "react";
 import classNames from "classnames";
 import Grid from "@/components/Grid/Grid";
 import MasonryGrid from "@/components/homePage/MasonryGrid/MasonryGrid";
-import HorizontalTiles from "@/components/homePage/HorizontalTiles/HorizontalTiles";
-import ProductFetcher from "@/components/ProductFetcher/ProductFetcher";
+// import HorizontalTiles from "@/components/homePage/HorizontalTiles/HorizontalTiles";
+// import ProductFetcher from "@/components/ProductFetcher/ProductFetcher";
 import useMobile from "@/hooks/useMobile";
-import HorizontalScrollContainer from "@/components/HorizontalScrollContainer/HorizontalScrollContainer";
+// import HorizontalScrollContainer from "@/components/HorizontalScrollContainer/HorizontalScrollContainer";
 import Landing from "@/components/Landing/Landing";
 import { useQuery } from "@tanstack/react-query";
 import { getMasonryContent } from "@/api/client/products";
@@ -18,12 +18,11 @@ interface Props {}
 const HomePage: React.FC<Props> = () => {
   const isMobile = useMobile();
 
-  const { data: masonryContentData, isLoading: masonryContentLoading } =
-    useQuery<MasonryContent>({
-      queryKey: ["masonryContent"],
-      queryFn: () => getMasonryContent(1),
-      staleTime: 1000 * 60 * 5,
-    });
+  const { data: masonryContentData } = useQuery<MasonryContent>({
+    queryKey: ["masonryContent"],
+    queryFn: () => getMasonryContent(1),
+    staleTime: 1000 * 60 * 5,
+  });
 
   return (
     <div className={styles["home-page"]}>

@@ -7,7 +7,6 @@ import {
   User,
   List,
   UserCart,
-  UTurnArrowLeft,
 } from "iconoir-react";
 import { MenuItem, ICollapsibleMenuItem } from "@/interfaces/MenuItem";
 

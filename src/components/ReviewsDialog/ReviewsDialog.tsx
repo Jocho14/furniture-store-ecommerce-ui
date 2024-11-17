@@ -3,13 +3,7 @@ import { toast } from "sonner";
 
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
@@ -47,9 +41,7 @@ const ReviewsDialog: React.FC<ReviewsDialogProps> = ({
   const dialogRef = useRef<HTMLDivElement>(null);
   const { productId } = useParams<{ productId: string }>();
 
-  const { data: reviewsData, isLoading: reviewsDataLoading } = useQuery<
-    ReviewProps[]
-  >({
+  const { data: reviewsData } = useQuery<ReviewProps[]>({
     queryKey: ["reviews"],
     queryFn: () => getReviews(Number(productId)),
     staleTime: 1000 * 60 * 5,

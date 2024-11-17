@@ -1,8 +1,5 @@
-import React from "react";
-import styles from "./styles.module.scss";
-
 import { Button } from "@/components/ui/button";
-import { UserCart, Plus } from "iconoir-react";
+import { Plus } from "iconoir-react";
 
 import { Link } from "react-router-dom";
 

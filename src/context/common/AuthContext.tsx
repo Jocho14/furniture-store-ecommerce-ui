@@ -16,11 +16,7 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const {
-    data: authStatusData,
-    isLoading: authStatusLoading,
-    isError,
-  } = useQuery({
+  const { data: authStatusData, isLoading: authStatusLoading } = useQuery({
     queryKey: ["authStatus"],
     queryFn: accountBasicInfo,
     staleTime: 1000 * 60 * 5,

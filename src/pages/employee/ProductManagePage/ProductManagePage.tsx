@@ -18,8 +18,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/hooks/use-toast";
 import ImageUploader from "@/components/ImageUploader/ImageUploader";
 import CollapsibleCard from "@/components/CollapsibleCard/CollapsibleCard";
+import CategorySelect from "@/components/CategorySelect/CategorySelect";
 
 import styles from "./styles.module.scss";
+
+const categoryList = ["bedroom", "living-room", "kitchen", "bathroom"];
 
 interface ProductManagePageProps {
   isAdding?: boolean;
@@ -55,12 +58,10 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     description: "",
     quantity: 0,
   });
+  const [selectedCategory, setSelectedCategory] = useState<string>("bedroom");
+  selectedCategory;
 
-  const {
-    data: product,
-    isLoading,
-    error,
-  } = useQuery({
+  const { data: product } = useQuery({
     queryKey: ["product", id],
     queryFn: () => getProductDetails(Number(id)),
     enabled: !!id,
@@ -186,6 +187,10 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     mutationDelete.mutate();
   };
 
+  const handleCategoryChange = (value: string) => {
+    setSelectedCategory(value);
+  };
+
   return (
     <div className={styles["product-manage-page"]}>
       <div className={styles["product-manage-page__left"]}>
@@ -204,6 +209,13 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
       </div>
       <div className={styles["product-manage-page__right"]}>
         <CollapsibleCard title="General Information">
+          <CardContent>
+            <p className="mb-1">Category</p>
+            <CategorySelect
+              categories={categoryList}
+              onChange={handleCategoryChange}
+            />
+          </CardContent>
           <CardContent>
             <p>Product Name</p>
             <Input
@@ -243,7 +255,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
           </CardContent>
         </CollapsibleCard>
 
-        <button onClick={handleSubmit}>Save changes</button>
+        {/* <button onClick={handleSubmit}>Save changes</button> */}
       </div>
     </div>
   );

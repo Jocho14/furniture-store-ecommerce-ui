@@ -4,7 +4,6 @@ import { enableAdvancedHeader, formatCurrency } from "@/utils/table/formats";
 import { createBaseColumn } from "@/config/table/baseColumn";
 import { ProductData } from "./TData";
 import { useNavigate } from "react-router-dom";
-import exampleImage from "@/assets/images/1_1.webp";
 
 export const columns: ColumnDef<ProductData>[] = [
   createBaseColumn<ProductData>(),

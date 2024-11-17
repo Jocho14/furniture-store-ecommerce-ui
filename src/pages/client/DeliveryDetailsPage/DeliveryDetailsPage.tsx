@@ -1,31 +1,23 @@
-import React, { useRef, useCallback, useState } from "react";
-import styles from "./styles.module.scss";
+import React from "react";
 
-import { User, DeliveryTruck } from "iconoir-react";
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+
 import Grid from "@/components/Grid/Grid";
 import useMobile from "@/hooks/useMobile";
 import classNames from "classnames";
-import { useNavigate } from "react-router-dom";
+
 import { DeliveryDetailsForm } from "@/forms/DeliveryDetailsForm";
 
 interface DeliveryDetailsPageProps {}
 
 const DeliveryDetailsPage: React.FC<DeliveryDetailsPageProps> = () => {
   const isMobile = useMobile();
-  const navigate = useNavigate();
-
-  // const handleShippingInfoChange = useCallback((data: any) => {
-  //   setFormData((prev) => ({ ...prev, shippingInfo: data }));
-  // }, []); // Empty dependency array ensures it's only created once
+  // const navigate = useNavigate();
 
   return (
     <div>

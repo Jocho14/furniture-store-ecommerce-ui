@@ -1,6 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 
-import { enableAdvancedHeader, formatCurrency } from "@/utils/table/formats";
+import { enableAdvancedHeader } from "@/utils/table/formats";
 import { createBaseColumn } from "@/config/table/baseColumn";
 import { OrderData } from "./TData";
 import { useNavigate } from "react-router-dom";

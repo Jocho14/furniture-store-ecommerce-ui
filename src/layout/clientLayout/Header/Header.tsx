@@ -9,17 +9,13 @@ import CustomInput from "@/components/CustomInput/CustomInput";
 import useMobile from "@/hooks/useMobile";
 import useScroll from "@/hooks/useScroll";
 
-import { Button } from "@/components/ui/button";
-
 import { useCart } from "@/context/client/CartContext";
 
-import { Search, ArrowRight } from "iconoir-react";
+import { Search } from "iconoir-react";
 
 import SearchField from "@/components/SearchField/SearchField";
 
 import styles from "./styles.module.scss";
-
-import { useAuth } from "@/context/common/AuthContext";
 
 const Header: React.FC = () => {
   const { cartCount } = useCart();

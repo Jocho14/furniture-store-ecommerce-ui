@@ -15,8 +15,6 @@ import useMobile from "@/hooks/useMobile";
 import { useQuery } from "@tanstack/react-query";
 import { useCart } from "@/context/client/CartContext";
 
-import { BACKEND_URL } from "@/config/config";
-
 import styles from "./styles.module.scss";
 import { Button } from "@/components/ui/button";
 
@@ -34,7 +32,7 @@ const ProductDetailPage = () => {
   const navigate = useNavigate();
   const isMobile = useMobile();
 
-  const { data: product, isLoading: productsLoading } = useQuery<Product>({
+  const { data: product } = useQuery<Product>({
     queryKey: ["products"],
     queryFn: () => getProductDetails(productIdNumber),
     staleTime: 1000 * 60 * 5,

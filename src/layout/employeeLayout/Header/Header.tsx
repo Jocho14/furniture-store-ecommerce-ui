@@ -12,18 +12,11 @@ import useMenu from "@/hooks/useMenu";
 import UserRole from "@/enums/UserRole";
 import DropdownMenu from "@/components/DropdownMenu/DropdownMenu";
 import SheetCloseWrapper from "@/components/SheetCloseWrapper/SheetCloseWrapper";
-import { Toaster } from "@/components/ui/toaster";
 import { Menu as MenuIcon } from "iconoir-react";
 import styles from "./styles.module.scss";
 import { useHeader } from "@/context/employee/HeaderContext";
 
 interface Props {}
-
-enum NavState {
-  Base = "list",
-  Add = "add",
-  Edit = "edit",
-}
 
 const Header: React.FC<Props> = () => {
   const { mode } = useHeader();

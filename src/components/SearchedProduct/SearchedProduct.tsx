@@ -8,14 +8,14 @@ import { Button } from "@/components/ui/button";
 interface SearchedProductProps {
   name: string;
   category: string;
-  imageUrl: string;
+  thumbnailUrl: string;
   link: string;
 }
 
 const SearchedProduct: React.FC<SearchedProductProps> = ({
   name,
   category,
-  imageUrl,
+  thumbnailUrl,
   link,
 }) => {
   return (
@@ -23,7 +23,7 @@ const SearchedProduct: React.FC<SearchedProductProps> = ({
       <div className={styles["search-product__container"]}>
         <img
           className={styles["search-product__container__image"]}
-          src={imageUrl}
+          src={thumbnailUrl}
         />
         <Button
           variant="link"

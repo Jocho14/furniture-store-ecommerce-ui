@@ -27,7 +27,7 @@ const SearchField: React.FC<SearchFieldProps> = ({ isSearching }) => {
         <SearchedProduct
           name="Living Room Sofa"
           category="Living Room"
-          imageUrl="https://firebasestorage.googleapis.com/v0/b/furniture-store-ecommerce.appspot.com/o/images%2Fproducts%2F1%2F1_0?alt=media&token=2c682a87-4f98-48af-bd9e-cade0006f614"
+          thumbnailUrl="https://firebasestorage.googleapis.com/v0/b/furniture-store-ecommerce.appspot.com/o/images%2Fproducts%2F1%2F1_0?alt=media&token=2c682a87-4f98-48af-bd9e-cade0006f614"
           link="/product/1"
         />
       )}

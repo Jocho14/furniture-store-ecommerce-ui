@@ -10,8 +10,6 @@ import Menu from "@/components/Menu/Menu";
 import useMenu from "@/hooks/useMenu";
 import UserRole from "@/enums/UserRole";
 import { useAuth } from "@/context/common/AuthContext";
-import ProfileHeader from "../ProfileHeader/ProfileHeader";
-import { useEffect } from "react";
 
 import {
   Shop,

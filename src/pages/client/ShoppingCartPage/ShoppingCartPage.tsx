@@ -12,7 +12,6 @@ import { Button } from "@/components/ui/button";
 
 import styles from "./styles.module.scss";
 
-import { IProductPreview } from "@/interfaces/Product";
 import { Link } from "react-router-dom";
 
 interface ShoppingCartPageProps {

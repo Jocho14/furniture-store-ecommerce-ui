@@ -3,9 +3,8 @@ import React from "react";
 import classNames from "classnames";
 
 import { useSearch } from "@/context/employee/SearchContext";
-import { Search, Plus } from "iconoir-react";
+import { Search } from "iconoir-react";
 import CustomInput from "@/components/CustomInput/CustomInput";
-import ActionIcon from "@/components/ActionIcon/ActionIcon";
 import { useHeader } from "@/context/employee/HeaderContext";
 
 import styles from "./styles.module.scss";
