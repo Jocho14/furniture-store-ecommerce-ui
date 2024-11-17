@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import classNames from "classnames";
@@ -33,7 +33,7 @@ const ProductDetailPage = () => {
   const isMobile = useMobile();
 
   const { data: product } = useQuery<Product>({
-    queryKey: ["products"],
+    queryKey: ["productDetails", productIdNumber],
     queryFn: () => getProductDetails(productIdNumber),
     staleTime: 1000 * 60 * 5,
   });

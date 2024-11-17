@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 
-interface SearchedProductProps {
+export interface SearchedProductProps {
+  productId: number;
   name: string;
   category: string;
   thumbnailUrl: string;

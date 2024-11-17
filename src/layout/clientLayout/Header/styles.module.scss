@@ -15,7 +15,7 @@
   transition: all 0.3s ease;
 
   &.expanded {
-    height: 400px;
+    height: 350px;
   }
 
   .overlay {
@@ -45,7 +45,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    row-gap: 100px;
+    row-gap: 50px;
   }
 
   &__input__expanded {

@@ -24,6 +24,10 @@ const CheckoutReturnPage = lazy(
   () => import("../pages/client/CheckoutReturnPage/CheckoutReturnPage")
 );
 
+const ProductListPage = lazy(
+  () => import("../pages/client/ProductListPage/ProductListPage")
+);
+
 // const ReturnPage = lazy(() => import("../pages/ReturnPage"));
 // const SuccessPage = lazy(() => import("../pages/SuccessPage"));
 
@@ -31,7 +35,7 @@ const CheckoutReturnPage = lazy(
 
 // employee side:
 const EmployeeMain = lazy(() => import("../layout/employeeLayout/Main/Main"));
-const ProductListPage = lazy(
+const EmployeeProductListPage = lazy(
   () => import("../pages/employee/ProductListPage/ProductListPage")
 );
 const ProductManagePage = lazy(
@@ -52,11 +56,12 @@ const routes = [
     children: [
       { path: "", element: <HomePage /> },
       { path: "shopping-cart", element: <ShoppingCartPage /> },
+      { path: "product", element: <ProductListPage /> },
       { path: "product/:productId", element: <ProductDetailPage /> },
       { path: "auth", element: <AuthPage /> },
       { path: "order/checkout/:orderId", element: <CheckoutPage /> },
-      { path: "return", element: <CheckoutReturnPage /> },
       { path: "order/delivery-details", element: <DeliveryDetailsPage /> },
+      { path: "return", element: <CheckoutReturnPage /> },
       //   { path: "account", element: <AccountPage /> },
       //   { path: "management", element: <ManagementPage /> },
     ],
@@ -68,7 +73,7 @@ const routes = [
     children: [
       {
         path: "product/list",
-        element: <ProductListPage />,
+        element: <EmployeeProductListPage />,
       },
       {
         path: "product/add",

@@ -148,14 +148,15 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
                   }
                 />
               }
-              onClick={() =>
+              onClick={() => {
+                props.onQuantityChange(props.productId, 0);
                 toast(`${props.name} - has been remove from the cart`, {
                   action: {
                     label: "Undo",
                     onClick: () => console.log("Undo"),
                   },
-                })
-              }
+                });
+              }}
               size="small"
             />
           </div>

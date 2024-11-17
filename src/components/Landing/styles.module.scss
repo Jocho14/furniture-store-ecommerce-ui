@@ -4,10 +4,13 @@
   width: 100%;
   padding: 60px;
   height: 80vh;
-  background-color: rgb(94, 94, 94);
+  background-image: url("../../assets/images/landingPageImg.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   &__container {
     display: flex;
@@ -24,7 +27,7 @@
     &__info {
       font-size: $font-size-xlarge;
       text-align: center;
-      color: $white-ghost;
+      color: $ghost;
     }
 
     &__buttons {
@@ -38,6 +41,8 @@
   .landing {
     padding: 20px;
     height: 100vh;
+    background-image: url("../../assets/images/landingPageImgSm.webp");
+    background-size: 500px;
 
     &__container {
       row-gap: 10px;

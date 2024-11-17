@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./styles.module.scss";
-
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 interface Props {}
@@ -10,15 +10,22 @@ const Landing: React.FC<Props> = () => {
     <div className={styles["landing"]}>
       <div className={styles["landing__container"]}>
         <span className={styles["landing__container__title"]}>
-          Transform Your Space with {`[Website name]`}
+          Transform Your Space with Luna
         </span>
         <span className={styles["landing__container__info"]}>
-          Discover beautiful, comfortable furniture that brings warmth and style
-          to your home.
+          Discover beautiful and comfortable furniture that brings warmth and
+          style to your home.
         </span>
         <div className={styles["landing__container__buttons"]}>
-          <Button>Shop Now</Button>
-          <Button variant="secondary">Discover</Button>
+          <Link to="/product">
+            <Button>Shop Now</Button>
+          </Link>
+          <Button
+            variant="outline"
+            onClick={() => window.scrollBy({ top: 900, behavior: "smooth" })}
+          >
+            Discover
+          </Button>
         </div>
       </div>
     </div>

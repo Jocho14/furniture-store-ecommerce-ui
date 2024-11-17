@@ -1,20 +1,22 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import classNames from "classnames";
+
+import { useCart } from "@/context/client/CartContext";
+
+import { getSearchResults } from "@/api/common/products";
 
 import Grid from "@/components/Grid/Grid";
 import Navbar from "@/components/Navbar/Navbar";
 import CustomInput from "@/components/CustomInput/CustomInput";
+import SearchField from "@/components/SearchField/SearchField";
 
 import useMobile from "@/hooks/useMobile";
 import useScroll from "@/hooks/useScroll";
-
-import { useCart } from "@/context/client/CartContext";
+import useDebounce from "@/hooks/useDebounce";
 
 import { Search } from "iconoir-react";
-
-import SearchField from "@/components/SearchField/SearchField";
-
 import styles from "./styles.module.scss";
 
 const Header: React.FC = () => {
@@ -23,6 +25,8 @@ const Header: React.FC = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [showExpandedSearchField, setShowExpandedSearchField] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   useScroll(headerRef, styles);
 
@@ -33,6 +37,26 @@ const Header: React.FC = () => {
   const handleOutsideClick = () => {
     setIsExpanded(false);
   };
+
+  const {
+    data: searchResults,
+    isLoading: searchResultsLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["searchResults", debouncedSearchTerm],
+    queryFn: () => getSearchResults(debouncedSearchTerm),
+    enabled: !!debouncedSearchTerm,
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      refetch();
+    }
+  }, [debouncedSearchTerm, refetch]);
 
   useEffect(() => {
     if (isExpanded) {
@@ -78,6 +102,8 @@ const Header: React.FC = () => {
             icon={<Search />}
             placeholder="Search"
             onClick={handleInputClick}
+            onChange={handleInputChange}
+            value={searchTerm}
           />
           {showExpandedSearchField && (
             <div
@@ -85,7 +111,11 @@ const Header: React.FC = () => {
                 [styles["visible"]]: isExpanded,
               })}
             >
-              <SearchField isSearching={true} />
+              <SearchField
+                searchedProducts={searchResults}
+                searchedProductsLoading={searchResultsLoading}
+                isSearching={searchTerm.length > 0}
+              />
             </div>
           )}
         </div>

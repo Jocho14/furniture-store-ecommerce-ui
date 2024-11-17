@@ -7,10 +7,16 @@ import { Link } from "react-router-dom";
 
 import { ArrowRight } from "iconoir-react";
 
-import SearchedProduct from "../SearchedProduct/SearchedProduct";
+import SkeletonWrapper from "../SkeletonWrapper/SkeletonWrapper";
+
+import SearchedProduct, {
+  SearchedProductProps,
+} from "../SearchedProduct/SearchedProduct";
 
 interface SearchFieldProps {
   isSearching: boolean;
+  searchedProducts?: SearchedProductProps[];
+  searchedProductsLoading?: boolean;
 }
 
 const proposedSearches = [
@@ -20,18 +26,28 @@ const proposedSearches = [
   { title: "Office furniture", category: "office" },
 ];
 
-const SearchField: React.FC<SearchFieldProps> = ({ isSearching }) => {
+const SearchField: React.FC<SearchFieldProps> = ({
+  isSearching,
+  searchedProducts,
+  searchedProductsLoading = false,
+}) => {
   return (
     <div className={styles["search-field"]}>
-      {isSearching && (
-        <SearchedProduct
-          name="Living Room Sofa"
-          category="Living Room"
-          thumbnailUrl="https://firebasestorage.googleapis.com/v0/b/furniture-store-ecommerce.appspot.com/o/images%2Fproducts%2F1%2F1_0?alt=media&token=2c682a87-4f98-48af-bd9e-cade0006f614"
-          link="/product/1"
-        />
-      )}
-      {!isSearching &&
+      {isSearching ? (
+        <div className="flex flex-col gap-5">
+          {searchedProducts?.map((product) => (
+            <SkeletonWrapper
+              loading={searchedProductsLoading}
+              className="w-[60px] h-[27px]"
+            >
+              <SearchedProduct
+                {...product}
+                link={`/product/${product.productId}`}
+              />
+            </SkeletonWrapper>
+          ))}
+        </div>
+      ) : (
         proposedSearches.map((search) => {
           return (
             <Link to={`/product?categories=${search.category}`}>
@@ -40,7 +56,8 @@ const SearchField: React.FC<SearchFieldProps> = ({ isSearching }) => {
               </Button>
             </Link>
           );
-        })}
+        })
+      )}
     </div>
   );
 };
