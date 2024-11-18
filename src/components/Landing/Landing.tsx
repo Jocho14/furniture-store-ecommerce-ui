@@ -10,6 +10,13 @@ const Landing: React.FC<Props> = () => {
     <div className={styles["landing"]}>
       <div className={styles["landing__container"]}>
         <span className={styles["landing__container__title"]}>
+          <a
+            className={styles["landing__container__title__a"]}
+            href="https://www.pngarts.com/explore/162722"
+            target="_blank"
+          >
+            Modern Furniture Transparent Background PNG
+          </a>
           Transform Your Space with Luna
         </span>
         <span className={styles["landing__container__info"]}>

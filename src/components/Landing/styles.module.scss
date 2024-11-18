@@ -22,6 +22,10 @@
       font-size: 4rem;
       font-weight: 900;
       text-align: center;
+
+      &__a {
+        display: none;
+      }
     }
 
     &__info {
