@@ -46,6 +46,7 @@ const ReviewsDialog: React.FC<ReviewsDialogProps> = ({
     queryFn: () => getReviews(Number(productId)),
     staleTime: 1000 * 60 * 5,
   });
+  //const reviewsData = undefined;
 
   const mutationAddReview = useMutation({
     mutationFn: () => addReview(Number(productId), rating, comment),
@@ -152,7 +153,7 @@ const ReviewsDialog: React.FC<ReviewsDialogProps> = ({
               >
                 <Separator />
 
-                {reviewsData?.map((review) => {
+                {(reviewsData || []).map((review) => {
                   return (
                     <div className="flex flex-col">
                       <Review key={review.reviewId} {...review} />
