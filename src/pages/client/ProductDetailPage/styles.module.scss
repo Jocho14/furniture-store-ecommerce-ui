@@ -14,6 +14,7 @@
     position: sticky;
     top: 100px;
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     width: 100%;
     row-gap: $spacing-16px;
@@ -24,8 +25,11 @@
     }
 
     &__description {
+      margin-top: 20px;
       font-size: $h4-size;
       color: grey;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
 
     &__price {
@@ -53,6 +57,13 @@
           cursor: pointer;
         }
       }
+    }
+  }
+  &__secondary__details {
+    &__review-btn {
+      font-size: $font-size-large;
+      display: flex;
+      column-gap: $spacing-8px;
     }
   }
 }

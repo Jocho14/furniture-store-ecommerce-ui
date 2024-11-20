@@ -10,6 +10,8 @@ import CartActionToast from "@/components/CartActionToast/CartActionToast";
 import ProductDetailImages from "@/components/ProductDetailImages/ProductDetailImages";
 import { getProductDetails } from "@/api/client/products";
 import ReviewsDialog from "@/components/ReviewsDialog/ReviewsDialog";
+import { Separator } from "@/components/ui/separator";
+import { ArrowRight } from "iconoir-react";
 
 import useMobile from "@/hooks/useMobile";
 import { useQuery } from "@tanstack/react-query";
@@ -79,11 +81,9 @@ const ProductDetailPage = () => {
           <h3 className={styles["product-detail-page__details__name"]}>
             {product?.name}
           </h3>
-          <h4 className={styles["product-detail-page__details__description"]}>
-            {product?.description}
-          </h4>
+
           <h2 className={styles["product-detail-page__details__price"]}>
-            {product?.price}
+            {product?.price}zł
           </h2>
           <div className={styles["product-detail-page__details__actions"]}>
             <QuantityStepper
@@ -120,18 +120,37 @@ const ProductDetailPage = () => {
               </span>
             </button>
           </div>
+          <h4 className={styles["product-detail-page__details__description"]}>
+            {product?.description}
+          </h4>
+          <Separator />
+          <div>
+            <ReviewsDialog
+              trigger={
+                <Button
+                  variant="link"
+                  className={classNames(
+                    styles[
+                      "product-detail-page__secondary__details__review-btn"
+                    ],
+                    "p-0"
+                  )}
+                >
+                  Reviews <ArrowRight height={20} />
+                </Button>
+              }
+              productName={product?.name || ""}
+            />
+          </div>
         </div>
         <div
           className={classNames(
             styles["product-detail-page__secondary__details"],
-            { "start-1 col-8": !isMobile },
+            { "start-2 col-8": !isMobile },
             { "start-1 col-4": isMobile }
           )}
         >
-          <ReviewsDialog
-            trigger={<Button variant="link">click me</Button>}
-            productName={product?.name || ""}
-          />
+          <Separator />
         </div>
       </Grid>
     </div>

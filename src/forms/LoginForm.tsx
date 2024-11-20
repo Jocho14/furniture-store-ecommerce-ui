@@ -10,8 +10,10 @@ import FormFieldComponent from "@/components/FormFieldComponent/FormFieldCompone
 import { loginFormSchema } from "@/forms/schemas/loginSchema";
 import { loginFormFields } from "@/forms/fields/loginFormFields";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { loginUser } from "@/api/client/account";
+
+import Loader from "@/components/Loader/Loader";
 
 import { useToast } from "@/components/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
@@ -28,10 +30,12 @@ export const LoginForm: React.FC = () => {
   });
   const { toast } = useToast();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["authStatus"] });
       toast({
         variant: "constructive",
         title: "Logged in!",
@@ -67,7 +71,9 @@ export const LoginForm: React.FC = () => {
             label={field.label}
           />
         ))}
-        <Button type="submit">Log in</Button>
+        <Button type="submit">
+          {loginMutation.isPending ? <Loader /> : "Log in"}
+        </Button>
       </form>
     </Form>
   );
