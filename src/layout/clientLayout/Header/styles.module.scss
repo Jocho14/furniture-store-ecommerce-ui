@@ -16,6 +16,7 @@
 
   &.expanded {
     height: 350px;
+    @include custom-border;
   }
 
   .overlay {

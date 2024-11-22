@@ -12,7 +12,8 @@ export const getAllProductsForProductList = async (): Promise<
   ProductData[]
 > => {
   const response = await axios.get(
-    `${BACKEND_URL}/products/all-with-thumbnails`
+    `${BACKEND_URL}/products/all-with-thumbnails`,
+    { withCredentials: true }
   );
   return response.data;
 };
@@ -25,6 +26,7 @@ export const addProduct = async (
     headers: {
       "Content-Type": "multipart/form-data",
     },
+    withCredentials: true,
   });
   return response.data;
 };
@@ -41,6 +43,7 @@ export const updateProduct = async (
       headers: {
         "Content-Type": "multipart/form-data",
       },
+      withCredentials: true,
     }
   );
   return response.data;
@@ -48,7 +51,8 @@ export const updateProduct = async (
 
 export const deleteProduct = async (productId: number) => {
   const response = await axios.put(
-    `${BACKEND_URL}/products/${productId}/deactivate`
+    `${BACKEND_URL}/products/${productId}/deactivate`,
+    { withCredentials: true }
   );
 
   return response.data;
@@ -58,7 +62,8 @@ export const getProductDetails = async (
   productId: number
 ): Promise<DetailProductEmployeeDto> => {
   const response = await axios.get(
-    `${BACKEND_URL}/products/${productId}/details/employee`
+    `${BACKEND_URL}/products/${productId}/details/employee`,
+    { withCredentials: true }
   );
 
   const images = await Promise.all(

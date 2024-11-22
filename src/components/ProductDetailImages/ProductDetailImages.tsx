@@ -78,7 +78,7 @@ const ProductDetailImages: React.FC<ProductDetailImagesProps> = ({
             {imageUrls?.map((imageUrl, index) => (
               <CarouselItem key={index}>
                 <div>
-                  <Card>
+                  <Card className="border-none">
                     <CardContent className="flex aspect-square items-center justify-center p-0">
                       <img src={imageUrl} alt={`Product ${index + 1}`} />
                     </CardContent>
@@ -87,8 +87,8 @@ const ProductDetailImages: React.FC<ProductDetailImagesProps> = ({
               </CarouselItem>
             ))}
           </CarouselContent>
-          {!isMobile && <CarouselPrevious />}
-          {!isMobile && <CarouselNext />}
+          {!isMobile && (imageUrls?.length ?? 0) > 1 && <CarouselPrevious />}
+          {!isMobile && (imageUrls?.length ?? 0) > 1 && <CarouselNext />}
         </Carousel>
       </div>
       {isMobile && (

@@ -30,6 +30,14 @@
   }
 }
 
+.disabled {
+  background-color: grey;
+  &:hover {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .checkout-btn {
     bottom: 20px;

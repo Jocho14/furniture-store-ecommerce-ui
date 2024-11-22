@@ -12,18 +12,23 @@ import { loginFormFields } from "@/forms/fields/loginFormFields";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { loginUser } from "@/api/client/account";
+import { loginEmployee } from "@/api/employee/account";
 
 import Loader from "@/components/Loader/Loader";
 
 import { useToast } from "@/components/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 
+interface LoginFormProps {
+  role: "client" | "employee";
+}
+
 const defaultValues = loginFormFields.reduce((acc, field) => {
   acc[field.name] = "";
   return acc;
 }, {} as Record<string, string>);
 
-export const LoginForm: React.FC = () => {
+export const LoginForm: React.FC<LoginFormProps> = ({ role }) => {
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: defaultValues,
@@ -33,7 +38,7 @@ export const LoginForm: React.FC = () => {
   const queryClient = useQueryClient();
 
   const loginMutation = useMutation({
-    mutationFn: loginUser,
+    mutationFn: role === "client" ? loginUser : loginEmployee,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["authStatus"] });
       toast({
@@ -41,7 +46,7 @@ export const LoginForm: React.FC = () => {
         title: "Logged in!",
         description: "You are now logged in.",
       });
-      navigate("/");
+      role === "client" ? navigate("/") : navigate("/employee");
     },
     onError: () => {
       toast({

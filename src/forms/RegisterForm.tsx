@@ -8,8 +8,10 @@ import { Form } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useMutation } from "@tanstack/react-query";
 
-import { ClientCreateDto } from "@/interfaces/client";
+import { ClientCreateDto, EmployeeCreateDto } from "@/interfaces/client";
+
 import { registerUser } from "@/api/client/account";
+import { registerEmployee } from "@/api/employee/account";
 
 import FormFieldComponent from "@/components/FormFieldComponent/FormFieldComponent";
 
@@ -18,14 +20,19 @@ import { registerFormFields } from "@/forms/fields/registerFormFields";
 
 import { useToast } from "@/components/hooks/use-toast";
 
+import { CardShield } from "iconoir-react";
 import Loader from "@/components/Loader/Loader";
+
+interface RegisterFormProps {
+  role: "client" | "employee";
+}
 
 const defaultValues = registerFormFields.reduce((acc, field) => {
   acc[field.name] = "";
   return acc;
 }, {} as Record<string, string>);
 
-export const RegisterForm: React.FC = () => {
+export const RegisterForm: React.FC<RegisterFormProps> = ({ role }) => {
   const labelRef = useRef<HTMLLabelElement | null>(null);
   const form = useForm<z.infer<typeof registerFormSchema>>({
     resolver: zodResolver(registerFormSchema),
@@ -34,7 +41,7 @@ export const RegisterForm: React.FC = () => {
   const { toast } = useToast();
 
   const mutation = useMutation({
-    mutationFn: registerUser,
+    mutationFn: role === "client" ? registerUser : registerEmployee,
     onSuccess: () => {
       toast({
         variant: "constructive",
@@ -66,18 +73,34 @@ export const RegisterForm: React.FC = () => {
       }
     }
 
-    const clientCreateDto: ClientCreateDto = {
-      account: {
-        email: values.email,
-        password: values.password,
-      },
-      firstName: values.firstName,
-      lastName: values.lastName,
-      phoneNumber: values.phoneNumber,
-      dateOfBirth: values.dateOfBirth,
-    };
+    if (role === "client") {
+      const clientCreateDto: ClientCreateDto = {
+        account: {
+          email: values.email,
+          password: values.password,
+        },
+        firstName: values.firstName,
+        lastName: values.lastName,
+        phoneNumber: values.phoneNumber,
+        dateOfBirth: values.dateOfBirth,
+      };
 
-    mutation.mutate(clientCreateDto);
+      mutation.mutate(clientCreateDto);
+    } else {
+      const employeeCreateDto: EmployeeCreateDto = {
+        account: {
+          email: values.email,
+          password: values.password,
+        },
+        firstName: values.firstName,
+        lastName: values.lastName,
+        phoneNumber: values.phoneNumber,
+        dateOfBirth: values.dateOfBirth,
+        secret: values.secret || "",
+      };
+
+      mutation.mutate(employeeCreateDto);
+    }
   };
 
   return (
@@ -86,15 +109,32 @@ export const RegisterForm: React.FC = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8 px-5 pb-5 flex flex-col justify-center"
       >
-        {registerFormFields.map((field) => (
-          <FormFieldComponent
-            key={field.name}
-            control={form.control}
-            name={field.name}
-            type={field.type}
-            label={field.label}
-          />
-        ))}
+        {registerFormFields.map((field) => {
+          if (field.name === "secret") {
+            if (role === "client") return null;
+            return (
+              <div>
+                <FormFieldComponent
+                  key={field.name}
+                  control={form.control}
+                  name={field.name}
+                  type={field.type}
+                  label={field.label}
+                />
+                <CardShield className="mt-1" />
+              </div>
+            );
+          }
+          return (
+            <FormFieldComponent
+              key={field.name}
+              control={form.control}
+              name={field.name}
+              type={field.type}
+              label={field.label}
+            />
+          );
+        })}
 
         <div className="flex items-center space-x-2 pt-10">
           <Controller

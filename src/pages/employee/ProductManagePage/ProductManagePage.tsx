@@ -19,6 +19,7 @@ import { useToast } from "@/components/hooks/use-toast";
 import ImageUploader from "@/components/ImageUploader/ImageUploader";
 import CollapsibleCard from "@/components/CollapsibleCard/CollapsibleCard";
 import CategorySelect from "@/components/CategorySelect/CategorySelect";
+import { useQueryClient } from "@tanstack/react-query";
 
 import styles from "./styles.module.scss";
 
@@ -51,6 +52,8 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const queryClient = useQueryClient();
+  queryClient.invalidateQueries({ queryKey: ["employeeProductList"] });
   const [productData, setProductData] = useState<Product>({
     images: [],
     name: "",
@@ -77,8 +80,8 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     setSaveFunction(() => handleSubmit);
     setDeactivateFunction(() => handleDeactivate);
     return () => {
-      setSaveFunction(() => {});
-      setDeactivateFunction(() => {});
+      setSaveFunction(() => { });
+      setDeactivateFunction(() => { });
     };
   }, [productData]);
 
@@ -101,6 +104,15 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
           </div>
         ),
       });
+      setProductData({
+        images: [],
+        name: "",
+        price: 0,
+        description: "",
+        quantity: 0,
+      });
+      navigate("/employee/product/list");
+
     },
     onError: (error) => {
       console.error("Error adding product:", error);

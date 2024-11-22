@@ -19,6 +19,7 @@ const calculateAge = (birthDate: Date) => {
 
 export const registerFormSchema = z
   .object({
+    secret: z.string().optional(),
     email: z.string().email({ message: "Incorrect format for e-mail address" }),
     password: z
       .string()

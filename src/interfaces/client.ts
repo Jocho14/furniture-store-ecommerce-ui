@@ -10,3 +10,7 @@ export interface ClientCreateDto {
   phoneNumber: string;
   dateOfBirth: Date;
 }
+
+export interface EmployeeCreateDto extends ClientCreateDto {
+  secret: string;
+}

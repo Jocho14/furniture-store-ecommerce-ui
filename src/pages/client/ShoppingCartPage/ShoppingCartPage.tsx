@@ -35,6 +35,7 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
   quantitiesLoading,
   onQuantityChange,
 }) => {
+  console.log("products DATA: ", productsData)
   return (
     <div className={styles["cart-page__container"]}>
       <CartActionToast />
@@ -71,12 +72,13 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
               />
             ))
           ) : (
-            <div className="flex flex-col gap-6 items-center">
-              {" "}
-              <h2>No products in the cart</h2>
-              <Link to="/">
-                <Button>Shop now</Button>
-              </Link>
+            <div className="flex flex-col gap-6 items-start">
+              <div className="flex flex-col gap-6 items-center">
+                <h2>No products in the cart</h2>
+                <Link to="/">
+                  <Button>Shop now</Button>
+                </Link>
+              </div>
             </div>
           )}
 
@@ -103,7 +105,7 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
             </div>
           )}
           {isMobile && (
-            <CheckoutButton
+            <CheckoutButton isDisabled={productsData.length === 0}
               className={classNames(
                 "align-top",
                 { "start-9 col-4": !isMobile },
@@ -132,11 +134,11 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
               <span
                 className={styles["cart-page__container__summary__total__sum"]}
               >
-                {cartPrice}zł
+                {cartPrice === 0 ? "-" : `${cartPrice}zł`}
               </span>
             </div>
           )}
-          {!isMobile && <CheckoutButton />}
+          {!isMobile && <CheckoutButton isDisabled={productsData.length === 0} />}
         </div>
       </Grid>
     </div>

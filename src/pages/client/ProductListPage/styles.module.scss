@@ -1,0 +1,10 @@
+.card__img {
+  aspect-ratio: 1;
+}
+
+.product__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  column-gap: 30px;
+  row-gap: 60px;
+}

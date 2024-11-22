@@ -16,12 +16,12 @@
     flex-direction: column;
     margin-bottom: 10px;
     width: 15%;
-    overflow-y: scroll;
+    margin-right: $spacing-8px;
     row-gap: $spacing-12px;
 
     img {
       border: 2px solid transparent;
-      margin: 5px;
+      //margin: 5px;
       cursor: pointer;
 
       &.active {

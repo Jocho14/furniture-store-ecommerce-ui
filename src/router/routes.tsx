@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import ProtectedRoute from "./protectedRoute";
 
 const ClientMain = lazy(() => import("../layout/clientLayout/Main/Main"));
 const HomePage = lazy(() => import("../pages/client/HomePage/HomePage"));
@@ -49,6 +50,10 @@ const EmployeeHomePage = lazy(
   () => import("../pages/employee/HomePage/HomePage")
 );
 
+const EmployeeAuthPage = lazy(
+  () => import("../pages/employee/AuthPage/AuthPage")
+);
+
 const routes = [
   {
     path: "/",
@@ -58,7 +63,14 @@ const routes = [
       { path: "shopping-cart", element: <ShoppingCartPage /> },
       { path: "product", element: <ProductListPage /> },
       { path: "product/:productId", element: <ProductDetailPage /> },
-      { path: "auth", element: <AuthPage /> },
+      {
+        path: "auth",
+        element: (
+          <ProtectedRoute>
+            <AuthPage />
+          </ProtectedRoute>
+        ),
+      },
       { path: "order/checkout/:orderId", element: <CheckoutPage /> },
       { path: "order/delivery-details", element: <DeliveryDetailsPage /> },
       { path: "return", element: <CheckoutReturnPage /> },
@@ -69,7 +81,11 @@ const routes = [
 
   {
     path: "/employee",
-    element: <EmployeeMain />,
+    element: (
+      <ProtectedRoute>
+        <EmployeeMain />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "product/list",
@@ -93,7 +109,14 @@ const routes = [
       },
     ],
   },
-
+  {
+    path: "/employee/auth",
+    element: (
+      <ProtectedRoute>
+        <EmployeeAuthPage />
+      </ProtectedRoute>
+    ),
+  },
   //   { path: "*", element: <NotFoundPage /> },
 ];
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import classNames from "classnames";
 import useMobile from "@/hooks/useMobile";
@@ -10,13 +10,16 @@ import { Card, CardContent } from "@/components/ui/card";
 
 import { getAllProductsForProductList } from "@/api/common/products";
 import SkeletonWrapper from "@/components/SkeletonWrapper/SkeletonWrapper";
-
+import styles from "./styles.module.scss";
 import { useQuery } from "@tanstack/react-query";
+import DropdownButton from "@/components/DropdownButton/DropdownButton";
+import { Separator } from "@/components/ui/separator";
 
-interface Props {}
+interface Props { }
 
 const ProductListPage: React.FC<Props> = () => {
   const isMobile = useMobile();
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
   const { data: productsData, isLoading: productsDataLoading } = useQuery<
     any[]
@@ -26,25 +29,35 @@ const ProductListPage: React.FC<Props> = () => {
     staleTime: 1000 * 60 * 5,
   });
 
+  const sortedProducts = productsData?.slice().sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.price - b.price;
+    } else {
+      return b.price - a.price;
+    }
+  });
+
   return (
     <div>
       <Grid>
         <div
           className={classNames(
             { "start-1 col-12": !isMobile },
-            { "start-1 col-4": isMobile }
+            { "start-1 col-4": isMobile },
+            "w-full"
           )}
         >
           <div className="w-full">
-            <div className="flex">
+            <div className="flex justify-between">
               <h1 className="text-3xl font-bold mb-6">All Products</h1>
+              <DropdownButton setSortOrder={setSortOrder}/>
             </div>
 
-            <div className="flex flex-wrap justify-between items-center gap-x-20 gap-y-40">
-              {productsData?.map((product) => (
+            <div className={classNames(styles["product__list"])}>
+              {sortedProducts?.map((product) => (
                 <Card
                   key={product.id}
-                  className="w-full md:w-[350px] h-[350px]"
+                  className={styles["card"]}
                 >
                   <Link to={`/product/${product.productId}`} className="block">
                     <SkeletonWrapper
@@ -54,7 +67,7 @@ const ProductListPage: React.FC<Props> = () => {
                       <img
                         src={product.thumbnailUrl}
                         alt={product.name}
-                        className="w-full h-66 object-cover"
+                        className={classNames(styles["card__img"], "w-full h-66 object-cover")}
                       />
                     </SkeletonWrapper>
 

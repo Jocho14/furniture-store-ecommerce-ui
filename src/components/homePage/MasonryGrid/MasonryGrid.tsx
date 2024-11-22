@@ -21,7 +21,7 @@ const MasonryGrid: React.FC<MasonryGridProps> = ({ content }) => {
         content.imageUrls.map((imageUrl, index) => {
           if ((index === 3 && !isMobile) || (isMobile && index === 5)) {
             return (
-              <Link to={`/product?categories=${content.name}`}>
+              <Link to={`/product?categories=${content.name}`} key={imageUrl}>
                 <div
                   className={classNames(
                     styles["masonry-grid__discount-info"],
@@ -37,7 +37,7 @@ const MasonryGrid: React.FC<MasonryGridProps> = ({ content }) => {
           }
           return (
             <img
-              key={index}
+              key={imageUrl}
               className={styles["masonry-grid__item"]}
               src={imageUrl}
               alt={content.name}

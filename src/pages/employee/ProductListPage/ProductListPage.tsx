@@ -11,7 +11,7 @@ import { useHeader } from "@/context/employee/HeaderContext";
 const ProductListPage = () => {
   const { setMode, setProductCount } = useHeader();
   const { data: productsData } = useQuery<ProductData[]>({
-    queryKey: ["products"],
+    queryKey: ["employeeProductList"],
     queryFn: () => getAllProductsForProductList(),
     staleTime: 1000 * 60 * 5,
   });

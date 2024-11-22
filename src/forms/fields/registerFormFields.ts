@@ -1,4 +1,10 @@
 export const registerFormFields = [
+  {
+    name: "secret",
+    type: "password",
+    label: "Secret employee key",
+    optional: true,
+  },
   { name: "firstName", type: "text", label: "First name" },
   { name: "lastName", type: "text", label: "Last name" },
   { name: "email", type: "email", label: "E-mail" },

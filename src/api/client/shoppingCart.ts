@@ -62,5 +62,5 @@ export const getShoppingCartProductsPrice = async (
     }
   });
 
-  return totalSum;
+  return Number(parseFloat(totalSum.toString()).toFixed(2));
 };

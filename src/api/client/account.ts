@@ -19,7 +19,6 @@ export const loginUser = async (accountLoginDto: AccountLoginDto) => {
     { withCredentials: true }
   );
 
-  console.log(response.data.message);
   return response.data;
 };
 
