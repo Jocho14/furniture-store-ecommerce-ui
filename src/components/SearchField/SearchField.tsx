@@ -35,17 +35,19 @@ const SearchField: React.FC<SearchFieldProps> = ({
     <div className={styles["search-field"]}>
       {isSearching ? (
         <div className="flex flex-col gap-5">
-          {searchedProducts?.map((product) => (
-            <SkeletonWrapper
-              loading={searchedProductsLoading}
-              className="w-[60px] h-[27px]"
-            >
-              <SearchedProduct
-                {...product}
-                link={`/product/${product.productId}`}
-              />
-            </SkeletonWrapper>
-          ))}
+          {Array.isArray(searchedProducts)
+            ? searchedProducts.map((product) => (
+                <SkeletonWrapper
+                  loading={searchedProductsLoading}
+                  className="w-[60px] h-[27px]"
+                >
+                  <SearchedProduct
+                    {...product}
+                    link={`/product/${product.productId}`}
+                  />
+                </SkeletonWrapper>
+              ))
+            : null}
         </div>
       ) : (
         proposedSearches.map((search) => {

@@ -9,7 +9,7 @@ import { MenuItem } from "@/interfaces/MenuItem";
 
 const title = "LOGO";
 const primaryGroup: MenuItem[] = [
-  { icon: <ViewGrid />, name: "All products", link: "/all-products" },
+  { icon: <ViewGrid />, name: "All products", link: "/product" },
   { icon: <Percentage />, name: "Offers", link: "/offers" },
   { icon: <BrightStar />, name: "Inspirations", link: "/inspirations" },
   { icon: <DesignPencil />, name: "Designing", link: "/designing" },

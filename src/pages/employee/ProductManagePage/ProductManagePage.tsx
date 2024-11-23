@@ -20,8 +20,10 @@ import ImageUploader from "@/components/ImageUploader/ImageUploader";
 import CollapsibleCard from "@/components/CollapsibleCard/CollapsibleCard";
 import CategorySelect from "@/components/CategorySelect/CategorySelect";
 import { useQueryClient } from "@tanstack/react-query";
+import useMobile from "@/hooks/useMobile";
 
 import styles from "./styles.module.scss";
+import { Button } from "@/components/ui/button";
 
 const categoryList = ["bedroom", "living-room", "kitchen", "bathroom"];
 
@@ -35,6 +37,7 @@ export interface Product {
   price: number;
   description: string;
   quantity: number;
+  category: string;
 }
 
 export interface DetailProductEmployeeDto {
@@ -43,11 +46,13 @@ export interface DetailProductEmployeeDto {
   price: number;
   description: string;
   quantity: number;
+  category: string;
 }
 
 const ProductManagePage: React.FC<ProductManagePageProps> = ({
   isAdding = false,
 }) => {
+  const isMobile = useMobile();
   const { setMode, setSaveFunction, setDeactivateFunction } = useHeader();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -60,9 +65,9 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     price: 0,
     description: "",
     quantity: 0,
+    category: "bedroom",
   });
   const [selectedCategory, setSelectedCategory] = useState<string>("bedroom");
-  selectedCategory;
 
   const { data: product } = useQuery({
     queryKey: ["product", id],
@@ -72,7 +77,9 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
 
   useEffect(() => {
     if (product) {
+      console.log("product: ", product);
       setProductData(product);
+      setSelectedCategory(product.category);
     }
   }, [product]);
 
@@ -80,8 +87,8 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
     setSaveFunction(() => handleSubmit);
     setDeactivateFunction(() => handleDeactivate);
     return () => {
-      setSaveFunction(() => { });
-      setDeactivateFunction(() => { });
+      setSaveFunction(() => {});
+      setDeactivateFunction(() => {});
     };
   }, [productData]);
 
@@ -110,9 +117,9 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
         price: 0,
         description: "",
         quantity: 0,
+        category: "bedroom",
       });
       navigate("/employee/product/list");
-
     },
     onError: (error) => {
       console.error("Error adding product:", error);
@@ -139,6 +146,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
           </div>
         ),
       });
+      navigate("/employee/product/list");
     },
     onError: (error) => {
       console.error("Error updating product:", error);
@@ -189,6 +197,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
       price: productData.price,
       description: productData.description,
       quantity: productData.quantity,
+      category: selectedCategory,
     };
     isAdding
       ? mutationAdd.mutate(detailProductEmployeeDto)
@@ -202,6 +211,10 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
   const handleCategoryChange = (value: string) => {
     setSelectedCategory(value);
   };
+
+  useEffect(() => {
+    selectedCategory && handleInputChange("category", selectedCategory);
+  }, [selectedCategory]);
 
   return (
     <div className={styles["product-manage-page"]}>
@@ -226,6 +239,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
             <CategorySelect
               categories={categoryList}
               onChange={handleCategoryChange}
+              initialCategory={product ? product.category : undefined}
             />
           </CardContent>
           <CardContent>
@@ -267,7 +281,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
           </CardContent>
         </CollapsibleCard>
 
-        {/* <button onClick={handleSubmit}>Save changes</button> */}
+        {isMobile && <Button onClick={handleSubmit}>Save changes</Button>}
       </div>
     </div>
   );
