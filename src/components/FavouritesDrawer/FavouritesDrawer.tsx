@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Minus, Plus } from "lucide-react";
+
+import FavouriteProduct from "../FavouriteProduct/FavouriteProduct";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -13,62 +14,71 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 
+import { Link } from "react-router-dom";
+
+import { useQuery } from "@tanstack/react-query";
+import { getAllFavourites } from "@/api/client/products";
+
+import { ScrollArea, ScrollBar } from "@/components/ui/scrollArea";
+
 interface FavouritesDrawerProps {
   trigger?: React.ReactNode;
 }
 
 const FavouritesDrawer: React.FC<FavouritesDrawerProps> = ({ trigger }) => {
-  const [goal, setGoal] = React.useState(350);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const { data: favouriteProducts } = useQuery({
+    queryFn: () => getAllFavourites(),
+    queryKey: ["favouriteProducts"],
+  });
 
-  function onClick(adjustment: number) {
-    setGoal(Math.max(200, Math.min(400, goal + adjustment)));
-  }
+  const handleProductClick = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <Drawer>
+    <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger asChild>{trigger ? trigger : "Open"}</DrawerTrigger>
       <DrawerContent>
-        <div className="mx-auto w-full max-w-sm">
+        <div className="w-full">
           <DrawerHeader>
-            <DrawerTitle>Move Goal</DrawerTitle>
-            <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+            <DrawerTitle className="text-center">
+              Favourite Products
+            </DrawerTitle>
+            <DrawerDescription className="text-center">
+              Here are products that you might want to buy.
+            </DrawerDescription>
           </DrawerHeader>
-          <div className="p-4 pb-0">
-            <div className="flex items-center justify-center space-x-2">
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8 shrink-0 rounded-full"
-                onClick={() => onClick(-10)}
-                disabled={goal <= 200}
-              >
-                <Minus className="h-4 w-4" />
-                <span className="sr-only">Decrease</span>
-              </Button>
-              <div className="flex-1 text-center">
-                <div className="text-7xl font-bold tracking-tighter">
-                  {goal}
-                </div>
-                <div className="text-[0.70rem] uppercase text-muted-foreground">
-                  Calories/day
-                </div>
+          <div className="p-4 pb-0 w-full">
+            <ScrollArea className="w-full whitespace-nowrap rounded-md border">
+              <div className="flex w-full justify-center">
+                {Array.isArray(favouriteProducts) ? (
+                  favouriteProducts?.map((product: any) => (
+                    <Link
+                      key={product.productId}
+                      to={`/product/${product.productId}`}
+                      onClick={handleProductClick}
+                    >
+                      <FavouriteProduct
+                        name={product.name}
+                        thumbnailUrl={product.thumbnailUrl}
+                      />
+                    </Link>
+                  ))
+                ) : (
+                  <div className="text-center w-full">
+                    No favourite products
+                  </div>
+                )}
               </div>
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8 shrink-0 rounded-full"
-                onClick={() => onClick(10)}
-                disabled={goal >= 400}
-              >
-                <Plus className="h-4 w-4" />
-                <span className="sr-only">Increase</span>
-              </Button>
-            </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
           </div>
-          <DrawerFooter>
-            <Button>Submit</Button>
+          <DrawerFooter className="flex items-center">
             <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline" className="w-[300px]">
+                Close
+              </Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
 import {
   CheckCircleSolid,
   XmarkCircleSolid,
   Heart,
   Trash,
+  HeartSolid,
 } from "iconoir-react";
 import { toast } from "sonner";
+
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
+import {
+  addToFavorites,
+  removeFromFavorites,
+  checkFavourite,
+} from "@/api/client/products";
 
 import SkeletonWrapper from "@/components/SkeletonWrapper/SkeletonWrapper";
 import QuantityStepper from "@/components/QuantityStepper/QuantityStepper";
@@ -15,8 +24,12 @@ import ActionIcon from "@/components/ActionIcon/ActionIcon";
 import { ShoppingCartProductProps } from "@/interfaces/Product";
 
 import styles from "./styles.module.scss";
+import { Link } from "react-router-dom";
 
 const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
+  const [isFavourite, setIsFavourite] = React.useState(false);
+  const queryClient = useQueryClient();
+
   const handleDecrement = () => {
     props.onQuantityChange(props.productId, Math.max(0, props.quantity - 1));
   };
@@ -36,6 +49,43 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
     }
   };
 
+  const { data: isFavouriteData } = useQuery({
+    queryKey: ["isFavourite", props.productId],
+    queryFn: () => checkFavourite(props.productId),
+  });
+
+  useEffect(() => {
+    if (isFavouriteData) {
+      setIsFavourite(true);
+    } else {
+      setIsFavourite(false);
+    }
+  }, [isFavouriteData]);
+
+  const addMutation = useMutation({
+    mutationFn: () => addToFavorites(props.productId),
+    onSuccess: () => {
+      console.log("Product added successfully:");
+      setIsFavourite(true);
+      queryClient.invalidateQueries({ queryKey: ["favouriteProducts"] });
+    },
+    onError: (error) => {
+      console.error("Error adding product:", error);
+    },
+  });
+
+  const removeMutation = useMutation({
+    mutationFn: () => removeFromFavorites(props.productId),
+    onSuccess: () => {
+      console.log("Product added successfully:");
+      setIsFavourite(false);
+      queryClient.invalidateQueries({ queryKey: ["favouriteProducts"] });
+    },
+    onError: (error) => {
+      console.error("Error adding product:", error);
+    },
+  });
+
   return (
     <div className={classNames(styles["product__container"])}>
       <div className={styles["product__container__image__wrapper"]}>
@@ -43,11 +93,13 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
           className="w-[100%] h-[100%]"
           loading={props.detailsLoading}
         >
-          <img
-            className={styles["product__container__image"]}
-            src={props.thumbnailUrl}
-            alt={props.name}
-          />
+          <Link to={`/product/${props.productId}`}>
+            <img
+              className={styles["product__container__image"]}
+              src={props.thumbnailUrl}
+              alt={props.name}
+            />
+          </Link>
         </SkeletonWrapper>
       </div>
 
@@ -131,13 +183,24 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
           <div className={styles["product__container__actions__user-tools"]}>
             <ActionIcon
               icon={
-                <Heart
-                  className={
-                    styles["product__container__actions__user-tools__icon"]
-                  }
-                />
+                isFavourite ? (
+                  <HeartSolid
+                    className={
+                      styles["product__container__actions__user-tools__icon"]
+                    }
+                  />
+                ) : (
+                  <Heart
+                    className={
+                      styles["product__container__actions__user-tools__icon"]
+                    }
+                  />
+                )
               }
               size="small"
+              onClick={() => {
+                isFavourite ? removeMutation.mutate() : addMutation.mutate();
+              }}
             />
 
             <ActionIcon

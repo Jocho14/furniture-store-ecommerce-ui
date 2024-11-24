@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import classNames from "classnames";
@@ -11,11 +11,17 @@ import ProductDetailImages from "@/components/ProductDetailImages/ProductDetailI
 import { getProductDetails } from "@/api/client/products";
 import ReviewsDialog from "@/components/ReviewsDialog/ReviewsDialog";
 import { Separator } from "@/components/ui/separator";
-import { ArrowRight } from "iconoir-react";
+import { ArrowRight, Heart, HeartSolid } from "iconoir-react";
+import ActionIcon from "@/components/ActionIcon/ActionIcon";
 
 import useMobile from "@/hooks/useMobile";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCart } from "@/context/client/CartContext";
+import {
+  addToFavorites,
+  removeFromFavorites,
+  checkFavourite,
+} from "@/api/client/products";
 
 import styles from "./styles.module.scss";
 import { Button } from "@/components/ui/button";
@@ -30,6 +36,8 @@ interface Product {
 const ProductDetailPage = () => {
   const { productId } = useParams<{ productId: string }>();
   const productIdNumber = Number(productId);
+  const [isFavourite, setIsFavourite] = useState(false);
+  const queryClient = useQueryClient();
 
   const navigate = useNavigate();
   const isMobile = useMobile();
@@ -58,6 +66,43 @@ const ProductDetailPage = () => {
     }
   };
 
+  const { data: isFavouriteData } = useQuery({
+    queryKey: ["isFavourite", productId],
+    queryFn: () => checkFavourite(Number(productId)),
+  });
+
+  useEffect(() => {
+    if (isFavouriteData) {
+      setIsFavourite(true);
+    } else {
+      setIsFavourite(false);
+    }
+  }, [isFavouriteData]);
+
+  const addMutation = useMutation({
+    mutationFn: () => addToFavorites(Number(productId)),
+    onSuccess: () => {
+      console.log("Product added successfully:");
+      setIsFavourite(true);
+      queryClient.invalidateQueries({ queryKey: ["favouriteProducts"] });
+    },
+    onError: (error) => {
+      console.error("Error adding product:", error);
+    },
+  });
+
+  const removeMutation = useMutation({
+    mutationFn: () => removeFromFavorites(Number(productId)),
+    onSuccess: () => {
+      console.log("Product added successfully:");
+      setIsFavourite(false);
+      queryClient.invalidateQueries({ queryKey: ["favouriteProducts"] });
+    },
+    onError: (error) => {
+      console.error("Error adding product:", error);
+    },
+  });
+
   return (
     <div className={styles["product-detail-page__wrapper"]}>
       <CartActionToast />
@@ -78,9 +123,31 @@ const ProductDetailPage = () => {
             "align-top"
           )}
         >
-          <h3 className={styles["product-detail-page__details__name"]}>
-            {product?.name}
-          </h3>
+          <div className="flex justify-between">
+            <h3 className={styles["product-detail-page__details__name"]}>
+              {product?.name}
+            </h3>
+            <ActionIcon
+              icon={
+                isFavourite ? (
+                  <HeartSolid
+                    className={
+                      styles["product__container__actions__user-tools__icon"]
+                    }
+                  />
+                ) : (
+                  <Heart
+                    className={
+                      styles["product__container__actions__user-tools__icon"]
+                    }
+                  />
+                )
+              }
+              onClick={() => {
+                isFavourite ? removeMutation.mutate() : addMutation.mutate();
+              }}
+            />
+          </div>
 
           <h2 className={styles["product-detail-page__details__price"]}>
             {product?.price}zł

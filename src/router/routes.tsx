@@ -54,6 +54,10 @@ const EmployeeAuthPage = lazy(
   () => import("../pages/employee/AuthPage/AuthPage")
 );
 
+const OrderManagePage = lazy(
+  () => import("../pages/employee/OrderManagePage/OrderManagePage")
+);
+
 const routes = [
   {
     path: "/",
@@ -102,6 +106,10 @@ const routes = [
       {
         path: "order/list",
         element: <OrderListPage />,
+      },
+      {
+        path: "order/:id/manage",
+        element: <OrderManagePage />,
       },
       {
         path: "home",

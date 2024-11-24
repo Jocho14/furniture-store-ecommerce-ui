@@ -32,7 +32,7 @@ const DropdownFilterButton = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    console.log("params: ", params);
+
     if (selectedCategories.length > 0) {
       params.set("categories", selectedCategories.join(","));
     } else {

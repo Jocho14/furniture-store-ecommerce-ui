@@ -54,3 +54,47 @@ export const addReview = async (
   );
   return response.data;
 };
+
+export const addToFavorites = async (id: number) => {
+  const response = await axios.post(
+    `${BACKEND_URL}/clients-favourites-products/${id}/add`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
+export const removeFromFavorites = async (id: number) => {
+  const response = await axios.post(
+    `${BACKEND_URL}/clients-favourites-products/${id}/remove`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+  return response.data;
+};
+
+export const checkFavourite = async (id: number) => {
+  const response = await axios.get(
+    `${BACKEND_URL}/clients-favourites-products/${id}/check`,
+    {
+      withCredentials: true,
+    }
+  );
+
+  return response.data;
+};
+
+export const getAllFavourites = async () => {
+  const response = await axios.get(
+    `${BACKEND_URL}/clients-favourites-products/all`,
+    {
+      withCredentials: true,
+    }
+  );
+
+  return response.data;
+};

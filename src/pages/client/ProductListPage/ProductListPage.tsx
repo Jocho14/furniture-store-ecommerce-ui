@@ -32,21 +32,18 @@ const ProductListPage: React.FC<Props> = () => {
     staleTime: 1000 * 60 * 5,
   });
 
-  console.log("productsData: ", productsData);
-
   useEffect(() => {
-    console.log("used effect");
     const params = new URLSearchParams(location.search);
     const categories = params.get("categories")?.split(",") || [];
     if (productsData) {
       const filtered = productsData.filter((product) =>
         categories.length > 0 ? categories.includes(product.category) : true
       );
-      console.log("filtered: ", filtered);
+
       setFilteredProducts(filtered);
     }
   }, [location.search, productsData]);
-  console.log("location search: ", location.search);
+
   const sortedProducts = filteredProducts.slice().sort((a, b) => {
     if (sortOrder === "asc") {
       return a.price - b.price;

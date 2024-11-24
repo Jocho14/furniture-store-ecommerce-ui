@@ -10,12 +10,14 @@ import styles from "./styles.module.scss";
 
 interface CollapsibleCardProps {
   title: string;
+  icon?: React.ReactNode;
   children: React.ReactNode;
 }
 
 const CollapsibleCard: React.FC<CollapsibleCardProps> = ({
   title,
   children,
+  icon,
 }) => {
   const [isExpanded, setIsExpanded] = useState(true);
   const toggleExpand = () => setIsExpanded((prev) => !prev);
@@ -29,7 +31,10 @@ const CollapsibleCard: React.FC<CollapsibleCardProps> = ({
           "h-[50px] p-6 flex items-center justify-between cursor-pointer"
         )}
       >
-        <CardTitle>{title}</CardTitle>
+        <div className="flex">
+          <CardTitle className="mr-2">{title}</CardTitle> {icon}
+        </div>
+
         {isExpanded ? <NavArrowUp /> : <NavArrowDown />}
       </div>
       <Separator />
