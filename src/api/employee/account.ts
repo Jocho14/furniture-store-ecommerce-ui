@@ -26,6 +26,6 @@ export const employeeBasicInfo = async () => {
   const response = await axios.get(`${BACKEND_URL}/users/employee-basic-info`, {
     withCredentials: true,
   });
-  console.log(response.data);
+
   return response.data;
 };

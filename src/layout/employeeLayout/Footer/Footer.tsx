@@ -1,7 +1,8 @@
 import React from "react";
 import classNames from "classnames";
-import styles from "./styles.module.scss";
+
 import { iconsArray } from "@/utils/iconsArray";
+import styles from "./styles.module.scss";
 
 interface Props {}
 

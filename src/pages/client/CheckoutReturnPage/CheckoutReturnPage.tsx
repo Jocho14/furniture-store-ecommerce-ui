@@ -1,8 +1,10 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+
 import { fetchSessionStatus } from "@/api/client/payment";
-import CheckoutSuccessPage from "../CheckoutSuccessPage/CheckoutSuccessPage";
+
+import CheckoutSuccessPage from "@/pages/client/CheckoutSuccessPage/CheckoutSuccessPage";
 
 const CheckoutReturnPage: React.FC = () => {
   const queryString = window.location.search;

@@ -14,9 +14,6 @@ const DeliveryDetailsPage = lazy(
   () => import("../pages/client/DeliveryDetailsPage/DeliveryDetailsPage")
 );
 
-// const AccountPage = lazy(() => import("../pages/AccountPage"));
-// const ManagementPage = lazy(() => import("../pages/ManagementPage"));
-
 const CheckoutPage = lazy(
   () => import("../pages/client/CheckoutPage/CheckoutPage")
 );
@@ -28,11 +25,6 @@ const CheckoutReturnPage = lazy(
 const ProductListPage = lazy(
   () => import("../pages/client/ProductListPage/ProductListPage")
 );
-
-// const ReturnPage = lazy(() => import("../pages/ReturnPage"));
-// const SuccessPage = lazy(() => import("../pages/SuccessPage"));
-
-// const NotFoundPage = lazy(() => import("../pages/NotFoundPage"));
 
 // employee side:
 const EmployeeMain = lazy(() => import("../layout/employeeLayout/Main/Main"));
@@ -78,8 +70,6 @@ const routes = [
       { path: "order/checkout/:orderId", element: <CheckoutPage /> },
       { path: "order/delivery-details", element: <DeliveryDetailsPage /> },
       { path: "return", element: <CheckoutReturnPage /> },
-      //   { path: "account", element: <AccountPage /> },
-      //   { path: "management", element: <ManagementPage /> },
     ],
   },
 

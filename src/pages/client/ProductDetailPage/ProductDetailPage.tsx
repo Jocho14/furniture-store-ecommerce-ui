@@ -1,30 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
 import { toast } from "sonner";
 
-import Grid from "@/components/Grid/Grid";
-import QuantityStepper from "@/components/QuantityStepper/QuantityStepper";
-import CartActionToast from "@/components/CartActionToast/CartActionToast";
-import ProductDetailImages from "@/components/ProductDetailImages/ProductDetailImages";
-import { getProductDetails } from "@/api/client/products";
-import ReviewsDialog from "@/components/ReviewsDialog/ReviewsDialog";
-import { Separator } from "@/components/ui/separator";
-import { ArrowRight, Heart, HeartSolid } from "iconoir-react";
-import ActionIcon from "@/components/ActionIcon/ActionIcon";
-
-import useMobile from "@/hooks/useMobile";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useCart } from "@/context/client/CartContext";
 import {
   addToFavorites,
   removeFromFavorites,
   checkFavourite,
 } from "@/api/client/products";
+import { getProductDetails } from "@/api/client/products";
 
-import styles from "./styles.module.scss";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+
+import Grid from "@/components/Grid/Grid";
+import ActionIcon from "@/components/ActionIcon/ActionIcon";
+import QuantityStepper from "@/components/QuantityStepper/QuantityStepper";
+import CartActionToast from "@/components/CartActionToast/CartActionToast";
+import ProductDetailImages from "@/components/ProductDetailImages/ProductDetailImages";
+import ReviewsDialog from "@/components/ReviewsDialog/ReviewsDialog";
+
+import { useCart } from "@/context/client/CartContext";
+
+import useMobile from "@/hooks/useMobile";
+
+import { ArrowRight, Heart, HeartSolid } from "iconoir-react";
+import styles from "./styles.module.scss";
 
 interface Product {
   name: string;
@@ -82,7 +84,6 @@ const ProductDetailPage = () => {
   const addMutation = useMutation({
     mutationFn: () => addToFavorites(Number(productId)),
     onSuccess: () => {
-      console.log("Product added successfully:");
       setIsFavourite(true);
       queryClient.invalidateQueries({ queryKey: ["favouriteProducts"] });
     },
@@ -94,7 +95,6 @@ const ProductDetailPage = () => {
   const removeMutation = useMutation({
     mutationFn: () => removeFromFavorites(Number(productId)),
     onSuccess: () => {
-      console.log("Product added successfully:");
       setIsFavourite(false);
       queryClient.invalidateQueries({ queryKey: ["favouriteProducts"] });
     },

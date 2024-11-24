@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-
 import classNames from "classnames";
+
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -10,8 +10,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { type CarouselApi } from "@/components/ui/carousel";
+import DotPageIndicator from "@/components/DotPageIndicator/DotPageIndicator";
+
 import useMobile from "@/hooks/useMobile";
-import DotPageIndicator from "../DotPageIndicator/DotPageIndicator";
 
 import styles from "./styles.module.scss";
 

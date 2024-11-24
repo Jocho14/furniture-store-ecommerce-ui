@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { Plus } from "iconoir-react";
-
 import { Link } from "react-router-dom";
+
+import { Button } from "@/components/ui/button";
+
+import { Plus } from "iconoir-react";
 
 const HomePage = () => {
   return (

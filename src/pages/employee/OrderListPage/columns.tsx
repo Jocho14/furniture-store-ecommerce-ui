@@ -1,9 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { ColumnDef } from "@tanstack/react-table";
 
 import { enableAdvancedHeader } from "@/utils/table/formats";
 import { createBaseColumn } from "@/config/table/baseColumn";
 import { OrderData } from "./TData";
-import { useNavigate } from "react-router-dom";
 
 export const columns: ColumnDef<OrderData>[] = [
   createBaseColumn<OrderData>(),

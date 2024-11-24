@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import classNames from "classnames";
+
 import { NavArrowLeft, NavArrowRight } from "iconoir-react";
+
 import styles from "./styles.module.scss";
 
 interface HorizontalScrollContainerProps {

@@ -26,7 +26,7 @@ export const authStatus = async () => {
   const response = await axios.get(`${BACKEND_URL}/auth/status`, {
     withCredentials: true,
   });
-  console.log("RESP DATAL", response.data);
+
   return response.data;
 };
 
@@ -34,6 +34,6 @@ export const accountBasicInfo = async () => {
   const response = await axios.get(`${BACKEND_URL}/users/account-basic-info`, {
     withCredentials: true,
   });
-  console.log(response.data);
+
   return response.data;
 };

@@ -10,6 +10,6 @@ export const fetchSessionStatus = async (sessionId: string | null) => {
       params: { session_id: sessionId },
     }
   );
-  console.log("data ", data);
+
   return data;
 };

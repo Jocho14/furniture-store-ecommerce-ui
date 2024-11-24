@@ -1,6 +1,12 @@
 import React from "react";
-import { FormField, FormItem, FormLabel, FormControl } from "../ui/form";
-import { Input } from "../ui/input";
+
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 interface Props {
   control: any;

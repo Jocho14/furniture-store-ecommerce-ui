@@ -1,3 +1,5 @@
+import { MenuItem } from "@/interfaces/MenuItem";
+
 import {
   ViewGrid,
   Percentage,
@@ -5,7 +7,6 @@ import {
   Phone,
   DesignPencil,
 } from "iconoir-react";
-import { MenuItem } from "@/interfaces/MenuItem";
 
 const title = "LOGO";
 const primaryGroup: MenuItem[] = [

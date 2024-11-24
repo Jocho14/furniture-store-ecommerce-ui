@@ -1,17 +1,15 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 
-import { Link } from "react-router-dom";
-
-import { ArrowRight } from "iconoir-react";
-
-import SkeletonWrapper from "../SkeletonWrapper/SkeletonWrapper";
-
+import SkeletonWrapper from "@/components/SkeletonWrapper/SkeletonWrapper";
 import SearchedProduct, {
   SearchedProductProps,
-} from "../SearchedProduct/SearchedProduct";
+} from "@/components/SearchedProduct/SearchedProduct";
+
+import { ArrowRight } from "iconoir-react";
+import styles from "./styles.module.scss";
 
 interface SearchFieldProps {
   isSearching: boolean;

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -17,7 +18,6 @@ import { loginEmployee } from "@/api/employee/account";
 import Loader from "@/components/Loader/Loader";
 
 import { useToast } from "@/components/hooks/use-toast";
-import { useNavigate } from "react-router-dom";
 
 interface LoginFormProps {
   role: "client" | "employee";

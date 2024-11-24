@@ -23,7 +23,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     retry: false,
   });
 
-  console.log("auth status data from context: ", authStatusData);
   const account = authStatusData || {};
 
   return (

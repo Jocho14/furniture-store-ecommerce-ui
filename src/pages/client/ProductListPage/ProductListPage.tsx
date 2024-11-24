@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
-
-import classNames from "classnames";
-import useMobile from "@/hooks/useMobile";
-
 import { useLocation, Link } from "react-router-dom";
-
-import Grid from "@/components/Grid/Grid";
-import { Card, CardContent } from "@/components/ui/card";
+import { useQuery } from "@tanstack/react-query";
+import classNames from "classnames";
 
 import { getAllProductsForProductList } from "@/api/common/products";
+
+import useMobile from "@/hooks/useMobile";
+
+import { Card, CardContent } from "@/components/ui/card";
+
+import Grid from "@/components/Grid/Grid";
 import SkeletonWrapper from "@/components/SkeletonWrapper/SkeletonWrapper";
-import styles from "./styles.module.scss";
-import { useQuery } from "@tanstack/react-query";
 import DropdownSortButton from "@/components/DropdownSortButton/DropdownSortButton";
 import DropdownFilterButton from "@/components/DropdownFilterButton/DropdownFilterButton";
-import { Separator } from "@/components/ui/separator";
+
+import styles from "./styles.module.scss";
 
 interface Props {}
 

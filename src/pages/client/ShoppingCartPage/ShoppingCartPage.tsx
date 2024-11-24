@@ -1,18 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classNames from "classnames";
+
+import { Button } from "@/components/ui/button";
 
 import Grid from "@/components/Grid/Grid";
 import ShoppingCartProduct from "@/components/ShoppingCartProduct/ShoppingCartProduct";
 import CheckoutButton from "@/components/CheckoutButton/CheckoutButton";
 import CartActionToast from "@/components/CartActionToast/CartActionToast";
-import { ShoppingCartProductProps } from "@/interfaces/Product";
 
 import { Quantities, Availability } from "./ShoppingCartPageContainer";
-import { Button } from "@/components/ui/button";
+
+import { ShoppingCartProductProps } from "@/interfaces/Product";
 
 import styles from "./styles.module.scss";
-
-import { Link } from "react-router-dom";
 
 interface ShoppingCartPageProps {
   isMobile: boolean;

@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -6,16 +8,14 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import FormFieldComponent from "@/components/FormFieldComponent/FormFieldComponent";
 
-import { DeliveryTruck, User } from "iconoir-react";
-
 import { deliveryDetailsFormSchema } from "@/forms/schemas/deliveryDetailsSchema";
 import { deliveryDetailsFormFields } from "@/forms/fields/deliveryDetailsFormFields";
 
-import { useMutation } from "@tanstack/react-query";
 import { createGuestOrder } from "@/api/guest/orders";
 
 import { useCart } from "@/context/client/CartContext";
-import { useNavigate } from "react-router-dom";
+
+import { DeliveryTruck, User } from "iconoir-react";
 
 import {
   CreateGuestOrderDto,
@@ -81,7 +81,6 @@ export const DeliveryDetailsForm = () => {
     mutationFn: () =>
       createGuestOrder(createOrderPayload(form.getValues(), cart)),
     onSuccess: (orderId: number) => {
-      console.log("Product added successfully:", orderId);
       navigate(`/order/checkout/${orderId}`);
     },
     onError: (error) => {

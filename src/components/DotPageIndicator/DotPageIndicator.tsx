@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import _ from "lodash";
+
 import styles from "./styles.module.scss";
 
 const DOT_DIAMETER = 8;

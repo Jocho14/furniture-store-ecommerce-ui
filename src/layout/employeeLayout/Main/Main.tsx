@@ -1,16 +1,18 @@
 import React from "react";
-
 import { Outlet } from "react-router-dom";
 
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
 //import Footer from "../Footer/Footer";
 
-import styles from "./styles.module.scss";
-import useMobile from "@/hooks/useMobile";
-import SearchProvider from "@/context/employee/SearchContext";
 import { Toaster } from "@/components/ui/toaster";
+
+import SearchProvider from "@/context/employee/SearchContext";
 import { HeaderProvider } from "@/context/employee/HeaderContext";
+
+import useMobile from "@/hooks/useMobile";
+
+import styles from "./styles.module.scss";
 
 interface Props {}
 

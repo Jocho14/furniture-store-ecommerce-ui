@@ -1,5 +1,15 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
+import { toast } from "sonner";
+
+import {
+  addToFavorites,
+  removeFromFavorites,
+  checkFavourite,
+} from "@/api/client/products";
+
 import {
   CheckCircleSolid,
   XmarkCircleSolid,
@@ -7,15 +17,6 @@ import {
   Trash,
   HeartSolid,
 } from "iconoir-react";
-import { toast } from "sonner";
-
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
-import {
-  addToFavorites,
-  removeFromFavorites,
-  checkFavourite,
-} from "@/api/client/products";
 
 import SkeletonWrapper from "@/components/SkeletonWrapper/SkeletonWrapper";
 import QuantityStepper from "@/components/QuantityStepper/QuantityStepper";
@@ -24,7 +25,6 @@ import ActionIcon from "@/components/ActionIcon/ActionIcon";
 import { ShoppingCartProductProps } from "@/interfaces/Product";
 
 import styles from "./styles.module.scss";
-import { Link } from "react-router-dom";
 
 const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
   const [isFavourite, setIsFavourite] = React.useState(false);
@@ -65,7 +65,6 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
   const addMutation = useMutation({
     mutationFn: () => addToFavorites(props.productId),
     onSuccess: () => {
-      console.log("Product added successfully:");
       setIsFavourite(true);
       queryClient.invalidateQueries({ queryKey: ["favouriteProducts"] });
     },
@@ -77,7 +76,6 @@ const ShoppingCartProduct: React.FC<ShoppingCartProductProps> = (props) => {
   const removeMutation = useMutation({
     mutationFn: () => removeFromFavorites(props.productId),
     onSuccess: () => {
-      console.log("Product added successfully:");
       setIsFavourite(false);
       queryClient.invalidateQueries({ queryKey: ["favouriteProducts"] });
     },

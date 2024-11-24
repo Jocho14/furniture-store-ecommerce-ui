@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useParams, useNavigate } from "react-router-dom";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 import {
   addProduct,
@@ -10,20 +10,21 @@ import {
 } from "@/api/employee/products";
 
 import { useHeader } from "@/context/employee/HeaderContext";
-import { useNavigate } from "react-router-dom";
+
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/components/hooks/use-toast";
+
 import ImageUploader from "@/components/ImageUploader/ImageUploader";
 import CollapsibleCard from "@/components/CollapsibleCard/CollapsibleCard";
 import CategorySelect from "@/components/CategorySelect/CategorySelect";
-import { useQueryClient } from "@tanstack/react-query";
+
+import { useToast } from "@/components/hooks/use-toast";
 import useMobile from "@/hooks/useMobile";
 
 import styles from "./styles.module.scss";
-import { Button } from "@/components/ui/button";
 
 const categoryList = ["bedroom", "living-room", "kitchen", "bathroom"];
 
@@ -77,7 +78,6 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
 
   useEffect(() => {
     if (product) {
-      console.log("product: ", product);
       setProductData(product);
       setSelectedCategory(product.category);
     }

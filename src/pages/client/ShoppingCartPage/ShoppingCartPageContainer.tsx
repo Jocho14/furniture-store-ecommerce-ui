@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import ShoppingCartPage from "./ShoppingCartPage";
-
-import useMobile from "@/hooks/useMobile";
-import useDebounce from "@/hooks/useDebounce";
-import { useCart } from "@/context/client/CartContext";
-
-import { ShoppingCartProductProps } from "@/interfaces/Product";
-
 import {
   getShoppingCartProductsPrice,
   getProductPreviews,
   getQuantities,
 } from "@/api/client/shoppingCart";
+
+import ShoppingCartPage from "./ShoppingCartPage";
+
+import { useCart } from "@/context/client/CartContext";
+
+import useMobile from "@/hooks/useMobile";
+import useDebounce from "@/hooks/useDebounce";
+
+import { ShoppingCartProductProps } from "@/interfaces/Product";
 
 export type Quantities = Record<number, number>;
 export type Availability = Record<number, boolean>;

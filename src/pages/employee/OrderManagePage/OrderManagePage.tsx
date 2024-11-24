@@ -1,5 +1,13 @@
-import React, { useEffect } from "react";
-import styles from "./styles.module.scss";
+import React from "react";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+
+import { getManagedOrderDetails } from "@/api/employee/orders";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+import CollapsibleCard from "@/components/CollapsibleCard/CollapsibleCard";
+import OrderProduct from "@/components/OrderProduct/OrderProduct";
 
 import {
   User,
@@ -10,25 +18,18 @@ import {
   DeliveryTruck,
   Phone,
 } from "iconoir-react";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import CollapsibleCard from "@/components/CollapsibleCard/CollapsibleCard";
-import OrderProduct from "@/components/OrderProduct/OrderProduct";
-import { getManagedOrderDetails } from "@/api/employee/orders";
+import styles from "./styles.module.scss";
 
 interface OrderManagePageProps {}
 
 const OrderManagePage: React.FC<OrderManagePageProps> = () => {
   const { id } = useParams<{ id: string }>();
 
-  const { data: orderData, isLoading: orderDataLoading } = useQuery<any>({
+  const { data: orderData } = useQuery<any>({
     queryKey: ["orderDetailsManaged", id],
     queryFn: () => getManagedOrderDetails(Number(id)),
     enabled: !!id,
   });
-
-  console.log("loading: ", orderDataLoading);
 
   return (
     <div className={styles["order-manage-page"]}>

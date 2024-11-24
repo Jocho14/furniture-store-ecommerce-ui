@@ -1,13 +1,13 @@
 import React from "react";
-
 import classNames from "classnames";
 
-import { useSearch } from "@/context/employee/SearchContext";
-import { Search, Plus } from "iconoir-react";
 import CustomInput from "@/components/CustomInput/CustomInput";
 import ActionIcon from "@/components/ActionIcon/ActionIcon";
+
+import { useSearch } from "@/context/employee/SearchContext";
 import { useHeader } from "@/context/employee/HeaderContext";
 
+import { Search, Plus } from "iconoir-react";
 import styles from "./styles.module.scss";
 
 const BaseNav = () => {

@@ -6,8 +6,6 @@ import { Separator } from "@/components/ui/separator";
 
 import { NavArrowDown, NavArrowUp } from "iconoir-react";
 
-import styles from "./styles.module.scss";
-
 interface CollapsibleCardProps {
   title: string;
   icon?: React.ReactNode;
@@ -26,10 +24,7 @@ const CollapsibleCard: React.FC<CollapsibleCardProps> = ({
     <Card>
       <div
         onClick={toggleExpand}
-        className={classNames(
-          styles["card-header"],
-          "h-[50px] p-6 flex items-center justify-between cursor-pointer"
-        )}
+        className="h-[50px] p-6 flex items-center justify-between cursor-pointer"
       >
         <div className="flex">
           <CardTitle className="mr-2">{title}</CardTitle> {icon}

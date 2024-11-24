@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./styles.module.scss";
 import classNames from "classnames";
 
 import { LoginForm } from "@/forms/LoginForm";
@@ -8,10 +7,13 @@ import { RegisterForm } from "@/forms/RegisterForm";
 import { Lock } from "iconoir-react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import AuthTab from "@/components/AuthTab/AuthTab";
 
 import Grid from "@/components/Grid/Grid";
+import AuthTab from "@/components/AuthTab/AuthTab";
+
 import useMobile from "@/hooks/useMobile";
+
+import styles from "./styles.module.scss";
 
 interface Props {}
 

@@ -1,7 +1,9 @@
 import React from "react";
-import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
+
 import { Button } from "@/components/ui/button";
+
+import styles from "./styles.module.scss";
 
 interface Props {}
 

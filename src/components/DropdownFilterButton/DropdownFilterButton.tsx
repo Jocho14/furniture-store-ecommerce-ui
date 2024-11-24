@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import styles from "./styles.module.scss";
-
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
+import { cn } from "@/lib/utils";
+
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,7 +10,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
 import { Checkbox } from "@/components/ui/checkbox";
 
 const DropdownFilterButton = () => {

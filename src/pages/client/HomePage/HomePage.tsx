@@ -1,14 +1,17 @@
 import React from "react";
 import classNames from "classnames";
+import { useQuery } from "@tanstack/react-query";
+
+import { getMasonryContent } from "@/api/client/products";
+
 import Grid from "@/components/Grid/Grid";
+import Landing from "@/components/Landing/Landing";
 import MasonryGrid from "@/components/homePage/MasonryGrid/MasonryGrid";
 // import HorizontalTiles from "@/components/homePage/HorizontalTiles/HorizontalTiles";
 // import ProductFetcher from "@/components/ProductFetcher/ProductFetcher";
 import useMobile from "@/hooks/useMobile";
 // import HorizontalScrollContainer from "@/components/HorizontalScrollContainer/HorizontalScrollContainer";
-import Landing from "@/components/Landing/Landing";
-import { useQuery } from "@tanstack/react-query";
-import { getMasonryContent } from "@/api/client/products";
+
 import { MasonryContent } from "@/interfaces/Product";
 
 import styles from "./styles.module.scss";

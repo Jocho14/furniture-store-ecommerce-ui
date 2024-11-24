@@ -1,28 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import classNames from "classnames";
 import { toast } from "sonner";
+
+import { getReviews, addReview } from "@/api/client/products";
 
 import {
   AlertDialog,
   AlertDialogContent,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scrollArea";
-import classNames from "classnames";
-import styles from "./styles.module.scss";
-import StarsIndicator from "../StarsIndicator/StarsIndicator";
+
 import Review from "@/components/Review/Review";
-import { useParams } from "react-router-dom";
-import { getReviews } from "@/api/client/products";
-import { ReviewProps } from "@/components/Review/Review";
-import { useQuery, useMutation } from "@tanstack/react-query";
 import ActionIcon from "../ActionIcon/ActionIcon";
-import { Xmark, ArrowLeft } from "iconoir-react";
 import StarRating from "@/components/StarRating/StarRating";
-import { addReview } from "@/api/client/products";
+import { ReviewProps } from "@/components/Review/Review";
+import StarsIndicator from "@/components/StarsIndicator/StarsIndicator";
+
+import { Xmark, ArrowLeft } from "iconoir-react";
+import styles from "./styles.module.scss";
 
 interface ReviewsDialogProps {
   trigger?: React.ReactNode;
@@ -37,7 +38,7 @@ const ReviewsDialog: React.FC<ReviewsDialogProps> = ({
   const [openAddReview, setOpenAddReview] = useState(false);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
-
+  const queryClient = useQueryClient();
   const dialogRef = useRef<HTMLDivElement>(null);
   const { productId } = useParams<{ productId: string }>();
 
@@ -46,15 +47,14 @@ const ReviewsDialog: React.FC<ReviewsDialogProps> = ({
     queryFn: () => getReviews(Number(productId)),
     staleTime: 1000 * 60 * 5,
   });
-  console.log("reviews Data: ", Array.isArray(reviewsData));
 
   const mutationAddReview = useMutation({
     mutationFn: () => addReview(Number(productId), rating, comment),
     onSuccess: (data: any) => {
-      console.log("Review added successfully:", data);
+      queryClient.invalidateQueries({ queryKey: ["reviews"] });
     },
     onError: (error) => {
-      console.error("Error adding product:", error);
+      console.error("Error adding review:", error);
     },
   });
 
@@ -65,7 +65,6 @@ const ReviewsDialog: React.FC<ReviewsDialogProps> = ({
   };
   const handleRatingChange = (newRating: number) => {
     setRating(newRating);
-    console.log("Selected rating:", newRating);
   };
 
   const handleSubmitReview = () => {

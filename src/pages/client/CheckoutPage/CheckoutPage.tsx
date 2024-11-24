@@ -1,12 +1,10 @@
-import React from "react";
-
-interface Props {}
-
-import { useCart } from "@/context/client/CartContext";
-import CheckoutForm from "@/components/CheckoutForm/CheckoutForm";
 import { useParams } from "react-router-dom";
 
-const CheckoutPage: React.FC<Props> = () => {
+import CheckoutForm from "@/components/CheckoutForm/CheckoutForm";
+
+import { useCart } from "@/context/client/CartContext";
+
+const CheckoutPage = () => {
   const { cart } = useCart();
   const { orderId } = useParams<{ orderId: string }>();
 

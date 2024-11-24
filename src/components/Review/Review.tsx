@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import StarsIndicator from "../StarsIndicator/StarsIndicator";
-import ProfileHeader from "../ProfileHeader/ProfileHeader";
+
+import StarsIndicator from "@/components/StarsIndicator/StarsIndicator";
+import ProfileHeader from "@/components/ProfileHeader/ProfileHeader";
 
 export interface ReviewProps {
   reviewId: number;

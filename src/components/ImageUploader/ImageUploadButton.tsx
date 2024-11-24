@@ -4,7 +4,6 @@ import classNames from "classnames";
 import ActionIcon from "@/components/ActionIcon/ActionIcon";
 
 import { Upload } from "iconoir-react";
-
 import styles from "./styles.module.scss";
 
 interface ImageUploadButtonProps {

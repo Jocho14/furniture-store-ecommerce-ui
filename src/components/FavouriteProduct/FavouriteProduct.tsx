@@ -1,15 +1,8 @@
 import React from "react";
+
+import { Card } from "@/components/ui/card";
+
 import styles from "./styles.module.scss";
-
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
-
-interface FavouriteProductProps {}
 
 interface FavouriteProductProps {
   thumbnailUrl: string;

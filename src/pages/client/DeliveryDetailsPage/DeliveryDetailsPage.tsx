@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 
 import {
   Card,
@@ -8,8 +9,8 @@ import {
 } from "@/components/ui/card";
 
 import Grid from "@/components/Grid/Grid";
+
 import useMobile from "@/hooks/useMobile";
-import classNames from "classnames";
 
 import { DeliveryDetailsForm } from "@/forms/DeliveryDetailsForm";
 
@@ -17,7 +18,6 @@ interface DeliveryDetailsPageProps {}
 
 const DeliveryDetailsPage: React.FC<DeliveryDetailsPageProps> = () => {
   const isMobile = useMobile();
-  // const navigate = useNavigate();
 
   return (
     <div>

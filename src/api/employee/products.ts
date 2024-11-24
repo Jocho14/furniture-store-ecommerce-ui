@@ -1,6 +1,5 @@
-import axios from "axios";
-
 import { BACKEND_URL } from "@/config/config";
+import axios from "axios";
 
 import { urlToFile } from "@/utils/urlToFile";
 import { objectToFormData } from "@/utils/objectToFormData";

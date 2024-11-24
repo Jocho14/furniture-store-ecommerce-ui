@@ -1,17 +1,15 @@
 import React from "react";
-import styles from "./styles.module.scss";
-
-import { ArrowDown, ArrowUp } from "iconoir-react";
-
 import { cn } from "@/lib/utils";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+import { ArrowDown, ArrowUp } from "iconoir-react";
 
 interface DropdownSortButtonProps {
   setSortOrder: (order: "asc" | "desc") => void;

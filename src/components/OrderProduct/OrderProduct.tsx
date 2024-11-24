@@ -1,7 +1,8 @@
 import React from "react";
-import styles from "./styles.module.scss";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+
+import styles from "./styles.module.scss";
 
 interface OrderProductProps {
   thumbnailUrl: string;

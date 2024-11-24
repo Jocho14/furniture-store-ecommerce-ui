@@ -1,14 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 
-import { NavArrowDown, NavArrowUp } from "iconoir-react";
-
 import { ICollapsibleMenuItem } from "@/interfaces/MenuItem";
-import { Link } from "react-router-dom";
+
+import { NavArrowDown, NavArrowUp } from "iconoir-react";
 import styles from "./styles.module.scss";
 
 interface ICollapsibleMenuItemProps extends ICollapsibleMenuItem {

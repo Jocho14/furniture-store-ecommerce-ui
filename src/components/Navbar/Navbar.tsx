@@ -1,14 +1,17 @@
 import React from "react";
 import classNames from "classnames";
 
-import ActionIcon from "@/components/ActionIcon/ActionIcon";
-import { ShoppingCartIcon } from "@/components/ShoppingCartIcon/ShoppingCartIcon";
-import FavouritesDrawer from "@/components/FavouritesDrawer/FavouritesDrawer";
-import DropdownMenu from "@/components/DropdownMenu/DropdownMenu";
-import SheetCloseWrapper from "../SheetCloseWrapper/SheetCloseWrapper";
 import Menu from "@/components/Menu/Menu";
+import ActionIcon from "@/components/ActionIcon/ActionIcon";
+import DropdownMenu from "@/components/DropdownMenu/DropdownMenu";
+import FavouritesDrawer from "@/components/FavouritesDrawer/FavouritesDrawer";
+import SheetCloseWrapper from "@/components/SheetCloseWrapper/SheetCloseWrapper";
+import { ShoppingCartIcon } from "@/components/ShoppingCartIcon/ShoppingCartIcon";
+
 import useMenu from "@/hooks/useMenu";
+
 import UserRole from "@/enums/UserRole";
+
 import { useAuth } from "@/context/common/AuthContext";
 
 import {
@@ -19,7 +22,6 @@ import {
   Menu as MenuIcon,
   Search,
 } from "iconoir-react";
-
 import styles from "./styles.module.scss";
 
 interface NavbarProps {

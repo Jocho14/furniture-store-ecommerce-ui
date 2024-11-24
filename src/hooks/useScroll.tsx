@@ -8,14 +8,11 @@ const useScroll = (headerRef: React.RefObject<HTMLDivElement>, styles: any) => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Check if the user is at the top of the page
       if (currentScrollY <= 40) {
         isHidden.current = false;
       } else if (currentScrollY > lastScrollY.current) {
-        // Scrolling down
         isHidden.current = true;
       } else {
-        // Scrolling up
         isHidden.current = false;
       }
 

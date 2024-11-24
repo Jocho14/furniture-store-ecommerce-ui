@@ -37,7 +37,7 @@ export const getPrices = async (ids: number[]) => {
       ids: ids,
     },
   });
-  console.log();
+
   return response.data;
 };
 
@@ -45,8 +45,6 @@ export const getShoppingCartProductsPrice = async (
   idToQuantity: Quantities
 ): Promise<number> => {
   const productIds = Object.entries(idToQuantity).map(([id, _]) => Number(id));
-
-  console.log("product ids: ", productIds);
 
   const idToPrice = await getPrices(productIds);
 

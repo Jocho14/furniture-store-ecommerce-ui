@@ -1,4 +1,7 @@
-import { Check, ShoppingBag } from "iconoir-react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import classNames from "classnames";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,12 +10,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+
 import Grid from "@/components/Grid/Grid";
-import useMobile from "@/hooks/useMobile";
-import classNames from "classnames";
-import { useEffect } from "react";
+
 import { useCart } from "@/context/client/CartContext";
+
+import useMobile from "@/hooks/useMobile";
+
+import { Check, ShoppingBag } from "iconoir-react";
 
 const CheckoutSuccessPage = () => {
   const isMobile = useMobile();

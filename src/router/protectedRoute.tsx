@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
+
 import { useAuth } from "@/context/common/AuthContext";
 
 interface ProtectedRouteProps {
@@ -17,7 +18,6 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
       return <Navigate to="/auth" />;
     }
   } else if (auth?.account.role === "CLIENT") {
-    console.log("entered");
     if (location.pathname.startsWith("/auth")) {
       return <Navigate to="/" />;
     }

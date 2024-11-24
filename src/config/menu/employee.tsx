@@ -8,10 +8,10 @@ import {
   List,
   UserCart,
 } from "iconoir-react";
+
 import { MenuItem, ICollapsibleMenuItem } from "@/interfaces/MenuItem";
 
 const title = "LOGO";
-
 const managementItem: ICollapsibleMenuItem = {
   icon: <BookStack />,
   name: "Management",

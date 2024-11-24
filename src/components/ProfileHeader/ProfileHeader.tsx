@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "./styles.module.scss";
 import classNames from "classnames";
+
+import styles from "./styles.module.scss";
 
 interface ProfileHeaderProps {
   name: string;

@@ -1,9 +1,13 @@
 import React from "react";
-import styles from "./styles.module.scss";
-import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
+
+import { Separator } from "@/components/ui/separator";
+
 import { MenuItem, ICollapsibleMenuItem } from "@/interfaces/MenuItem";
+
 import CollapsibleMenuItem from "../CollapsibleMenuItem/CollapsibleMenuItem";
+
+import styles from "./styles.module.scss";
 
 interface MenuProps {
   title: React.ReactNode;

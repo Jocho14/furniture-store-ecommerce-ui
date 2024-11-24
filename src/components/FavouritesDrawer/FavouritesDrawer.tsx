@@ -1,6 +1,8 @@
-import * as React from "react";
+import React from "react";
+import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
-import FavouriteProduct from "../FavouriteProduct/FavouriteProduct";
+import { getAllFavourites } from "@/api/client/products";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -13,13 +15,9 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-
-import { Link } from "react-router-dom";
-
-import { useQuery } from "@tanstack/react-query";
-import { getAllFavourites } from "@/api/client/products";
-
 import { ScrollArea, ScrollBar } from "@/components/ui/scrollArea";
+
+import FavouriteProduct from "../FavouriteProduct/FavouriteProduct";
 
 interface FavouritesDrawerProps {
   trigger?: React.ReactNode;

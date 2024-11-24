@@ -1,7 +1,8 @@
 import React from "react";
-import styles from "./styles.module.scss";
-import { ShoppingBag } from "iconoir-react";
 import classNames from "classnames";
+
+import { ShoppingBag } from "iconoir-react";
+import styles from "./styles.module.scss";
 
 interface ShoppingCartIconProps {
   count: number;

@@ -1,9 +1,9 @@
 import { useHeader } from "@/context/employee/HeaderContext";
 
-import { FloppyDisk, ArrowLeft, TrashSolid } from "iconoir-react";
 import ActionIcon from "@/components/ActionIcon/ActionIcon";
 import PopupAlert from "@/components/PopupAlert/PopupAlert";
 
+import { FloppyDisk, ArrowLeft, TrashSolid } from "iconoir-react";
 import styles from "./styles.module.scss";
 
 const EditNav = () => {
