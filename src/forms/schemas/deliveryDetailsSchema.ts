@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const phoneNumberRegex = /^\+?[1-9]\d{1,14}$/;
 
-export const deliveryDetailsFormSchema = z.object({
+export const deliveryDetailsGuestFormSchema = z.object({
   email: z.string().email({ message: "Incorrect format for e-mail address" }),
   firstName: z
     .string()
@@ -13,6 +13,16 @@ export const deliveryDetailsFormSchema = z.object({
   phoneNumber: z.string().regex(phoneNumberRegex, {
     message: "Incorrect format for phone number",
   }),
+  streetAddress: z.string(),
+  houseNumber: z.string(),
+  localNumber: z.string().optional(),
+  postalCode: z
+    .string()
+    .length(6, { message: "Postal code must contain exactly 5 characters" }),
+  city: z.string(),
+});
+
+export const deliveryDetailsClientFormSchema = z.object({
   streetAddress: z.string(),
   houseNumber: z.string(),
   localNumber: z.string().optional(),

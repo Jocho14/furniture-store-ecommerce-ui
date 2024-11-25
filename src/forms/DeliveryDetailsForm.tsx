@@ -8,12 +8,19 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import FormFieldComponent from "@/components/FormFieldComponent/FormFieldComponent";
 
-import { deliveryDetailsFormSchema } from "@/forms/schemas/deliveryDetailsSchema";
-import { deliveryDetailsFormFields } from "@/forms/fields/deliveryDetailsFormFields";
+import {
+  deliveryDetailsClientFormSchema,
+  deliveryDetailsGuestFormSchema,
+} from "@/forms/schemas/deliveryDetailsSchema";
+import {
+  deliveryDetailsClientFormFields,
+  deliveryDetailsGuestFormFields,
+} from "@/forms/fields/deliveryDetailsFormFields";
 
-import { createGuestOrder } from "@/api/guest/orders";
+import { createClientOrder, createGuestOrder } from "@/api/guest/orders";
 
 import { useCart } from "@/context/client/CartContext";
+import { useAuth } from "@/context/common/AuthContext";
 
 import { DeliveryTruck, User } from "iconoir-react";
 
@@ -22,10 +29,11 @@ import {
   GuestDto,
   ShippingAddressDto,
   OrderProductDto,
+  CreateClientOrderDto,
 } from "@/interfaces/order";
 
-const createOrderPayload = (
-  values: z.infer<typeof deliveryDetailsFormSchema>,
+const createGuestOrderPayload = (
+  values: z.infer<typeof deliveryDetailsGuestFormSchema>,
   orderProductDtos: OrderProductDto[]
 ): CreateGuestOrderDto => {
   const guestDto: GuestDto = {
@@ -49,7 +57,24 @@ const createOrderPayload = (
   };
 };
 
-const defaultValues = deliveryDetailsFormFields.reduce((acc, field) => {
+const createClientOrderPayload = (
+  values: z.infer<typeof deliveryDetailsClientFormSchema>,
+  orderProductDtos: OrderProductDto[]
+): CreateClientOrderDto => {
+  const shippingAddressDto: ShippingAddressDto = {
+    streetAddress: values.streetAddress,
+    houseNumber: values.houseNumber,
+    postalCode: values.postalCode,
+    city: values.city,
+  };
+
+  return {
+    shippingAddressDto,
+    orderProductDtos,
+  };
+};
+
+const defaultValues = deliveryDetailsGuestFormFields.reduce((acc, field) => {
   acc[field.name] = "";
   return acc;
 }, {} as Record<string, string>);
@@ -69,28 +94,53 @@ const handleDashInsertion = (value: string) => {
 };
 
 export const DeliveryDetailsForm = () => {
-  const form = useForm<z.infer<typeof deliveryDetailsFormSchema>>({
-    resolver: zodResolver(deliveryDetailsFormSchema),
+  const guestForm = useForm<z.infer<typeof deliveryDetailsGuestFormSchema>>({
+    resolver: zodResolver(deliveryDetailsGuestFormSchema),
+    defaultValues: defaultValues,
+  });
+  const clientForm = useForm<z.infer<typeof deliveryDetailsClientFormSchema>>({
+    resolver: zodResolver(deliveryDetailsClientFormSchema),
     defaultValues: defaultValues,
   });
 
   const { cart } = useCart();
+  const account = useAuth();
   const navigate = useNavigate();
 
-  const mutation = useMutation({
+  const form = account?.account.accountId ? clientForm : guestForm;
+  const combinedFormSchema = deliveryDetailsGuestFormSchema.merge(
+    deliveryDetailsClientFormSchema
+  );
+
+  const guestMutation = useMutation({
     mutationFn: () =>
-      createGuestOrder(createOrderPayload(form.getValues(), cart)),
+      createGuestOrder(createGuestOrderPayload(guestForm.getValues(), cart)),
     onSuccess: (orderId: number) => {
       navigate(`/order/checkout/${orderId}`);
     },
     onError: (error) => {
-      console.error("Error adding product:", error);
+      console.error("Error creating order:", error);
+    },
+  });
+
+  const clientMutation = useMutation({
+    mutationFn: () =>
+      createClientOrder(createClientOrderPayload(clientForm.getValues(), cart)),
+    onSuccess: (orderId: number) => {
+      navigate(`/order/checkout/${orderId}`);
+    },
+    onError: (error) => {
+      console.error("Error creating order:", error);
     },
   });
 
   const handleSubmit = () => {
     event?.preventDefault();
-    mutation.mutate();
+    if (account?.account) {
+      clientMutation.mutate();
+      return;
+    }
+    guestMutation.mutate();
   };
 
   return (

@@ -22,3 +22,8 @@ export interface CreateGuestOrderDto {
   shippingAddressDto: ShippingAddressDto;
   orderProductDtos: OrderProductDto[];
 }
+
+export interface CreateClientOrderDto {
+  shippingAddressDto: ShippingAddressDto;
+  orderProductDtos: OrderProductDto[];
+}
