@@ -16,7 +16,7 @@ const CheckoutReturnPage: React.FC = () => {
     queryFn: () => fetchSessionStatus(sessionId),
     enabled: !!sessionId,
   });
-
+  console.log("session status error: ", error);
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 

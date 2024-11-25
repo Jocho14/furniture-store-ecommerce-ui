@@ -107,10 +107,7 @@ export const DeliveryDetailsForm = () => {
   const account = useAuth();
   const navigate = useNavigate();
 
-  const form = account?.account.accountId ? clientForm : guestForm;
-  const combinedFormSchema = deliveryDetailsGuestFormSchema.merge(
-    deliveryDetailsClientFormSchema
-  );
+  const formType = account?.account.accountId ? "client" : "guest";
 
   const guestMutation = useMutation({
     mutationFn: () =>
@@ -136,20 +133,20 @@ export const DeliveryDetailsForm = () => {
 
   const handleSubmit = () => {
     event?.preventDefault();
-    if (account?.account) {
+    if (account?.account.accountId) {
       clientMutation.mutate();
       return;
     }
     guestMutation.mutate();
   };
 
-  return (
-    <Form {...form}>
+  return (formType === "client" ? (
+    <Form {...clientForm}>
       <form
         onSubmit={handleSubmit}
         className="space-y-8 px-5 pb-5 flex flex-col justify-center"
       >
-        {deliveryDetailsFormFields.map((field) => {
+        {deliveryDetailsClientFormFields.map((field) => {
           return (
             <div key={field.name}>
               {field.name === "firstName" && (
@@ -165,7 +162,7 @@ export const DeliveryDetailsForm = () => {
               )}
 
               <FormFieldComponent
-                control={form.control}
+                control={clientForm.control}
                 name={field.name}
                 type={field.type}
                 label={field.label}
@@ -179,6 +176,42 @@ export const DeliveryDetailsForm = () => {
 
         <Button type="submit">Create Order</Button>
       </form>
-    </Form>
+    </Form>) :
+    (<Form {...guestForm}>
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-8 px-5 pb-5 flex flex-col justify-center"
+      >
+        {deliveryDetailsGuestFormFields.map((field) => {
+          return (
+            <div key={field.name}>
+              {field.name === "firstName" && (
+                <h1 className="flex gap-x-2 mb-3">
+                  Customer Details <User />
+                </h1>
+              )}
+
+              {field.name === "streetAddress" && (
+                <h1 className="flex gap-x-2 mb-3">
+                  Shipping Details <DeliveryTruck />
+                </h1>
+              )}
+
+              <FormFieldComponent
+                control={guestForm.control}
+                name={field.name}
+                type={field.type}
+                label={field.label}
+                onDashInsertion={
+                  field.name === "postalCode" ? handleDashInsertion : undefined
+                }
+              />
+            </div>
+          );
+        })}
+
+        <Button type="submit">Create Order</Button>
+      </form>
+    </Form>)
   );
 };

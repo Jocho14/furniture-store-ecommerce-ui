@@ -50,7 +50,7 @@ const ReviewsDialog: React.FC<ReviewsDialogProps> = ({
 
   const mutationAddReview = useMutation({
     mutationFn: () => addReview(Number(productId), rating, comment),
-    onSuccess: (data: any) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["reviews"] });
     },
     onError: (error) => {
