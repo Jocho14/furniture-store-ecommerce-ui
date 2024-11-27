@@ -1,3 +1,14 @@
+@import "../../assets/styles/variables";
+
 .order-product {
   display: flex;
+  margin: 10px;
+}
+
+.card-footer {
+  background-color: $white-ghost;
+}
+
+.info-ghost {
+  color: $ghost;
 }

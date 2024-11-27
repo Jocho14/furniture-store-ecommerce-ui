@@ -17,6 +17,7 @@ import useScroll from "@/hooks/useScroll";
 import useDebounce from "@/hooks/useDebounce";
 
 import { Search } from "iconoir-react";
+import Logo from "@/assets/images/logo.svg";
 import styles from "./styles.module.scss";
 
 const Header: React.FC = () => {
@@ -86,7 +87,9 @@ const Header: React.FC = () => {
             "centerNav-true"
           )}
         >
-          <Link to="">LOGO</Link>
+          <Link to="">
+          <img src={Logo} width={90} height={90}/>
+          </Link>
         </div>
         <div
           className={classNames(

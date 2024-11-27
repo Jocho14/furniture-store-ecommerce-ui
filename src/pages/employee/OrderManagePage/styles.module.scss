@@ -4,3 +4,25 @@
   color: $ghost;
   margin-right: 5px;
 }
+
+.pending, .completed, .canceled {
+  font-size: $font-size-medium;
+  padding: 10px;
+  border-radius: $radius-xlarge;
+}
+
+.pending {
+  background-color: $yellow-light;
+  color: $yellow;
+
+}
+
+.completed {
+  background-color: $green-light;
+  color: $green;
+}
+
+.canceled {
+  background-color: $red-light;
+  color: $red;
+}

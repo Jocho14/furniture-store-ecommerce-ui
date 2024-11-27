@@ -17,3 +17,12 @@ export const getManagedOrderDetails = async (id: number) => {
 
   return response.data;
 };
+
+export const cancelOrder = async (id: number) => {
+  const response = await axios.put(`${BACKEND_URL}/orders/${id}/cancel`, {},
+     {
+    withCredentials: true,
+  });
+
+  return response.data;
+}

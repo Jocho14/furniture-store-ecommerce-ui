@@ -17,17 +17,21 @@ import {
 } from "@/components/ui/drawer";
 import { ScrollArea, ScrollBar } from "@/components/ui/scrollArea";
 
-import FavouriteProduct from "../FavouriteProduct/FavouriteProduct";
+import FavouriteProduct from "@/components/FavouriteProduct/FavouriteProduct";
+
+import { useAuth } from "@/context/common/AuthContext";
 
 interface FavouritesDrawerProps {
   trigger?: React.ReactNode;
 }
 
 const FavouritesDrawer: React.FC<FavouritesDrawerProps> = ({ trigger }) => {
+  const account = useAuth();
   const [isOpen, setIsOpen] = React.useState(false);
   const { data: favouriteProducts } = useQuery({
     queryFn: () => getAllFavourites(),
     queryKey: ["favouriteProducts"],
+    enabled: !!account?.account.accountId,
   });
 
   const handleProductClick = () => {

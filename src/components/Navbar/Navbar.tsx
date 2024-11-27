@@ -36,7 +36,6 @@ const Navbar: React.FC<NavbarProps> = ({ cartCount, isMobile, className }) => {
 
   const userTools = [
     { icon: <Search />, isMobile: true },
-    { icon: <Shop />, linkTo: "/product/1", isMobile: false },
     account?.account?.accountId
       ? {
           icon: <ProfileCircle />,
@@ -57,7 +56,8 @@ const Navbar: React.FC<NavbarProps> = ({ cartCount, isMobile, className }) => {
       uiComponent: <FavouritesDrawer />,
       isMobile: false,
     },
-    { icon: <ShoppingCartIcon count={cartCount} />, linkTo: "/shopping-cart" },
+    { icon: <ShoppingCartIcon count={cartCount} />, linkTo: "/shopping-cart", label: "Shopping Cart", labelVisibility: "desktop-only" },
+
     {
       icon: <MenuIcon />,
       uiComponent: (

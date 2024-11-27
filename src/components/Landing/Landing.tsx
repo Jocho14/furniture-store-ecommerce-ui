@@ -19,7 +19,7 @@ const Landing: React.FC<Props> = () => {
           >
             Modern Furniture Transparent Background PNG
           </a>
-          Transform Your Space with Luna
+          Transform Your Space with LUNA
         </span>
         <span className={styles["landing__container__info"]}>
           Discover beautiful and comfortable furniture that brings warmth and

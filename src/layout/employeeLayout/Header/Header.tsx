@@ -5,6 +5,8 @@ import EditNav from "../nav/product/EditNav/EditNav";
 import AddNav from "../nav/product/AddNav/AddNav";
 // import ManageNav from "../nav/ManageNav/ManageNav";
 import OrderBaseNav from "../nav/order/BaseNav/BaseNav";
+import ManageNav from "../nav/order/ManageNav/ManageNav";
+import ManageCanceledNav from "../nav/order/ManageCanceledNav/ManageCanceledNav";
 
 import { useHeader } from "@/context/employee/HeaderContext";
 
@@ -38,6 +40,10 @@ const Header: React.FC<Props> = () => {
               return <AddNav />;
             case "order-list":
               return <OrderBaseNav />;
+            case "order-edit":
+              return <ManageNav />;
+            case "order-cancel-edit":
+              return <ManageCanceledNav />;
             default:
               return <BaseNav />;
           }

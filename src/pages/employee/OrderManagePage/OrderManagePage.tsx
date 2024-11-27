@@ -1,13 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import classNames from "classnames";
 
-import { getManagedOrderDetails } from "@/api/employee/orders";
+import { getManagedOrderDetails, cancelOrder } from "@/api/employee/orders";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import CollapsibleCard from "@/components/CollapsibleCard/CollapsibleCard";
 import OrderProduct from "@/components/OrderProduct/OrderProduct";
+import { ScrollArea, ScrollBar } from "@/components/ui/scrollArea";
+import { useToast } from "@/components/hooks/use-toast";
+
+import { useHeader } from "@/context/employee/HeaderContext";
 
 import {
   User,
@@ -24,6 +29,10 @@ interface OrderManagePageProps {}
 
 const OrderManagePage: React.FC<OrderManagePageProps> = () => {
   const { id } = useParams<{ id: string }>();
+  const { setMode, setDeactivateFunction } = useHeader();
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+
 
   const { data: orderData } = useQuery<any>({
     queryKey: ["orderDetailsManaged", id],
@@ -31,13 +40,42 @@ const OrderManagePage: React.FC<OrderManagePageProps> = () => {
     enabled: !!id,
   });
 
+  useEffect(() => {
+    orderData?.status !== "pending" ? 
+    setMode("order-cancel-edit") :
+    setMode("order-edit");
+    setDeactivateFunction(() => handleDeactivate);
+    return () => {
+      setDeactivateFunction(() => {});
+    };
+  }, [orderData]);
+
+  const mutationCancel = useMutation({
+    mutationFn: () => cancelOrder(Number(id)),
+    onSuccess: () => {
+      toast({
+        title: "Order canceled!",
+        description: "Order has been successfully canceled",
+      });
+      queryClient.invalidateQueries({queryFn: ["orderDetailsManaged", id]});
+    },
+    onError: (error) => {
+      console.error("Error canceling order:", error);
+    },
+  });
+
+  const handleDeactivate = async () => {
+    console.log("canceling order");
+    mutationCancel.mutate();
+  };
+
   return (
     <div className={styles["order-manage-page"]}>
       <Card>
         <CardHeader>
-          <CardTitle className="flex ">
+          <CardTitle className="flex items-center">
             <span className="mr-5">Order #{id}</span>
-            <span className="mr-5">{orderData?.status}</span>
+            <span className={classNames(styles[`${orderData?.status}`], "mr-5")}>{orderData?.status}</span>
             <span>{orderData?.date}</span>
           </CardTitle>
         </CardHeader>
@@ -75,16 +113,30 @@ const OrderManagePage: React.FC<OrderManagePageProps> = () => {
             title="Order Details"
             icon={<BoxIso width={26} height={26} color="grey" />}
           >
-            <div className="m-5">
+            <div className="m-1 mb-10">
+              <ScrollArea className="w-full whitespace-nowrap">
+             <div className="flex flex-col">
+              <div className="flex m-10">
               {orderData?.products?.map((product: any) => (
                 <OrderProduct
+                key={product?.name}
                   name={product?.name}
                   price={product?.price}
                   thumbnailUrl={product?.thumbnailUrl}
                   quantity={product?.quantity}
                 />
               ))}
+              </div>
+          
+              </div>
+              <ScrollBar orientation="horizontal" />
+              </ScrollArea>
+              <div className="flex flex-col mt-10 ml-3">
+                <div className="">Total</div>
+                <div className="">Price: {orderData?.totalAmount}zł</div>
+                </div>
             </div>
+          
           </CollapsibleCard>
         </CardContent>
         <CardContent>
