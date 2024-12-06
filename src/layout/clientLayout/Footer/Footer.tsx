@@ -17,6 +17,7 @@ const Footer: React.FC<Props> = () => {
               key={i}
               src={iconsArray[i]}
               className={classNames(styles["item"], styles[`item-${i + 1}`])}
+              alt={`icon-${i + 1}`}
             ></img>
           )
         )}

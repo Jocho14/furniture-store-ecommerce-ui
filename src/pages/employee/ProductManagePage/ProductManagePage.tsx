@@ -103,7 +103,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
         title: "Product added successfully!",
         description: (
           <div className="flex flex-row gap-3 items-center mt-3">
-            <img className="h-[50px] aspect-square" src={data.thumbnailUrl} />
+            <img className="h-[50px] aspect-square" src={data.thumbnailUrl} alt={data.name}/>
             <div className="flex flex-col gap-2">
               <h1 className="font-bold">{data.name}</h1>
               <h1>{`${data.price}zł`}</h1>

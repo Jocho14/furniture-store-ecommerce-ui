@@ -32,7 +32,7 @@ const Menu: React.FC<MenuProps> = ({
   return (
     <nav className={styles["nav"]}>
       <ul className={styles["main-list"]}>
-        <span className={styles["title"]}><img src={Logo} width={70} height={70}/></span>
+        <span className={styles["title"]}><img src={Logo} width={70} height={70} alt="logo"/></span>
         {primaryGroup.map((item) =>
           isCollapsibleMenuItem(item) ? (
             <CollapsibleMenuItem

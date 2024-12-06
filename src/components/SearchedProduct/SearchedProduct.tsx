@@ -25,6 +25,7 @@ const SearchedProduct: React.FC<SearchedProductProps> = ({
         <img
           className={styles["search-product__container__image"]}
           src={thumbnailUrl}
+          alt={name}
         />
         <Button
           aria-label="product"

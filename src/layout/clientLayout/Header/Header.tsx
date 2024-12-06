@@ -88,7 +88,7 @@ const Header: React.FC = () => {
           )}
         >
           <Link to="">
-          <img src={Logo} width={90} height={90}/>
+          <img src={Logo} width={90} height={90} alt="logo"/>
           </Link>
         </div>
         <div
