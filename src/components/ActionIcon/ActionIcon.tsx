@@ -46,6 +46,7 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
     if (linkTo) {
       return (
         <Link
+          aria-label={label ? label : "icon"}
           to={linkTo}
           onClick={onClick}
           className={classNames(
@@ -110,7 +111,7 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
 
     return (
       <button
-        aria-label={label}
+        aria-label={label ? label : "icon"}
         ref={ref}
         onClick={onClick}
         className={classNames(
