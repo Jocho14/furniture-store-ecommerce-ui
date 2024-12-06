@@ -91,7 +91,7 @@ const CheckoutSuccessPage = () => {
             </CardContent>
             <CardFooter className="flex justify-center">
               <Link to="/">
-                <Button className="w-full sm:w-auto">
+                <Button aria-label="continue shopping" className="w-full sm:w-auto">
                   <ShoppingBag className="mr-2 h-4 w-4" />
                   Continue Shopping
                 </Button>

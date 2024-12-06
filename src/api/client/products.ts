@@ -85,7 +85,7 @@ export const checkFavourite = async (id: number) => {
     }
   );
 
-  return response.data;
+  return response.data.isFavourite;
 };
 
 export const getAllFavourites = async () => {

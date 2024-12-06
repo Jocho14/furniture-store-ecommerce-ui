@@ -174,7 +174,7 @@ export const DeliveryDetailsForm = () => {
           );
         })}
 
-        <Button type="submit">Create Order</Button>
+        <Button aria-label="create-order" type="submit">Create Order</Button>
       </form>
     </Form>) :
     (<Form {...guestForm}>
@@ -210,7 +210,7 @@ export const DeliveryDetailsForm = () => {
           );
         })}
 
-        <Button type="submit">Create Order</Button>
+        <Button aria-label="submit create order" type="submit">Create Order</Button>
       </form>
     </Form>)
   );

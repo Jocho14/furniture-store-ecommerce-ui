@@ -27,6 +27,7 @@ const SearchedProduct: React.FC<SearchedProductProps> = ({
           src={thumbnailUrl}
         />
         <Button
+          aria-label="product"
           variant="link"
           className={styles["search-product__container__info"]}
         >

@@ -17,6 +17,7 @@ const CheckoutButton: React.FC<CheckoutButtonProps> = ({
   const navigate = useNavigate();
   return (
     <button
+      aria-label="Continue to checkout"
       disabled={isDisabled}
       onClick={() => navigate("/order/delivery-details")}
       className={classNames(

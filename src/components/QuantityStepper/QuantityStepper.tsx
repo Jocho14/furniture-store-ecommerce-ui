@@ -27,6 +27,7 @@ const QuantityStepper: React.FC<QuantityStepperProps> = ({
       className={classNames(styles["quantity-stepper__container"], className)}
     >
       <button
+        aria-label="Decrement quantity"
         className={classNames(styles["quantity-stepper__container__button"], {
           [styles["disabled"]]: quantity <= 0,
         })}
@@ -47,6 +48,7 @@ const QuantityStepper: React.FC<QuantityStepperProps> = ({
         onFocus={onFocus}
       />
       <button
+        aria-label="Increment quantity"
         className={classNames(styles["quantity-stepper__container__button"], {
           [styles["disabled"]]: quantity >= 999,
         })}

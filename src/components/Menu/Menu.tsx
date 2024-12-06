@@ -24,7 +24,6 @@ function isCollapsibleMenuItem(
 }
 
 const Menu: React.FC<MenuProps> = ({
-  title,
   primaryGroup,
   secondaryGroup,
   footerGroup,

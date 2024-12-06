@@ -163,6 +163,7 @@ const ProductDetailPage = () => {
               }
             />
             <button
+              aria-label="Add to cart"
               className={
                 styles["product-detail-page__details__actions__add-to-cart-btn"]
               }
@@ -195,6 +196,7 @@ const ProductDetailPage = () => {
             <ReviewsDialog
               trigger={
                 <Button
+                  aria-label="reviews"
                   variant="link"
                   className={classNames(
                     styles[

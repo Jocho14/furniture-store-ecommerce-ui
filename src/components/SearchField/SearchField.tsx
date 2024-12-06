@@ -51,7 +51,7 @@ const SearchField: React.FC<SearchFieldProps> = ({
         proposedSearches.map((search) => {
           return (
             <Link to={`/product?categories=${search.category}`}>
-              <Button variant="link">
+              <Button aria-label="go to category" variant="link">
                 {search.title} <ArrowRight height={12} />
               </Button>
             </Link>

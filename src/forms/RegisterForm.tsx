@@ -160,7 +160,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ role }) => {
             Policy.
           </label>
         </div>
-        <Button type="submit">
+        <Button aria-label="register" type="submit">
           {mutation.isPending ? <Loader /> : "Create account"}
         </Button>
       </form>

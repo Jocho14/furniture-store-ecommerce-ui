@@ -76,7 +76,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ role }) => {
             label={field.label}
           />
         ))}
-        <Button type="submit">
+        <Button aria-label="log in" type="submit">
           {loginMutation.isPending ? <Loader /> : "Log in"}
         </Button>
       </form>

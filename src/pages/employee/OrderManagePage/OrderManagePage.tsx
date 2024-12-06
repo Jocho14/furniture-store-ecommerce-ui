@@ -57,7 +57,7 @@ const OrderManagePage: React.FC<OrderManagePageProps> = () => {
         title: "Order canceled!",
         description: "Order has been successfully canceled",
       });
-      queryClient.invalidateQueries({queryFn: ["orderDetailsManaged", id]});
+      queryClient.invalidateQueries({queryKey: ["orderDetailsManaged", id]});
     },
     onError: (error) => {
       console.error("Error canceling order:", error);

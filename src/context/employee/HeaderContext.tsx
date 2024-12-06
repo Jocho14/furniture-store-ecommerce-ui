@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 
-type HeaderMode = "list" | "add" | "edit" | "order-list";
+type HeaderMode = "list" | "add" | "edit" | "order-list" | "order-edit" | "order-cancel-edit";
 
 interface HeaderContextType {
   mode: HeaderMode;

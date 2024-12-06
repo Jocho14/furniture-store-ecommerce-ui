@@ -15,7 +15,6 @@ import UserRole from "@/enums/UserRole";
 import { useAuth } from "@/context/common/AuthContext";
 
 import {
-  Shop,
   User,
   ProfileCircle,
   Heart,

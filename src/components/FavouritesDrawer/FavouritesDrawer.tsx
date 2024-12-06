@@ -78,7 +78,7 @@ const FavouritesDrawer: React.FC<FavouritesDrawerProps> = ({ trigger }) => {
           </div>
           <DrawerFooter className="flex items-center">
             <DrawerClose asChild>
-              <Button variant="outline" className="w-[300px]">
+              <Button aria-label="close" variant="outline" className="w-[300px]">
                 Close
               </Button>
             </DrawerClose>

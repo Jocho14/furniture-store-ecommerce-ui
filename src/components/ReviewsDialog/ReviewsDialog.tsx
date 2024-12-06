@@ -101,6 +101,7 @@ const ReviewsDialog: React.FC<ReviewsDialogProps> = ({
               {openAddReview ? (
                 <div className="flex align-start">
                   <Button
+                    aria-label="Back to reviews"
                     variant="secondary"
                     onClick={() => setOpenAddReview(false)}
                     className="flex gap-3"
@@ -174,6 +175,7 @@ const ReviewsDialog: React.FC<ReviewsDialogProps> = ({
             >
               {openAddReview ? (
                 <Button
+                  aria-label="Submit review"
                   onClick={() => {
                     handleSubmitReview();
                     setOpen(false);
@@ -183,7 +185,7 @@ const ReviewsDialog: React.FC<ReviewsDialogProps> = ({
                   Submit Review
                 </Button>
               ) : (
-                <Button onClick={() => setOpenAddReview(true)}>
+                <Button aria-label="write a review" onClick={() => setOpenAddReview(true)}>
                   Write a review
                 </Button>
               )}

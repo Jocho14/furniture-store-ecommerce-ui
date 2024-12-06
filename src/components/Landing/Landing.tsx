@@ -27,9 +27,10 @@ const Landing: React.FC<Props> = () => {
         </span>
         <div className={styles["landing__container__buttons"]}>
           <Link to="/product">
-            <Button>Shop Now</Button>
+            <Button aria-label="shop now">Shop Now</Button>
           </Link>
           <Button
+            aria-label="discover"
             variant="outline"
             onClick={() => window.scrollBy({ top: 900, behavior: "smooth" })}
           >

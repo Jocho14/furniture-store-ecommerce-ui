@@ -1,9 +1,6 @@
-import { useHeader } from "@/context/employee/HeaderContext";
-
 import ActionIcon from "@/components/ActionIcon/ActionIcon";
-import PopupAlert from "@/components/PopupAlert/PopupAlert";
 
-import { ArrowLeft, Xmark } from "iconoir-react";
+import { ArrowLeft } from "iconoir-react";
 import styles from "./styles.module.scss";
 
 const ManageCanceledNav = () => {

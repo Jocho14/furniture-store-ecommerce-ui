@@ -76,7 +76,7 @@ const ShoppingCartPage: React.FC<ShoppingCartPageProps> = ({
               <div className="flex flex-col gap-6 items-center">
                 <h2>No products in the cart</h2>
                 <Link to="/">
-                  <Button>Shop now</Button>
+                  <Button aria-label="shop now">Shop now</Button>
                 </Link>
               </div>
             </div>

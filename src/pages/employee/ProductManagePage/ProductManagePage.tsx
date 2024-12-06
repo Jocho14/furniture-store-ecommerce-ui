@@ -281,7 +281,7 @@ const ProductManagePage: React.FC<ProductManagePageProps> = ({
           </CardContent>
         </CollapsibleCard>
 
-        {isMobile && <Button onClick={handleSubmit}>Save changes</Button>}
+        {isMobile && <Button aria-label="save changes" onClick={handleSubmit}>Save changes</Button>}
       </div>
     </div>
   );

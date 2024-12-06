@@ -88,6 +88,7 @@ const HorizontalScrollContainer: React.FC<HorizontalScrollContainerProps> = ({
     >
       {showLeftArrow && (
         <button
+          aria-label="Scroll left"
           className={classNames(
             styles["horizontal-scroll-wrapper__left-nav-arrow"],
             {
@@ -104,6 +105,7 @@ const HorizontalScrollContainer: React.FC<HorizontalScrollContainerProps> = ({
       </div>
       {showRightArrow && (
         <button
+          aria-label="Scroll right"
           className={classNames(
             styles["horizontal-scroll-wrapper__right-nav-arrow"],
             {

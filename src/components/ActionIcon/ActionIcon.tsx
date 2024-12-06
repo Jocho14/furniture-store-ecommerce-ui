@@ -110,6 +110,7 @@ const ActionIcon = forwardRef<HTMLButtonElement, ActionIconProps>(
 
     return (
       <button
+        aria-label={label}
         ref={ref}
         onClick={onClick}
         className={classNames(
