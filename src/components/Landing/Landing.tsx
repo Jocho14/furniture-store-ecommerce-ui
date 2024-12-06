@@ -16,8 +16,8 @@ const Landing: React.FC<Props> = () => {
             className={styles["landing__container__title__a"]}
             href="https://www.pngarts.com/explore/162722"
             target="_blank"
+            style={{ display: "inline-block", width: "100%", height: "auto" }}
           >
-            Modern Furniture Transparent Background PNG
           </a>
           Transform Your Space with LUNA
         </span>
