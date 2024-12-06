@@ -1,7 +1,7 @@
 import React from "react";
-import classNames from "classnames";
+//import classNames from "classnames";
 
-import { iconsArray } from "@/utils/iconsArray";
+//import { iconsArray } from "@/utils/iconsArray";
 import styles from "./styles.module.scss";
 
 interface Props {}
@@ -10,7 +10,7 @@ const Footer: React.FC<Props> = () => {
   return (
     <footer className={styles["footer"]}>
       <div className={styles["wrapper"]}>
-        {Array.from(
+        {/* {Array.from(
           { length: 9 }, // NOTE: When adding an icon to the array, modify the $number-of-items variable in the SCSS file
           (_, i) => (
             <img
@@ -20,7 +20,8 @@ const Footer: React.FC<Props> = () => {
               alt={`icon-${i + 1}`}
             ></img>
           )
-        )}
+        )} */}
+        Footer
       </div>
     </footer>
   );
