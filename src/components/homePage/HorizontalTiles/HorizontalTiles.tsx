@@ -1,11 +1,15 @@
 import React from "react";
-
-import { HomePageProduct } from "@/interfaces/Product";
+import { Link } from "react-router-dom";
 
 import styles from "./styles.module.scss";
 
+interface HorizontalTileProduct {
+  name: string;
+  imageUrl: string;
+}
+
 interface HorizontalTilesProps {
-  contentItems: HomePageProduct[];
+  contentItems: HorizontalTileProduct[];
 }
 
 const HorizontalTiles: React.FC<HorizontalTilesProps> = ({ contentItems }) => {
@@ -14,17 +18,18 @@ const HorizontalTiles: React.FC<HorizontalTilesProps> = ({ contentItems }) => {
       {Array.isArray(contentItems) &&
         contentItems.map((item) => {
           return (
-            <div className={styles["horizontal-tiles__item"]}>
-              <div className={styles["horizontal-tiles__item__chip"]}>
-                {item.name}
+            <Link to={`product?categories=${item.name}`}>
+              <div key={item.name} className={styles["horizontal-tiles__item"]}>
+                <div className={styles["horizontal-tiles__item__chip"]}>
+                  {item.name}
+                </div>
+                <img
+                  className={styles["horizontal-tiles__item__img"]}
+                  src={item.imageUrl}
+                  alt={item.name}
+                />
               </div>
-              <img
-                key={item.id}
-                className={styles["horizontal-tiles__item__img"]}
-                src={item.imageUrls[0]}
-                alt={item.name}
-              />
-            </div>
+            </Link>
           );
         })}
     </div>

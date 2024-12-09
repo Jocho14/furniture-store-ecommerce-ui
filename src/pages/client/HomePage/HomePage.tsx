@@ -2,15 +2,17 @@ import React from "react";
 import classNames from "classnames";
 import { useQuery } from "@tanstack/react-query";
 
-import { getMasonryContent } from "@/api/client/products";
+import {
+  getHorizontalTilesContent,
+  getMasonryContent,
+} from "@/api/client/products";
 
 import Grid from "@/components/Grid/Grid";
 import Landing from "@/components/Landing/Landing";
 import MasonryGrid from "@/components/homePage/MasonryGrid/MasonryGrid";
-// import HorizontalTiles from "@/components/homePage/HorizontalTiles/HorizontalTiles";
-// import ProductFetcher from "@/components/ProductFetcher/ProductFetcher";
+import HorizontalTiles from "@/components/homePage/HorizontalTiles/HorizontalTiles";
 import useMobile from "@/hooks/useMobile";
-// import HorizontalScrollContainer from "@/components/HorizontalScrollContainer/HorizontalScrollContainer";
+import HorizontalScrollContainer from "@/components/HorizontalScrollContainer/HorizontalScrollContainer";
 
 import { MasonryContent } from "@/interfaces/Product";
 
@@ -24,6 +26,14 @@ const HomePage: React.FC<Props> = () => {
   const { data: masonryContentData } = useQuery<MasonryContent>({
     queryKey: ["masonryContent"],
     queryFn: () => getMasonryContent(1),
+    staleTime: 1000 * 60 * 5,
+  });
+
+  console.log(masonryContentData);
+
+  const { data: horizontalTilesItems } = useQuery({
+    queryKey: ["horizontalTilesItems"],
+    queryFn: () => getHorizontalTilesContent(1),
     staleTime: 1000 * 60 * 5,
   });
 
@@ -56,13 +66,9 @@ const HomePage: React.FC<Props> = () => {
             { "start-1 col-4": isMobile }
           )}
         >
-          {/* <HorizontalScrollContainer className={styles["scroll-container"]}>
-            <ProductFetcher
-              render={(products: any) => (
-                <HorizontalTiles contentItems={products} />
-              )}
-            />
-          </HorizontalScrollContainer> */}
+          <HorizontalScrollContainer className={styles["scroll-container"]}>
+            <HorizontalTiles contentItems={horizontalTilesItems} />
+          </HorizontalScrollContainer>
         </div>
       </Grid>
     </div>
