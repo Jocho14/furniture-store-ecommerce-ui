@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import classNames from "classnames";
@@ -33,7 +33,6 @@ const OrderManagePage: React.FC<OrderManagePageProps> = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-
   const { data: orderData } = useQuery<any>({
     queryKey: ["orderDetailsManaged", id],
     queryFn: () => getManagedOrderDetails(Number(id)),
@@ -41,9 +40,9 @@ const OrderManagePage: React.FC<OrderManagePageProps> = () => {
   });
 
   useEffect(() => {
-    orderData?.status !== "pending" ? 
-    setMode("order-cancel-edit") :
-    setMode("order-edit");
+    orderData?.status !== "pending"
+      ? setMode("order-cancel-edit")
+      : setMode("order-edit");
     setDeactivateFunction(() => handleDeactivate);
     return () => {
       setDeactivateFunction(() => {});
@@ -57,7 +56,7 @@ const OrderManagePage: React.FC<OrderManagePageProps> = () => {
         title: "Order canceled!",
         description: "Order has been successfully canceled",
       });
-      queryClient.invalidateQueries({queryKey: ["orderDetailsManaged", id]});
+      queryClient.invalidateQueries({ queryKey: ["orderDetailsManaged", id] });
     },
     onError: (error) => {
       console.error("Error canceling order:", error);
@@ -65,7 +64,6 @@ const OrderManagePage: React.FC<OrderManagePageProps> = () => {
   });
 
   const handleDeactivate = async () => {
-    console.log("canceling order");
     mutationCancel.mutate();
   };
 
@@ -75,7 +73,11 @@ const OrderManagePage: React.FC<OrderManagePageProps> = () => {
         <CardHeader>
           <CardTitle className="flex items-center">
             <span className="mr-5">Order #{id}</span>
-            <span className={classNames(styles[`${orderData?.status}`], "mr-5")}>{orderData?.status}</span>
+            <span
+              className={classNames(styles[`${orderData?.status}`], "mr-5")}
+            >
+              {orderData?.status}
+            </span>
             <span>{orderData?.date}</span>
           </CardTitle>
         </CardHeader>
@@ -115,28 +117,26 @@ const OrderManagePage: React.FC<OrderManagePageProps> = () => {
           >
             <div className="m-1 mb-10">
               <ScrollArea className="w-full whitespace-nowrap">
-             <div className="flex flex-col">
-              <div className="flex m-10">
-              {orderData?.products?.map((product: any) => (
-                <OrderProduct
-                key={product?.name}
-                  name={product?.name}
-                  price={product?.price}
-                  thumbnailUrl={product?.thumbnailUrl}
-                  quantity={product?.quantity}
-                />
-              ))}
-              </div>
-          
-              </div>
-              <ScrollBar orientation="horizontal" />
+                <div className="flex flex-col">
+                  <div className="flex m-10">
+                    {orderData?.products?.map((product: any) => (
+                      <OrderProduct
+                        key={product?.name}
+                        name={product?.name}
+                        price={product?.price}
+                        thumbnailUrl={product?.thumbnailUrl}
+                        quantity={product?.quantity}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <ScrollBar orientation="horizontal" />
               </ScrollArea>
               <div className="flex flex-col mt-10 ml-3">
                 <div className="">Total</div>
                 <div className="">Price: {orderData?.totalAmount}zł</div>
-                </div>
+              </div>
             </div>
-          
           </CollapsibleCard>
         </CardContent>
         <CardContent>

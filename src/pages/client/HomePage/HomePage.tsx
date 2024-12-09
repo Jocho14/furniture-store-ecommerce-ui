@@ -29,8 +29,6 @@ const HomePage: React.FC<Props> = () => {
     staleTime: 1000 * 60 * 5,
   });
 
-  console.log(masonryContentData);
-
   const { data: horizontalTilesItems } = useQuery({
     queryKey: ["horizontalTilesItems"],
     queryFn: () => getHorizontalTilesContent(1),

@@ -8,7 +8,6 @@ interface GridProps {
 }
 
 const Grid: React.FC<GridProps> = ({ children, className }) => {
-  console.log("rerender");
   const getResponsiveClass = (
     _index: number,
     start: number,

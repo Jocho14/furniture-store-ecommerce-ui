@@ -14,7 +14,6 @@ export const getProductDetails = async (id: number) => {
 };
 
 export const getMasonryContent = async (id: number) => {
-  console.log(process.env.VITE_BACKEND_URL);
   const response = await axios.get(`${BACKEND_URL}/categories/${id}/masonry`);
   return response.data;
 };
